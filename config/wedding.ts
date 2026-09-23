@@ -383,10 +383,10 @@ export const backgrounds = {
 
   /** Imágenes de la animación del sobre. */
   envelope: {
-    front: '/invitacion/sobre-frontal.webp',
+    front: '/invitacion/sobre-frontal-limpio.webp',
     backClosed: '/invitacion/sobre-cerrado.webp',
     base: '/invitacion/sobre-abierto.png',
-    flapClosed: '/invitacion/sobre-solapa-nombres.webp',
+    flapClosed: '/invitacion/sobre-solapa-limpia.webp',
     flapOpen: '/invitacion/sobre-solapa-abierta.webp',
     cardBg: '/invitacion/textura-papel.webp',
   },
