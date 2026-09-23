@@ -345,10 +345,14 @@ export const backgrounds = {
     opacity: 0.85,
   },
 
-  /** Pantalla del sobre: la pared sobre la que cuelga la invitación. */
+  /**
+   * Pantalla del sobre. Por defecto usa el mismo papel y las mismas cenefas
+   * que el resto de la invitación; para volver a la pared de la foto original,
+   * pon aquí '/invitacion/fondo-pared.webp'.
+   */
   intro: {
-    mobile: '/invitacion/fondo-pared.webp',
-    desktop: '/invitacion/fondo-pared.webp',
+    mobile: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
   hero: {
     mobileTop: '/invitacion/textura-papel.webp',

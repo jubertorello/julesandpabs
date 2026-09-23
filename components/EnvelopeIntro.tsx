@@ -45,25 +45,35 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
           transition={{ duration: 1 }}
           className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none"
         >
-          {/* Mobile Background */}
+          {/* Fondo: el papel de la tarjeta con las cenefas florales a los lados */}
           <div
-            className="absolute inset-0 z-[-1] md:hidden"
-            style={{
-              backgroundImage: `url("${backgrounds.intro.mobile}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-secondary)',
-            }}
-          />
-
-          {/* Desktop Background */}
-          <div
-            className="absolute inset-0 z-[-1] hidden md:block"
+            className="absolute inset-0 z-[-1] bg-cream"
             style={{
               backgroundImage: `url("${backgrounds.intro.desktop}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-secondary)',
+              backgroundSize: '360px 360px',
+              backgroundRepeat: 'repeat',
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 z-[-1] pointer-events-none w-[26vw] max-w-[230px]"
+            style={{
+              opacity: backgrounds.flowers.opacity,
+              backgroundImage: `url("${backgrounds.flowers.left}")`,
+              backgroundSize: '100% auto',
+              backgroundRepeat: 'repeat-y',
+              backgroundPosition: 'left top',
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-y-0 right-0 z-[-1] pointer-events-none w-[26vw] max-w-[230px]"
+            style={{
+              opacity: backgrounds.flowers.opacity,
+              backgroundImage: `url("${backgrounds.flowers.right}")`,
+              backgroundSize: '100% auto',
+              backgroundRepeat: 'repeat-y',
+              backgroundPosition: 'right top',
             }}
           />
 
@@ -95,10 +105,10 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
                   />
                 </motion.div>
 
-                <p className="font-serif text-cream text-2xl md:text-3xl italic mb-1 drop-shadow-sm">
+                <p className="font-serif text-deep text-2xl md:text-3xl italic mb-1">
                   {wedding.envelope.preTitle}
                 </p>
-                <p className="font-sans text-cream/80 text-[11px] uppercase tracking-[0.35em] mb-10 drop-shadow-sm">
+                <p className="font-sans text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
                   {wedding.envelope.preSubtitle}
                 </p>
 
@@ -144,48 +154,66 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
                     className="absolute inset-0 z-40 overflow-visible"
                     style={{ transform: 'rotateY(180deg)' }}
                   >
-                    {/* 1. Envelope Back Base */}
-                    <div className="absolute inset-x-0 bottom-0 h-full z-10">
-                      <Image src={assets.base} alt="Base" fill className="object-contain" referrerPolicy="no-referrer" />
-                    </div>
+                    {/*
+                      Orden de capas, de atrás hacia delante:
+                      1. solapa abierta (triángulo con el lacre, apuntando
+                         hacia arriba por encima del sobre)
+                      2. tarjeta, que sale del sobre al abrirse
+                      3. bolsillo del sobre, con su escote en V, por delante
+                         de la tarjeta para que parezca que sale de dentro
+                      4. dorso cerrado, que se desvanece al abrir
+                    */}
 
-                    {/* 2. Open Flap Layer */}
+                    {/* 1. Solapa abierta */}
                     {(state === 'OPENING' || state === 'OPENED') && (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute inset-x-0 bottom-full h-full z-[12] pointer-events-none"
+                        className="absolute inset-x-0 bottom-[99%] z-10 pointer-events-none"
+                        style={{ aspectRatio: '840 / 549' }}
                       >
-                        <Image src={assets.flapOpen} alt="Flap Abierta" fill className="object-contain object-bottom" referrerPolicy="no-referrer" />
+                        <Image
+                          src={assets.flapOpen}
+                          alt="Solapa abierta"
+                          fill
+                          className="object-contain rotate-180"
+                          referrerPolicy="no-referrer"
+                        />
                       </motion.div>
                     )}
 
-                    {/* 3. The Card */}
+                    {/* 2. La tarjeta */}
                     <motion.div
-                      className="absolute inset-x-0 top-[15%] h-[230px] md:h-[260px] rounded-sm shadow-xl flex flex-col items-center justify-center p-8 text-center"
-                      style={{ backgroundImage: `url(${assets.cardBg})`, backgroundSize: 'cover', zIndex: 20 }}
-                      initial={{ y: -18, opacity: 0 }}
+                      className="absolute inset-x-[4%] top-[14%] h-[235px] md:h-[265px] rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.28)] flex flex-col items-center justify-center px-6 py-5 text-center"
+                      style={{
+                        backgroundImage: `url(${assets.cardBg})`,
+                        backgroundSize: '260px 260px',
+                        // Al terminar de salir, la tarjeta pasa por delante del
+                        // sobre, como en la invitación impresa.
+                        zIndex: state === 'OPENED' ? 35 : 20,
+                      }}
+                      initial={{ y: '8%', opacity: 0 }}
                       animate={
                         state === 'OPENED'
-                          ? { y: '-140px', opacity: 1, zIndex: 20 }
+                          ? { y: '-42%', opacity: 1 }
                           : state === 'OPENING'
-                          ? { y: '0', opacity: 1, zIndex: 20 }
-                          : { y: '0', opacity: 0, zIndex: 20 }
+                          ? { y: '8%', opacity: 1 }
+                          : { y: '8%', opacity: 0 }
                       }
-                      transition={{ y: { duration: 1.5, ease: [0.33, 1, 0.68, 1], delay: 0.30 } }}
+                      transition={{ y: { duration: 1.5, ease: [0.33, 1, 0.68, 1], delay: 0.3 } }}
                     >
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={state === 'OPENED' ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.30, duration: 0.1 }}
-                        className="relative z-50 flex flex-col items-center pointer-events-auto"
+                        transition={{ delay: 0.3, duration: 0.1 }}
+                        className="relative flex flex-col items-center pointer-events-auto"
                       >
-                        <p className="font-serif text-muted text-lg mb-2 italic">{wedding.envelope.cardIntro}</p>
-                        <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6 leading-tight font-light italic">
+                        <p className="font-serif text-muted text-base md:text-lg mb-1 italic">{wedding.envelope.cardIntro}</p>
+                        <h2 className="font-serif text-2xl md:text-3xl text-primary mb-4 leading-tight font-light italic">
                           {wedding.envelope.cardNames}
                         </h2>
-                        <div className="h-px w-10 bg-primary/20 mb-5" />
+                        <div className="h-px w-10 bg-primary/25 mb-4" />
                         <button
                           type="button"
                           onClick={(e) => {
@@ -195,20 +223,20 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
                             if (onStartExit) onStartExit();
                             setTimeout(onComplete, 1000);
                           }}
-                          className="relative z-[999] pointer-events-auto px-6 py-2 bg-primary text-white font-sans tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                          className="px-6 py-2 bg-primary text-cream font-sans tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
                         >
                           {wedding.envelope.cardButton}
                         </button>
                       </motion.div>
                     </motion.div>
 
-                    {/* 4. Front Pocket */}
+                    {/* 3. Bolsillo del sobre, por delante de la tarjeta */}
                     <div className="absolute inset-0 z-30 pointer-events-none">
-                      <Image src={assets.base} alt="Pocket" fill className="object-contain" style={{ clipPath: 'inset(0% 0 0 0)' }} referrerPolicy="no-referrer" />
+                      <Image src={assets.base} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
                     </div>
 
-                    {/* 5. The Rotating Flap */}
-                    <div className="absolute inset-0 z-40 overflow-visible origin-top pointer-events-none">
+                    {/* 4. Dorso cerrado */}
+                    <div className="absolute inset-0 z-40 pointer-events-none">
                       {(state === 'FLIPPING' || state === 'OPENING') && (
                         <motion.div
                           className="absolute inset-0"
@@ -219,7 +247,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
                             if (state === 'OPENING') setState('OPENED');
                           }}
                         >
-                          <Image src={assets.backClosed} alt="Dorso Cerrado" fill className="object-contain" referrerPolicy="no-referrer" />
+                          <Image src={assets.backClosed} alt="Dorso cerrado" fill className="object-contain" referrerPolicy="no-referrer" />
                         </motion.div>
                       )}
                     </div>
