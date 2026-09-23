@@ -48,6 +48,17 @@
  */
 
 @layer base {
+  /*
+   * La invitación ocupa siempre el ancho de la pantalla y nunca desplaza en
+   * horizontal. `clip` en vez de `hidden` porque no crea contenedor de scroll,
+   * así el fondo fijo y la barra superior siguen funcionando.
+   */
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   body {
     @apply antialiased bg-secondary;
     font-family: var(--font-body);

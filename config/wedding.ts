@@ -49,15 +49,15 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   date: {
     /** Fecha y hora exactas con zona horaria. Alimenta la cuenta atrás. */
-    iso: '2024-10-26T16:45:00+02:00',
+    iso: '2026-10-24T16:45:00+02:00',
     /** Partes sueltas que se muestran en el bloque grande de la portada. */
-    day: '26',
+    day: '24',
     monthName: 'Octubre',
-    year: '2024',
+    year: '2026',
     weekdayAndTime: 'Sábado • 16:45 H',
     /** Formatos de texto usados en metadatos y footer. */
-    short: '26.10.2024',
-    long: '26 de Octubre de 2024',
+    short: '24.10.2026',
+    long: '24 de Octubre de 2026',
     city: 'Madrid',
   },
 
@@ -65,11 +65,11 @@ export const wedding = {
   // METADATOS / COMPARTIR (Open Graph)
   // ---------------------------------------------------------------------------
   seo: {
-    title: 'Julieta & Pablo · 26.10.2024',
+    title: 'Julieta & Pablo · 24.10.2026',
     description:
-      '¡Nos casamos! El 26 de octubre celebramos el día más importante de nuestra vida y nos encantaría que nos acompañes.',
+      '¡Nos casamos! El 24 de octubre celebramos el día más importante de nuestra vida y nos encantaría que nos acompañes.',
     ogImage: '/invitacion/tarjeta-invitacion.webp',
-    ogImageAlt: 'Julieta & Pablo · Boda 26 de Octubre de 2024',
+    ogImageAlt: 'Julieta & Pablo · Boda 24 de Octubre de 2026',
     locale: 'es_ES',
   },
 
@@ -249,19 +249,23 @@ export const wedding = {
     eyebrow: 'Luna de Miel · Regalo',
     title: 'Nuestra próxima aventura',
     description:
-      'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada por destinos aún por descubrir.',
+      'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada entre Tanzania y las Seychelles.',
     invitation:
       'Si deseáis acompañarnos de una forma especial en esta experiencia inolvidable, podéis hacerlo rellenando vuestro granito de arena aquí:',
     image: '',
-    imageAlt: 'Nuestra luna de miel',
+    imageAlt: 'Tanzania y Seychelles',
     ctaHint: '¿Quieres hacernos un regalo? Haz click aquí:',
     ctaLabel: 'Ver datos regalo',
     modal: {
       title: 'Luna de Miel · Regalo',
       description:
-        'Tu presencia es nuestro mayor regalo. Sin embargo, si deseas acompañarnos de una forma diferente y ayudarnos a construir momentos mágicos en nuestra luna de miel, ponemos a tu disposición nuestra cuenta bancaria:',
-      iban: 'ES00 0000 0000 0000 0000 0000',
-      swift: 'XXXXESMM',
+        'Tu presencia es nuestro mayor regalo. Sin embargo, si deseas acompañarnos de una forma diferente y ayudarnos a construir momentos mágicos en Tanzania y las Seychelles, ponemos a tu disposición nuestra cuenta bancaria:',
+      /**
+       * ⚠️ DE EJEMPLO. Es el IBAN que se usa como muestra en la documentación
+       * bancaria, no una cuenta real: hay que sustituirlo antes de publicar.
+       */
+      iban: 'ES91 2100 0418 4502 0005 1332',
+      swift: 'CAIXESBBXXX',
       holders: 'Julieta B. S. y Pablo T. M.',
       thanks: '¡Muchísimas gracias por formar parte de este sueño! ❤️',
     },
