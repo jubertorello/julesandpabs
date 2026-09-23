@@ -323,7 +323,7 @@ export default function Home() {
             <a
               href="#inicio"
               onClick={(e) => handleNavClick(e, 'inicio')}
-              className="text-2xl md:text-3xl font-light tracking-[0.2em] uppercase text-cream hover:opacity-80 transition-opacity cursor-pointer"
+              className="text-2xl md:text-3xl font-light tracking-[0.2em] uppercase text-cream hover:opacity-80 transition-opacity cursor-pointer font-display"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
             >
               {wedding.couple.initials}
@@ -486,9 +486,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
                 }}
-                className={`font-serif text-muted text-lg md:text-xl italic leading-relaxed max-w-sm mx-auto text-center px-10 md:px-0 ${
-                  i === wedding.hero.intro.length - 1 ? 'mb-10' : 'mb-5'
-                }`}
+                className={`font-serif text-muted text-[31px] md:text-[34px] italic leading-relaxed max-w-sm mx-auto text-center px-10 md:px-0 ${ i === wedding.hero.intro.length - 1 ? 'mb-10' : 'mb-5' }`}
               >
                 {paragraph}
               </motion.p>
@@ -499,7 +497,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
               }}
-              className="tracking-[0.25em] uppercase text-[24px] leading-[24px] text-ink mb-8 text-center no-underline"
+              className="tracking-[0.25em] uppercase text-[24px] leading-[24px] text-ink mb-8 text-center no-underline font-display"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
             >
               {wedding.hero.announcement}
@@ -510,7 +508,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
               }}
-              className="font-serif text-muted text-lg md:text-xl lg:text-xl italic leading-relaxed max-w-sm mx-auto mb-10 text-center px-9 md:px-0"
+              className="font-serif text-muted text-[31px] md:text-[34px] lg:text-[34px] italic leading-relaxed max-w-sm mx-auto mb-10 text-center px-9 md:px-0"
             >
               {wedding.hero.subtitle}
             </motion.p>
@@ -541,12 +539,12 @@ export default function Home() {
                 <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
                   {wedding.couple.partnerA.firstName}
                 </h1>
-                <span className="font-serif tracking-[0.05em] text-[18px] text-deep uppercase mt-1 font-light">
+                <span className="font-display tracking-[0.05em] text-[18px] text-deep uppercase mt-1 font-light">
                   {wedding.couple.partnerA.lastName}
                 </span>
               </div>
 
-              <div className="font-serif text-2xl md:text-3xl my-4 text-deep font-light">
+              <div className="font-serif text-[41px] md:text-[51px] my-4 text-deep font-light">
                 &
               </div>
 
@@ -554,7 +552,7 @@ export default function Home() {
                 <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
                   {wedding.couple.partnerB.firstName}
                 </h1>
-                <span className="font-serif tracking-[0.05em] text-[18px] leading-[26px] text-deep uppercase mt-1 font-light">
+                <span className="font-display tracking-[0.05em] text-[18px] leading-[26px] text-deep uppercase mt-1 font-light">
                   {wedding.couple.partnerB.lastName}
                 </span>
               </div>
@@ -565,7 +563,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
               }}
-              className="font-serif text-muted text-lg md:text-xl lg:text-xl italic leading-relaxed max-w-sm mx-auto mb-5 text-center px-8 md:px-0"
+              className="font-serif text-muted text-[31px] md:text-[34px] lg:text-[34px] italic leading-relaxed max-w-sm mx-auto mb-5 text-center px-8 md:px-0"
             >
               {wedding.hero.closing}
             </motion.p>
@@ -580,25 +578,25 @@ export default function Home() {
             >
               <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8">
                 {/* Month with borders */}
-                <div className="border-y border-deep/40 py-2 px-5 text-center min-w-[110px] sm:min-w-[150px] flex-shrink-0">
+                <div className="border-y border-deep/40 py-2 px-3 sm:px-5 text-center min-w-[76px] sm:min-w-[150px] flex-shrink">
                   <span
-                    className="tracking-[0.2em] uppercase text-deep font-light block"
-                    style={{ fontFamily: 'var(--font-display)', fontSize: '14px', lineHeight: '14px', textAlign: 'center' }}
+                    className="tracking-[0.2em] uppercase text-deep font-light block font-display"
+                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(11px, 3.4vw, 14px)', lineHeight: '1.1', textAlign: 'center' }}
                   >
                     {wedding.date.monthName}
                   </span>
                 </div>
 
                 {/* Big Day */}
-                <div className="text-5xl sm:text-6xl md:text-7xl font-serif font-light text-deep leading-none px-1 flex-shrink-0">
+                <div className="text-[52px] sm:text-6xl md:text-7xl font-serif font-light text-deep leading-none px-1 flex-shrink-0">
                   {wedding.date.day}
                 </div>
 
                 {/* Year with borders */}
-                <div className="border-y border-deep/40 py-2 px-5 text-center min-w-[110px] sm:min-w-[150px] flex-shrink-0">
+                <div className="border-y border-deep/40 py-2 px-3 sm:px-5 text-center min-w-[76px] sm:min-w-[150px] flex-shrink">
                   <span
                     className="tracking-[0.2em] text-deep font-light block"
-                    style={{ fontFamily: 'var(--font-display)', fontSize: '18px', lineHeight: '18px', textAlign: 'center' }}
+                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(13px, 4vw, 18px)', lineHeight: '1.1', textAlign: 'center' }}
                   >
                     {wedding.date.year}
                   </span>
@@ -608,7 +606,7 @@ export default function Home() {
               {/* Time below */}
               <div className="mt-6 text-center">
                 <span
-                  className="font-serif tracking-[0.25em] text-deep uppercase font-light"
+                  className="font-display tracking-[0.25em] text-deep uppercase font-light"
                   style={{ fontSize: '16px', lineHeight: '16px' }}
                 >
                   {wedding.date.weekdayAndTime}
@@ -685,7 +683,7 @@ export default function Home() {
               className="text-center mb-16"
             >
               <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block">{wedding.locations.eyebrow}</span>
-              <h2 className="font-serif text-3xl md:text-4xl text-ink font-light italic">
+              <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.locations.title}
               </h2>
               <div className="h-px w-10 bg-primary/20 mx-auto mt-4" />
@@ -714,7 +712,7 @@ export default function Home() {
                       {place.name}
                     </h3>
 
-                    <p className="font-serif text-muted text-sm italic mb-6 leading-relaxed text-center">
+                    <p className="font-serif text-muted text-[24px] italic mb-6 leading-relaxed text-center">
                       {place.address}
                     </p>
 
@@ -797,7 +795,7 @@ export default function Home() {
               }}
               className="text-center mb-12"
             >
-              <h3 className="font-serif text-3xl md:text-4xl text-ink font-light italic">
+              <h3 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.countdown.title}
               </h3>
               <div className="h-px w-10 bg-primary/20 mx-auto mt-4" />
@@ -832,8 +830,8 @@ export default function Home() {
                     }}
                     className="bg-secondary aspect-square rounded-full shadow-md border border-primary/10 flex flex-col items-center justify-center p-2 sm:p-3"
                   >
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-white font-medium leading-none">{timeLeft[unit]}</span>
-                    <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-white/90 mt-1 sm:mt-1.5 font-light">{label}</span>
+                    <span className="text-[51px] sm:text-[61px] md:text-[64px] font-serif text-white font-medium leading-none">{timeLeft[unit]}</span>
+                    <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-white/90 mt-1 sm:mt-1.5 font-light font-display">{label}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -954,7 +952,7 @@ export default function Home() {
               className="text-center mb-16"
             >
               <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-medium">{wedding.itinerary.eyebrow}</span>
-              <h2 className="font-serif text-3xl md:text-4xl text-ink font-medium italic">
+              <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-medium italic">
                 {wedding.itinerary.title}
               </h2>
               <p
@@ -1006,7 +1004,7 @@ export default function Home() {
                         <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display font-medium text-xs mb-2">
                           {event.time}
                         </div>
-                        <h4 className="font-serif text-xl text-ink font-medium" style={{ fontFamily: 'var(--font-display)' }}>
+                        <h4 className="font-serif text-[34px] text-ink font-medium" style={{ fontFamily: 'var(--font-display)' }}>
                           {event.title}
                         </h4>
                       </div>
@@ -1076,7 +1074,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <h3 className="font-serif text-2xl md:text-3xl text-ink mb-4 font-light italic">
+                <h3 className="font-serif text-[41px] md:text-[51px] text-ink mb-4 font-light italic">
                   {wedding.music.title}
                 </h3>
 
@@ -1165,7 +1163,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
                 }}
-                className="font-serif text-3xl md:text-4xl text-white font-medium mb-6 italic"
+                className="font-serif text-[51px] md:text-[61px] text-white font-medium mb-6 italic"
               >
                 {wedding.gift.title}
               </motion.h2>
@@ -1224,7 +1222,7 @@ export default function Home() {
                 }}
                 className="flex flex-col items-center gap-2"
               >
-                <p className="font-serif text-white/75 text-sm italic">
+                <p className="font-serif text-white/75 text-[24px] italic">
                   {wedding.gift.ctaHint}
                 </p>
                 <button
@@ -1281,7 +1279,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-3xl md:text-4xl text-ink font-light italic"
+                className="font-serif text-[51px] md:text-[61px] text-ink font-light italic"
               >
                 {wedding.rsvp.title}
               </motion.h2>
@@ -1365,7 +1363,7 @@ export default function Home() {
               className="text-center mb-12"
             >
               <span className="font-display text-[9px] uppercase tracking-[0.3em] font-bold text-ink/70">{wedding.info.eyebrow}</span>
-              <h3 className="font-serif text-2xl md:text-3xl text-ink mt-1 font-light italic">
+              <h3 className="font-serif text-[41px] md:text-[51px] text-ink mt-1 font-light italic">
                 {wedding.info.title}
               </h3>
             </motion.div>
@@ -1428,7 +1426,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="font-serif text-2xl text-ink mb-4 font-light italic"
+              className="font-serif text-[41px] text-ink mb-4 font-light italic"
             >
               {wedding.contact.title}
             </motion.h3>
@@ -1482,12 +1480,12 @@ export default function Home() {
 
           <div className="max-w-2xl mx-auto px-6 relative z-10">
             <span
-              className="text-4xl md:text-5xl block mb-6 text-cream drop-shadow-sm font-serif"
+              className="text-[61px] md:text-[64px] block mb-6 text-cream drop-shadow-sm font-serif"
               style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal' }}
             >
               {wedding.footer.headline}
             </span>
-            <p className="font-serif text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 font-medium drop-shadow-xs">
+            <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 font-medium drop-shadow-xs">
               {wedding.couple.joinedNames}
             </p>
             <p className="font-display font-medium text-[9px] md:text-[10px] text-cream/85 tracking-widest uppercase drop-shadow-xs">
@@ -1545,7 +1543,7 @@ export default function Home() {
                   <Plane size={32} className="animate-bounce" />
                 </div>
 
-                <h3 className="font-serif text-2xl text-ink mb-3">{wedding.gift.modal.title}</h3>
+                <h3 className="font-serif text-[41px] text-ink mb-3">{wedding.gift.modal.title}</h3>
 
                 <p className="text-xs text-muted leading-relaxed mb-6">
                   {wedding.gift.modal.description}
@@ -1605,7 +1603,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <p className="text-[10px] text-muted uppercase tracking-wider italic">
+                <p className="text-[10px] text-muted uppercase tracking-wider italic font-display">
                   {wedding.gift.modal.thanks}
                 </p>
               </motion.div>
@@ -1640,7 +1638,7 @@ export default function Home() {
 
                 <div className="text-center mb-6">
                   <Music size={26} className="text-muted mx-auto mb-2" />
-                  <h3 className="font-serif text-xl text-ink">{wedding.music.modal.title}</h3>
+                  <h3 className="font-serif text-[34px] text-ink">{wedding.music.modal.title}</h3>
                   <p className="text-xs text-muted mt-1">{wedding.music.modal.subtitle}</p>
                 </div>
 
@@ -1742,7 +1740,7 @@ export default function Home() {
                 </button>
                 <div className="text-center mb-6">
                   <Music size={26} className="text-muted mx-auto mb-2" />
-                  <h3 className="font-serif text-xl text-ink">Playlist de los invitados</h3>
+                  <h3 className="font-serif text-[34px] text-ink">Playlist de los invitados</h3>
                   <p className="text-xs text-muted mt-1">{musicList.length} canciones sugeridas</p>
                 </div>
                 <div className="space-y-2 max-h-72 overflow-y-auto pr-1 custom-scrollbar">

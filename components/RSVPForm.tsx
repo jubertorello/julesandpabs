@@ -39,18 +39,14 @@ function YesNoToggle({ value, onChange }: { value: boolean; onChange: (v: boolea
       <button
         type="button"
         onClick={() => onChange(true)}
-        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${
-          value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50'
-        }`}
+        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' }`}
       >
         Sí
       </button>
       <button
         type="button"
         onClick={() => onChange(false)}
-        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${
-          !value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50'
-        }`}
+        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ !value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' }`}
       >
         No
       </button>
@@ -257,18 +253,18 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
         </div>
         {rsvpData.attending ? (
           <>
-            <h4 className="font-serif text-xl text-ink mb-3">¡Confirmado con éxito!</h4>
+            <h4 className="font-serif text-[34px] text-ink mb-3">¡Confirmado con éxito!</h4>
             <p className="font-display text-sm text-muted mb-6 leading-relaxed">
               ¡Tenemos muchísima ilusión por vivir este día tan bonito a tu lado!
             </p>
             <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 space-y-2 border border-primary/5">
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Invitado</span><br />{rsvpData.guestName}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Intolerancia</span><br />{rsvpData.dietaryRestrictions || 'Ninguna'}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Bus Ida</span><br />{rsvpData.busIda ? 'Sí' : 'No'}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Bus Vuelta</span><br />{rsvpData.busVuelta ? 'Sí' : 'No'}</div>
+              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Invitado</span><br />{rsvpData.guestName}</div>
+              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Intolerancia</span><br />{rsvpData.dietaryRestrictions || 'Ninguna'}</div>
+              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Bus Ida</span><br />{rsvpData.busIda ? 'Sí' : 'No'}</div>
+              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Bus Vuelta</span><br />{rsvpData.busVuelta ? 'Sí' : 'No'}</div>
               {rsvpData.companions.length > 0 && (
                 <div>
-                  <span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Acompañantes</span>
+                  <span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Acompañantes</span>
                   <ul className="mt-1 space-y-1 pl-2">
                     {rsvpData.companions.map((c, i) => (
                       <li key={i} className="text-muted">
@@ -281,19 +277,19 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 </div>
               )}
               {rsvpData.message && (
-                <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Mensaje</span><br />{rsvpData.message}</div>
+                <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Mensaje</span><br />{rsvpData.message}</div>
               )}
             </div>
           </>
         ) : (
           <>
-            <h4 className="font-serif text-xl text-ink mb-3">Gracias por avisarnos</h4>
+            <h4 className="font-serif text-[34px] text-ink mb-3">Gracias por avisarnos</h4>
             <p className="font-display text-sm text-muted mb-6 leading-relaxed">
               Lamentamos que no puedas acompañarnos, ¡te echaremos de menos!
             </p>
             {rsvpData.message && (
               <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 border border-primary/5">
-                <span className="font-semibold uppercase tracking-wider text-[10px] text-muted">Tu mensaje</span><br />{rsvpData.message}
+                <span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Tu mensaje</span><br />{rsvpData.message}
               </div>
             )}
           </>
@@ -355,7 +351,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             className="space-y-6"
           >
             <div className="text-center">
-              <p className="font-serif text-lg text-ink mb-1">¿Podrás acompañarnos?</p>
+              <p className="font-serif text-[31px] text-ink mb-1">¿Podrás acompañarnos?</p>
               <p className="text-xs text-muted" style={{ fontFamily: 'var(--font-display)' }}>
                 Por favor, confirma tu asistencia antes del {wedding.rsvp.deadline}
               </p>
@@ -390,7 +386,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             className="space-y-5"
           >
             <div className="text-center mb-2">
-              <p className="font-serif text-base text-ink">Gracias por avisarnos</p>
+              <p className="font-serif text-[27px] text-ink">Gracias por avisarnos</p>
               <p className="text-xs text-muted mt-1" style={{ fontFamily: 'var(--font-display)' }}>
                 Lamentamos que no puedas estar con nosotros
               </p>
@@ -489,7 +485,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 >
                   <Minus size={14} />
                 </button>
-                <span className="font-serif text-2xl text-ink w-8 text-center">{companionCount}</span>
+                <span className="font-serif text-[41px] text-ink w-8 text-center">{companionCount}</span>
                 <button
                   type="button"
                   onClick={() => updateCompanionCount(1)}
@@ -552,25 +548,25 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
           >
             {/* Resumen de datos */}
             <div className="bg-sand/40 border border-primary/10 rounded p-4 font-display space-y-3">
-              <p className="text-[10px] uppercase tracking-wider font-semibold text-muted">Resumen de tu confirmación</p>
+              <p className="text-[10px] uppercase tracking-wider font-semibold text-muted font-display">Resumen de tu confirmación</p>
               <div className="space-y-2 text-xs text-ink">
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted">Invitado</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Invitado</span>
                   <p className="mt-0.5">{guestName}</p>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted">Intolerancia</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Intolerancia</span>
                   <p className="mt-0.5">{hasIntolerance ? (intolerance || '—') : 'Ninguna'}</p>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted">Autobús</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Autobús</span>
                   <p className="mt-0.5">
                     Ida: {busIda ? 'Sí' : 'No'} · Vuelta: {busVuelta ? 'Sí' : 'No'}
                   </p>
                 </div>
                 {companions.length > 0 && (
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-muted">
+                    <span className="text-[10px] uppercase tracking-wider text-muted font-display">
                       Acompañantes ({companions.length})
                     </span>
                     <ul className="mt-1 space-y-1 pl-2">
