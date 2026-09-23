@@ -352,7 +352,10 @@ export const wedding = {
  *  Separadas del contenido porque cambian con el diseño, no con la boda.
  * ---------------------------------------------------------------------------*/
 export const backgrounds = {
-  /** Textura de papel clara del fondo (detrás de todo el documento). */
+  /**
+   * Hoja de papel del fondo. Se pinta una sola vez, fija detrás de todo el
+   * documento y a resolución completa: las secciones no llevan fondo propio.
+   */
   paper: '/invitacion/textura-papel-clara.webp',
 
   /**
@@ -367,39 +370,6 @@ export const backgrounds = {
     maxWidth: '230px',
     opacity: 0.85,
   },
-
-  /**
-   * Pantalla del sobre. Por defecto usa el mismo papel y las mismas cenefas
-   * que el resto de la invitación; para volver a la pared de la foto original,
-   * pon aquí '/invitacion/fondo-pared.webp'.
-   */
-  intro: {
-    mobile: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  hero: {
-    mobileTop: '/invitacion/textura-papel-clara.webp',
-    mobileBottom: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  locations: {
-    mobileTop: '/invitacion/textura-papel-clara.webp',
-    mobileBottom: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  photos: {
-    mobile: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  music: {
-    mobile: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  info: {
-    mobile: '/invitacion/textura-papel-clara.webp',
-    desktop: '/invitacion/textura-papel-clara.webp',
-  },
-  footer: '/invitacion/fondo-pared.webp',
 
   /**
    * Imágenes de la animación del sobre. Las proporciones importan: cada capa

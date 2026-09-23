@@ -279,9 +279,9 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
       <div
         className="absolute inset-0 z-[-1] bg-cream"
         style={{
-          backgroundImage: `url("${backgrounds.intro.desktop}")`,
-          backgroundSize: '480px 480px',
-          backgroundRepeat: 'repeat',
+          backgroundImage: `url("${backgrounds.paper}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       />
       {(['left', 'right'] as const).map((lado) => (

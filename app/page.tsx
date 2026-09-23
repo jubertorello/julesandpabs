@@ -6,7 +6,7 @@ import EnvelopeIntro from '@/components/EnvelopeIntro';
 import RSVPForm from '@/components/RSVPForm';
 import type { RSVPState } from '@/components/RSVPForm';
 import { supabase } from '@/lib/supabase';
-import { wedding, backgrounds, whatsappUrl } from '@/config/wedding';
+import { wedding, whatsappUrl } from '@/config/wedding';
 import Image from 'next/image';
 import {
   MapPin,
@@ -428,42 +428,7 @@ export default function Home() {
         <section
           id="inicio"
           className="w-full relative pt-32 md:py-32 flex flex-col items-center justify-center text-center overflow-hidden"
-          style={{
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
-          {/* Mobile background - img1 (top half, tiles) */}
-          <div
-            className="absolute inset-0 md:hidden z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.hero.mobileTop}")`,
-              backgroundSize: '480px 480px',
-              backgroundPosition: 'top center',
-              backgroundRepeat: 'repeat',
-              clipPath: 'inset(0 0 50% 0)',
-            }}
-          />
-          {/* Mobile background - img2 (bottom half, tiles) */}
-          <div
-            className="absolute inset-0 md:hidden z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.hero.mobileBottom}")`,
-              backgroundSize: '100% auto',
-              backgroundPosition: 'bottom center',
-              backgroundRepeat: 'repeat-y',
-              clipPath: 'inset(50% 0 0 0)',
-            }}
-          />
-          {/* Desktop background override */}
-          <div
-            className="absolute inset-0 hidden md:block z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.hero.desktop}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-cream)',
-            }}
-          />
           <motion.div
             initial="hidden"
             animate={showMain ? "visible" : "hidden"}
@@ -622,46 +587,7 @@ export default function Home() {
         <section
           id="lugar"
           className="w-full pt-20 pb-20 md:py-40 relative"
-          style={{
-            backgroundImage: `url("${backgrounds.locations.mobileTop}")`,
-            backgroundSize: '480px 480px',
-            backgroundPosition: 'top center',
-            backgroundRepeat: 'repeat',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
-          {/* Mobile background - img1 (top half, tiles) */}
-          <div
-            className="absolute inset-0 md:hidden z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.locations.mobileTop}")`,
-              backgroundSize: '480px 480px',
-              backgroundPosition: 'top center',
-              backgroundRepeat: 'repeat',
-              clipPath: 'inset(0 0 50% 0)',
-            }}
-          />
-          {/* Mobile background - img2 (bottom half, tiles) */}
-          <div
-            className="absolute inset-0 md:hidden z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.locations.mobileBottom}")`,
-              backgroundSize: '100% auto',
-              backgroundPosition: 'bottom center',
-              backgroundRepeat: 'repeat-y',
-              clipPath: 'inset(50% 0 0 0)',
-            }}
-          />
-          {/* Desktop background override */}
-          <div
-            className="absolute inset-0 hidden md:block z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.locations.desktop}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-cream)',
-            }}
-          />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -754,23 +680,7 @@ export default function Home() {
         <section
           id="fotos"
           className="py-24 pt-16 pb-16 relative overflow-hidden"
-          style={{
-            backgroundImage: `url("${backgrounds.photos.mobile}")`,
-            backgroundSize: '480px 480px',
-            backgroundPosition: 'top center',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
-          {/* Desktop background override */}
-          <div
-            className="absolute inset-0 hidden md:block z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.photos.desktop}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-cream)',
-            }}
-          />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -923,13 +833,6 @@ export default function Home() {
         <section
           id="itinerario"
           className="py-24 pt-16 pb-16 text-ink itinerario-section"
-          style={{
-            backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: '480px 480px',
-            backgroundPosition: 'top center',
-            backgroundRepeat: 'repeat',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
           <motion.div
             initial="hidden"
@@ -1023,24 +926,7 @@ export default function Home() {
           <section
             id="musica"
             className="w-full py-24 pt-16 pb-16 relative"
-            style={{
-              backgroundImage: `url("${backgrounds.music.mobile}")`,
-              backgroundSize: '480px 480px',
-              backgroundPosition: 'top center',
-              backgroundRepeat: 'repeat',
-              backgroundColor: 'var(--color-cream)',
-            }}
           >
-            {/* Desktop background override */}
-            <div
-              className="absolute inset-0 hidden md:block z-0"
-              style={{
-                backgroundImage: `url("${backgrounds.music.desktop}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundColor: 'var(--color-cream)',
-              }}
-            />
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -1241,13 +1127,6 @@ export default function Home() {
         <section
           id="confirmacion"
           className="w-full py-24 pt-16 pb-16 confirmacion-section"
-          style={{
-            backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: '480px 480px',
-            backgroundPosition: 'top center',
-            backgroundRepeat: 'repeat',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
           <motion.div
             initial="hidden"
@@ -1324,24 +1203,7 @@ export default function Home() {
         <section
           id="informacion"
           className="py-20 pt-16 pb-16 relative"
-          style={{
-            backgroundImage: `url("${backgrounds.info.mobile}")`,
-            backgroundSize: '480px 480px',
-            backgroundPosition: 'top center',
-            backgroundRepeat: 'repeat',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
-          {/* Desktop background override */}
-          <div
-            className="absolute inset-0 hidden md:block z-0"
-            style={{
-              backgroundImage: `url("${backgrounds.info.desktop}")`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: 'var(--color-cream)',
-            }}
-          />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1401,12 +1263,6 @@ export default function Home() {
         {/* 9. ¿DUDAS? (WHATSAPP INVITADOS CHAT LINKS) */}
         <section
           className="py-20 pt-16 pb-16 dudas-section"
-          style={{
-            backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: 'var(--color-cream)',
-          }}
         >
           <motion.div
             initial="hidden"
@@ -1469,9 +1325,6 @@ export default function Home() {
         <footer
           className="pt-28 pb-16 md:pt-32 md:pb-20 text-center relative overflow-hidden bg-secondary"
           style={{
-            backgroundImage: `url("${backgrounds.footer}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
             backgroundColor: 'var(--color-secondary)',
           }}
         >
@@ -1480,8 +1333,7 @@ export default function Home() {
 
           <div className="max-w-2xl mx-auto px-6 relative z-10">
             <span
-              className="text-[61px] md:text-[64px] block mb-6 text-cream drop-shadow-sm font-serif"
-              style={{ fontFamily: 'var(--font-display)', fontStyle: 'normal' }}
+              className="text-[clamp(2.6rem,13vw,4.5rem)] leading-[1.15] block mb-6 text-cream drop-shadow-sm font-serif"
             >
               {wedding.footer.headline}
             </span>

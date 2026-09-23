@@ -74,22 +74,3 @@
     font-family: var(--font-display);
   }
 }
-
-/* =============================================================================
- *  AJUSTES DE FONDO EN MÓVIL
- * =============================================================================
- *  Algunas secciones con textura de papel usan otra imagen en pantallas
- *  pequeñas. La URL equivale a `backgrounds.paper` de `config/wedding.ts`:
- *  si la cambias allí, actualízala también aquí.
- * ---------------------------------------------------------------------------*/
-@media (max-width: 767px) {
-  .dudas-section,
-  .itinerario-section,
-  .confirmacion-section {
-    background-image: url("/invitacion/textura-papel-clara.webp") !important;
-  }
-
-  #lugar {
-    background-image: none !important;
-  }
-}
