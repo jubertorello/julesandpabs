@@ -324,7 +324,7 @@ export default function Home() {
               href="#inicio"
               onClick={(e) => handleNavClick(e, 'inicio')}
               className="text-2xl md:text-3xl tracking-[0.2em] uppercase text-cream hover:opacity-80 transition-opacity cursor-pointer font-display font-semibold"
-              style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               {wedding.couple.initials}
             </a>
@@ -498,7 +498,7 @@ export default function Home() {
                 visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
               }}
               className="tracking-[0.25em] uppercase text-[24px] leading-[24px] text-ink mb-8 text-center no-underline font-display font-semibold"
-              style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               {wedding.hero.announcement}
             </motion.h2>
