@@ -323,7 +323,7 @@ export default function Home() {
             <a
               href="#inicio"
               onClick={(e) => handleNavClick(e, 'inicio')}
-              className="text-[38px] md:text-[46px] leading-none tracking-tighter text-cream hover:opacity-80 transition-opacity cursor-pointer font-serif"
+              className="text-[30px] sm:text-[38px] md:text-[46px] leading-none tracking-tighter text-cream hover:opacity-80 transition-opacity cursor-pointer font-serif"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {wedding.couple.initials}
@@ -859,8 +859,7 @@ export default function Home() {
                 {wedding.itinerary.title}
               </h2>
               <p
-                className="font-serif text-muted mt-2 italic"
-                style={{ fontSize: '14px' }}
+                className="font-serif text-muted mt-2 italic text-[24px] leading-snug"
               >
                 {wedding.itinerary.subtitle}
               </p>
@@ -900,14 +899,14 @@ export default function Home() {
                       {!alignLeft && <div className="w-full md:w-1/2 hidden md:block" />}
 
                       <div
-                        className={`w-full md:w-1/2 mt-1 pl-[130px] ${
+                        className={`w-full md:w-1/2 mt-1 pl-[104px] sm:pl-[130px] ${
                           alignLeft ? 'md:pr-28 md:text-right md:pl-0' : 'md:pl-28'
                         }`}
                       >
                         <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display text-xs mb-2 font-semibold">
                           {event.time}
                         </div>
-                        <h4 className="font-serif text-[34px] text-ink font-medium" style={{ fontFamily: 'var(--font-display)' }}>
+                        <h4 className="text-[clamp(1.25rem,6vw,2.1rem)] leading-tight text-ink font-display font-semibold">
                           {event.title}
                         </h4>
                       </div>
@@ -1066,8 +1065,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="text-[15px] text-white/90 italic leading-relaxed max-w-xl mx-auto mb-2"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="font-serif text-[26px] text-white/95 italic leading-relaxed max-w-xl mx-auto mb-2"
               >
                 {wedding.gift.description}
               </motion.p>
@@ -1077,8 +1075,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="text-[15px] text-white leading-relaxed max-w-lg mx-auto mb-1"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="font-serif text-[26px] text-white leading-relaxed max-w-lg mx-auto mb-1"
               >
                 {wedding.gift.invitation}
               </motion.p>
@@ -1174,8 +1171,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="text-[13px] md:text-sm text-muted leading-relaxed max-w-md mx-auto"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="font-serif text-[24px] md:text-[26px] text-muted leading-relaxed max-w-md mx-auto"
               >
                 Para poder organizar con cariño y detalle este día, por favor, agradeceríamos que rellenarais este formulario antes del <strong className="text-ink">{wedding.rsvp.deadline}</strong>, gracias.
               </motion.p>
@@ -1245,7 +1241,7 @@ export default function Home() {
                     <h4 className="text-[17px] text-white font-medium mb-3" style={{ fontFamily: 'var(--font-display)' }}>
                       {card.title}
                     </h4>
-                    <p className="text-xs text-white/85 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
+                    <p className="font-serif text-[22px] text-white/90 leading-snug">
                       {card.body}
                       {card.bullets.map((bullet, i) => (
                         <span key={i} className={`block font-semibold ${i === 0 ? 'mt-2' : 'mt-1.5'}`}>
@@ -1292,8 +1288,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="text-sm text-muted leading-relaxed mb-10 max-w-md mx-auto"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="font-serif text-[26px] text-muted leading-relaxed mb-10 max-w-md mx-auto"
             >
               {wedding.contact.description}
             </motion.p>

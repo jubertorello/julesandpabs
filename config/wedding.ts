@@ -31,14 +31,14 @@ export const wedding = {
       firstName: 'Julieta',
       lastName: 'Bertorello Sartori',
       /** Teléfono con prefijo internacional y sin signos (para wa.me). */
-      phone: '34600000000',
+      phone: '34660104026',
       whatsappLabel: 'WhatsApp Julieta',
       whatsappMessage: '¡Hola Julieta! Tengo una duda sobre la boda...',
     },
     partnerB: {
       firstName: 'Pablo',
       lastName: 'Tejero Mancho',
-      phone: '34600000001',
+      phone: '34660104026',
       whatsappLabel: 'WhatsApp Pablo',
       whatsappMessage: '¡Hola Pablo! Tengo una duda sobre la boda...',
     },
