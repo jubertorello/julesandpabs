@@ -205,6 +205,11 @@ export const wedding = {
     ctaLabel: 'Sugerir Canciones',
     image:
       'https://res.cloudinary.com/scihumn2/image/upload/ChatGPT_Image_31_may_2026_13_17_09_xdrx3s.png',
+    /**
+     * `true` arranca la canción de fondo en cuanto el invitado toca la pantalla.
+     * `false` (por defecto) la deja en silencio hasta que pulse el altavoz.
+     */
+    autoplay: false,
     /** Canción de fondo de la invitación. */
     backgroundAudio:
       'https://res.cloudinary.com/scihumn2/video/upload/Can_t_Take_My_Eyes_off_You_hnormu.mp3',

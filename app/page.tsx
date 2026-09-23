@@ -52,7 +52,7 @@ export default function Home() {
 
   // Play audio on first user interaction — only until audioStarted
   useEffect(() => {
-    if (audioStarted) return;
+    if (!wedding.music.autoplay || audioStarted) return;
     const tryPlay = () => {
       if (audioRef.current) {
         audioRef.current.play()
