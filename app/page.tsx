@@ -743,8 +743,8 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 3 & 4. CUENTA ATRÁS Y CARRETE DE FOTOS */}
-        <section id="fotos" className="py-24 pt-16 pb-16 relative overflow-hidden">
+        {/* 3. CUENTA ATRÁS */}
+        <section className="py-24 pt-16 pb-16 relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -755,6 +755,43 @@ export default function Home() {
             }}
             className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center"
           >
+            {/* Relojito de agujas, al pulso de las ilustraciones de la papelería */}
+            {wedding.countdown.clock && (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                }}
+                aria-hidden
+                className="mb-10"
+              >
+                <svg width="62" height="62" viewBox="0 0 62 62" fill="none" className="text-ink/70">
+                  <circle cx="31" cy="31" r="25" stroke="currentColor" strokeWidth="1.1" />
+                  <circle cx="31" cy="31" r="28.5" stroke="currentColor" strokeWidth="0.6" opacity="0.45" />
+                  {[0, 90, 180, 270].map((a) => (
+                    <line
+                      key={a}
+                      x1="31" y1="9.5" x2="31" y2="13.5"
+                      stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"
+                      transform={`rotate(${a} 31 31)`}
+                    />
+                  ))}
+                  {/* La aguja larga da la vuelta en 6s; la corta, en 72s */}
+                  <line
+                    x1="31" y1="31" x2="31" y2="14"
+                    stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"
+                    className="origin-center motion-safe:animate-[girar_6s_linear_infinite]"
+                  />
+                  <line
+                    x1="31" y1="31" x2="31" y2="20"
+                    stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"
+                    className="origin-center motion-safe:animate-[girar_72s_linear_infinite]"
+                  />
+                  <circle cx="31" cy="31" r="1.6" fill="currentColor" />
+                </svg>
+              </motion.div>
+            )}
+
             {/* Cuenta atrás: una lámina más de la papelería */}
             <motion.div
               variants={{
@@ -787,7 +824,7 @@ export default function Home() {
               ) : (
                 <>
                   {wedding.countdown.lead && (
-                    <p className="font-serif text-muted text-[28px] leading-none mb-6">{wedding.countdown.lead}</p>
+                    <p className="font-serif text-muted text-[31px] leading-snug mb-7">{wedding.countdown.lead}</p>
                   )}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-2">
                     {([
@@ -822,56 +859,8 @@ export default function Home() {
               )}
             </motion.div>
 
-            {/* Carrete de fotos */}
-            {weddingPhotos.length > 0 && (
-              <div className="w-full">
-                {wedding.gallery.image && (
-                  <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-2">
-                    <Image src={wedding.gallery.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
-                  </div>
-                )}
-
-              </div>
-            )}
           </motion.div>
-
-          {/*
-            El carrete va fuera del contenedor centrado para que ocupe todo el
-            ancho. `overflow-hidden` lo mantiene dentro de la pantalla: nunca
-            desplaza la página en horizontal.
-          */}
-          {weddingPhotos.length > 0 && (
-            <div className="relative w-full overflow-hidden group">
-              <div
-                className="flex gap-3 md:gap-5 w-max motion-safe:animate-[carrete_var(--carrete)_linear_infinite] group-hover:[animation-play-state:paused]"
-                style={{ '--carrete': `${wedding.gallery.speed}s` } as React.CSSProperties}
-              >
-                {/* Dos pasadas seguidas: al terminar la primera, el bucle encaja */}
-                {[...weddingPhotos, ...weddingPhotos].map((foto, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActivePhoto(foto)}
-                    aria-label="Ampliar foto"
-                    className="relative shrink-0 h-[220px] w-[160px] md:h-[300px] md:w-[220px] bg-cream p-2 shadow-[0_6px_20px_rgba(0,0,0,0.14)] cursor-pointer transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <span className="relative block w-full h-full overflow-hidden">
-                      <Image
-                        src={foto}
-                        alt={wedding.couple.joinedNames}
-                        fill
-                        sizes="(max-width: 768px) 160px, 220px"
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </section>
-
 
         {/* 4. ITINERARIO SECTION */}
         <section
@@ -966,7 +955,54 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 5. PLAYLIST / MUSIC SUGGESTIONS */}
+        {/* 5. CARRETE DE FOTOS */}
+        <section id="fotos" className="py-24 pt-16 pb-16 relative overflow-hidden">
+          {wedding.gallery.image && (
+            <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-2">
+              <Image src={wedding.gallery.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
+            </div>
+          )}
+
+          {/*
+            El carrete va fuera del contenedor centrado para que ocupe todo el
+            ancho. `overflow-hidden` lo mantiene dentro de la pantalla: nunca
+            desplaza la página en horizontal.
+          */}
+          {weddingPhotos.length > 0 && (
+            <div className="relative w-full overflow-hidden group">
+              <div
+                className="flex gap-3 md:gap-5 w-max motion-safe:animate-[carrete_var(--carrete)_linear_infinite] group-hover:[animation-play-state:paused]"
+                style={{ '--carrete': `${wedding.gallery.speed}s` } as React.CSSProperties}
+              >
+                {/* Dos pasadas seguidas: al terminar la primera, el bucle encaja */}
+                {[...weddingPhotos, ...weddingPhotos].map((foto, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActivePhoto(foto)}
+                    aria-label="Ampliar foto"
+                    className="relative shrink-0 h-[220px] w-[160px] md:h-[300px] md:w-[220px] bg-cream p-2 shadow-[0_6px_20px_rgba(0,0,0,0.14)] cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+                  >
+                    <span className="relative block w-full h-full overflow-hidden">
+                      <Image
+                        src={foto}
+                        alt={wedding.couple.joinedNames}
+                        fill
+                        sizes="(max-width: 768px) 160px, 220px"
+                        className="object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+
+
+        {/* 6. PLAYLIST / MUSIC SUGGESTIONS */}
         {wedding.music.enabled && (
           <section
             id="musica"
@@ -1066,7 +1102,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* 6. NEXT ADVENTURE / LUNA DE MIEL */}
+        {/* 7. NEXT ADVENTURE / LUNA DE MIEL */}
         {wedding.gift.enabled && (
           <section id="viaje" className="py-24 pt-16 pb-16 bg-secondary relative text-white">
             <motion.div
@@ -1178,7 +1214,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* 7. CONFIRMA TU ASISTENCIA (RSVP Form) */}
+        {/* 8. CONFIRMA TU ASISTENCIA (RSVP Form) */}
         <section
           id="confirmacion"
           className="w-full py-24 pt-16 pb-16 confirmacion-section"
@@ -1266,7 +1302,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 8. INFORMACIÓN DE INTERÉS */}
+        {/* 9. INFORMACIÓN DE INTERÉS */}
         <section
           id="informacion"
           className="py-20 pt-16 pb-16 relative"
@@ -1337,7 +1373,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 9. ¿DUDAS? (WHATSAPP INVITADOS CHAT LINKS) */}
+        {/* 10. ¿DUDAS? (WHATSAPP INVITADOS CHAT LINKS) */}
         <section
           className="py-20 pt-16 pb-16 dudas-section"
         >

@@ -179,8 +179,10 @@ export const wedding = {
   // CUENTA ATRÁS Y FOTOS
   // ---------------------------------------------------------------------------
   countdown: {
-    /** Texto pequeño sobre el número. Cadena vacía para no poner ninguno. */
-    lead: '',
+    /** Texto sobre los números. Cadena vacía para no poner ninguno. */
+    lead: 'La cuenta atrás ya ha comenzado',
+    /** `true` dibuja el relojito de agujas sobre el marco. */
+    clock: true,
     /** Rótulo bajo cada número. */
     labels: {
       days: 'Días',
