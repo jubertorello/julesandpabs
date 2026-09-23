@@ -55,8 +55,10 @@
    */
   html,
   body {
-    overflow-x: clip;
     max-width: 100%;
+    /* `hidden` primero como reserva: `clip` no llega a todos los navegadores. */
+    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
