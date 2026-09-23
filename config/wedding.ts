@@ -22,6 +22,11 @@ export const wedding = {
   couple: {
     /** Iniciales del logo en la barra de navegación. */
     initials: 'J&P',
+    /**
+     * Corazón dibujado de la papelería. Se pone entre los nombres y en el
+     * monograma de la cabecera. Cadena vacía para volver al "&".
+     */
+    heart: '/invitacion/corazon.webp',
     /** Nombre corto, usado en títulos y metadatos. */
     shortNames: 'Julieta & Pablo',
     /** Nombre corto en formato "X y Z" (sobre, footer, alts de fotos). */
@@ -192,22 +197,22 @@ export const wedding = {
       {
         time: '16:45 H',
         title: 'La Ceremonia',
-        image: '',
+        image: '/invitacion/icono-ceremonia.webp',
       },
       {
         time: '19:00 H',
         title: 'El Cóctel',
-        image: '',
+        image: '/invitacion/icono-coctel.webp',
       },
       {
         time: '21:30 H',
         title: 'La Cena',
-        image: '',
+        image: '/invitacion/icono-cena.webp',
       },
       {
         time: '23:00 H',
         title: 'El Baile & Fiesta',
-        image: '',
+        image: '/invitacion/icono-fiesta.webp',
       },
     ],
   },

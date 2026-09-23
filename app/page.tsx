@@ -344,7 +344,17 @@ export default function Home() {
               className="text-[30px] sm:text-[38px] md:text-[46px] leading-none tracking-tighter text-cream hover:opacity-80 transition-opacity cursor-pointer font-serif"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
-              {wedding.couple.initials}
+              {wedding.couple.heart ? (
+                <span className="flex items-center gap-1">
+                  J
+                  <span className="relative inline-block w-[0.5em] h-[0.5em] brightness-0 invert">
+                    <Image src={wedding.couple.heart} alt="y" fill className="object-contain" referrerPolicy="no-referrer" />
+                  </span>
+                  P
+                </span>
+              ) : (
+                wedding.couple.initials
+              )}
             </a>
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[11px] uppercase tracking-[0.25em] font-display text-soft font-semibold">
               {navLinks
@@ -527,9 +537,13 @@ export default function Home() {
                 </span>
               </div>
 
-              <div className="font-serif text-[41px] md:text-[51px] my-4 text-deep font-light">
-                &
-              </div>
+              {wedding.couple.heart ? (
+                <div className="relative w-9 h-9 md:w-11 md:h-11 my-4">
+                  <Image src={wedding.couple.heart} alt="y" fill className="object-contain" referrerPolicy="no-referrer" />
+                </div>
+              ) : (
+                <div className="font-serif text-[41px] md:text-[51px] my-4 text-deep font-light">&</div>
+              )}
 
               <div className="flex flex-col items-center">
                 <h1 className="font-handwritten text-[58px] leading-[62px] text-deep font-light">
