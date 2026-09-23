@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* =============================================================================
+ *  PALETA DE COLORES
+ * =============================================================================
+ *  Cambia solo estos 8 valores para repintar toda la invitación.
+ *  Cada uno genera automáticamente las utilidades de Tailwind:
+ *  `bg-primary`, `text-primary`, `border-primary/20`, `fill-secondary`, etc.
+ * ---------------------------------------------------------------------------*/
+@theme {
+  /* Color principal: navegación, botones, titulares y textos destacados. */
+  --color-primary: #5a5a40;
+  /* Color secundario: bloques sólidos (cuenta atrás, regalo, tarjetas, footer). */
+  --color-secondary: #afb5a6;
+  /* Fondo claro base de todas las secciones. */
+  --color-cream: #fbf9f4;
+  /* Tono más oscuro del principal: nombres de los novios y fecha. */
+  --color-deep: #3a3a28;
+  /* Texto secundario y párrafos. */
+  --color-muted: #7a7a60;
+  /* Texto claro sobre fondo oscuro (enlaces de la navegación). */
+  --color-soft: #e8e4da;
+  /* Beige suave: fondos de inputs, listas y cajas interiores. */
+  --color-sand: #efeae0;
+  /* Fondo del visor de fotos a pantalla completa. */
+  --color-overlay: #1e1e12;
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-handwritten: var(--font-handwritten);
+}
+
+/* =============================================================================
+ *  TIPOGRAFÍAS
+ * =============================================================================
+ *  Las familias se cargan en `app/layout.tsx` (next/font). Aquí se define qué
+ *  fuente usa cada rol.
+ * ---------------------------------------------------------------------------*/
+:root {
+  --font-serif: "Playfair Display", serif;
+  --font-body: "Cormorant Garamond", serif;
+  /* Titulares tipo "display": nombres, horas y títulos de tarjeta. */
+  --font-display: Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply antialiased bg-secondary;
+    font-family: var(--font-body);
+  }
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+}
+
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  /* Titulares con la fuente display configurada arriba. */
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* =============================================================================
+ *  AJUSTES DE FONDO EN MÓVIL
+ * =============================================================================
+ *  Algunas secciones con textura de papel usan otra imagen en pantallas
+ *  pequeñas. La URL equivale a `backgrounds.hero.mobileTop` de
+ *  `config/wedding.ts`: si la cambias allí, actualízala también aquí.
+ * ---------------------------------------------------------------------------*/
+@media (max-width: 767px) {
+  .dudas-section,
+  .itinerario-section,
+  .confirmacion-section {
+    background-image: url("https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_2_zuvzwr.png") !important;
+  }
+
+  #lugar {
+    background-image: none !important;
+  }
+}
