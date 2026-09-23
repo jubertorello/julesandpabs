@@ -162,13 +162,23 @@ export const wedding = {
   // CUENTA ATRÁS Y FOTOS
   // ---------------------------------------------------------------------------
   countdown: {
-    title: '¡Empieza la cuenta atrás!',
-    labels: {
-      days: 'Días',
-      hours: 'Horas',
-      minutes: 'Minutos',
-      seconds: 'Segundos',
-    },
+    /** Texto pequeño sobre el número. */
+    lead: 'Faltan',
+    /** Unidad bajo el número. Se usa el singular cuando queda un solo día. */
+    unit: 'días',
+    unitSingular: 'día',
+    /** Qué poner el mismo día de la boda y a partir de entonces. */
+    today: '¡Hoy nos casamos!',
+    past: 'Nos casamos',
+  },
+
+  /** Galería: el carrete de fotos que desfila bajo la cuenta atrás. */
+  gallery: {
+    title: 'Nuestro carrete',
+    /** Ilustración sobre el carrete. Cadena vacía para no poner ninguna. */
+    image: '/invitacion/icono-camara.webp',
+    /** Segundos que tarda el carrete en dar una vuelta completa. */
+    speed: 45,
   },
 
   /**
@@ -387,6 +397,12 @@ export const backgrounds = {
    * bloques de texto. Cadena vacía para volver al filete de 1px.
    */
   divider: '/invitacion/filigrana-superior.webp',
+
+  /**
+   * Esquina del marco de garabato de la papelería. Se pinta cuatro veces,
+   * girada, en las esquinas de la cuenta atrás.
+   */
+  frameCorner: '/invitacion/marco-esquina.webp',
 
   /**
    * Cenefas florales de la invitación impresa, en PNG con transparencia.

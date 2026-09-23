@@ -70,6 +70,11 @@
   }
 }
 
+@keyframes carrete {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @keyframes flotar {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }

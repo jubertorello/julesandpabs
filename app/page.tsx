@@ -710,166 +710,110 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* 3 & 4. FOTOS Y TEMPORIZADOR UNIFICADO */}
-        <section
-          id="fotos"
-          className="py-24 pt-16 pb-16 relative overflow-hidden"
-        >
+        {/* 3 & 4. CUENTA ATRÁS Y CARRETE DE FOTOS */}
+        <section id="fotos" className="py-24 pt-16 pb-16 relative overflow-hidden">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={{
               hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.15
-                }
-              }
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
             }}
             className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center"
           >
-
-            {/* Solo título unificado */}
+            {/* Cuenta atrás: una lámina más de la papelería */}
             <motion.div
               variants={{
-                hidden: { opacity: 0, y: 35 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
               }}
-              className="text-center mb-12"
+              className="relative w-full max-w-[420px] border border-primary/30 px-10 py-14 text-center mb-20"
             >
-              <h3 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
-                {wedding.countdown.title}
-              </h3>
-              <Divider className="mt-4" />
+              {/* Las cuatro esquinas salen de la misma imagen, girada */}
+              {([
+                ['-top-6 -left-6', ''],
+                ['-top-6 -right-6', 'scale-x-[-1]'],
+                ['-bottom-6 -left-6', 'scale-y-[-1]'],
+                ['-bottom-6 -right-6', 'rotate-180'],
+              ] as const).map(([posicion, giro]) => (
+                <span
+                  key={posicion}
+                  aria-hidden
+                  className={`absolute ${posicion} w-16 h-16 bg-contain bg-no-repeat ${giro}`}
+                  style={{ backgroundImage: `url("${backgrounds.frameCorner}")` }}
+                />
+              ))}
+
+              {timeLeft.completed ? (
+                <p className="font-serif text-ink text-[clamp(2.2rem,11vw,3.4rem)] leading-tight">
+                  {wedding.date.iso.slice(0, 10) === new Date().toISOString().slice(0, 10)
+                    ? wedding.countdown.today
+                    : wedding.countdown.past}
+                </p>
+              ) : (
+                <>
+                  <p className="font-serif text-muted text-[26px] leading-none">{wedding.countdown.lead}</p>
+                  <p className="font-serif text-ink text-[clamp(5rem,26vw,8rem)] leading-[1.05] my-2">
+                    {timeLeft.days}
+                  </p>
+                  <p className="font-display uppercase tracking-[0.3em] text-ink text-xs font-semibold">
+                    {timeLeft.days === 1 ? wedding.countdown.unitSingular : wedding.countdown.unit}
+                  </p>
+                </>
+              )}
             </motion.div>
 
-            {/* Temporizador Section */}
-            <div className="text-center w-full mb-16">
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.12,
-                      delayChildren: 0.05
-                    }
-                  }
-                }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 max-w-[240px] sm:max-w-[280px] md:max-w-[540px] mx-auto"
-              >
-                {([
-                  ['days', wedding.countdown.labels.days],
-                  ['hours', wedding.countdown.labels.hours],
-                  ['minutes', wedding.countdown.labels.minutes],
-                  ['seconds', wedding.countdown.labels.seconds],
-                ] as const).map(([unit, label]) => (
-                  <motion.div
-                    key={unit}
-                    variants={{
-                      hidden: { opacity: 0, scale: 0.5, y: 40 },
-                      visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 14 } }
-                    }}
-                    className="bg-secondary aspect-square rounded-full shadow-md border border-primary/10 flex flex-col items-center justify-center p-2 sm:p-3"
-                  >
-                    <span className="text-[51px] sm:text-[61px] md:text-[64px] font-serif text-white font-medium leading-none">{timeLeft[unit]}</span>
-                    <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-white/90 mt-1 sm:mt-1.5 font-display font-semibold">{label}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Collage de Fotos — foto destacada + polaroids en sus bordes */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 45 },
-                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 60, damping: 14 } }
-              }}
-              className="relative w-full max-w-[440px] md:max-w-[720px] mx-auto h-[480px] md:h-[580px]"
-            >
-              {/* Foto destacada — bordes difusos */}
-              <div
-                className="absolute cursor-pointer top-[15px] md:top-0 bottom-[48px] left-[5%] right-[5%]"
-                style={{
-                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 18%, black 82%, transparent), linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)',
-                  WebkitMaskComposite: 'destination-in',
-                  maskImage: 'linear-gradient(to right, transparent, black 18%, black 82%, transparent), linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)',
-                  maskComposite: 'intersect',
-                }}
-                onClick={() => setActivePhoto(weddingPhotos[1])}
-              >
-                <Image src={weddingPhotos[1]} alt={wedding.couple.joinedNames} fill className="object-cover object-center" referrerPolicy="no-referrer" />
+            {/* Carrete de fotos */}
+            {weddingPhotos.length > 0 && (
+              <div className="w-full">
+                {wedding.gallery.image && (
+                  <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-2">
+                    <Image src={wedding.gallery.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
+                  </div>
+                )}
+                <h3 className="font-serif text-[41px] md:text-[51px] text-ink font-light italic text-center mb-8">
+                  {wedding.gallery.title}
+                </h3>
               </div>
-
-              {/* Polaroid 1 */}
-              {weddingPhotos[0] && (
-                <div
-                  className="absolute z-20 hover:z-40 bg-white p-2 pb-7 shadow-[0_6px_24px_rgba(0,0,0,0.25)] w-[42%] md:w-[28%] -rotate-[8deg] hover:-rotate-[5deg] hover:scale-[1.05] transition-all duration-300 origin-center cursor-pointer"
-                  style={{ top: '6px', left: '4px' }}
-                  onClick={() => setActivePhoto(weddingPhotos[0])}
-                >
-                  <div className="relative w-full aspect-square overflow-hidden">
-                    <Image src={weddingPhotos[0]} alt={wedding.couple.joinedNames} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                </div>
-              )}
-
-              {/* Polaroid 2 */}
-              {weddingPhotos[2] && (
-                <div
-                  className="absolute z-20 hover:z-40 bg-white p-2 pb-7 shadow-[0_6px_24px_rgba(0,0,0,0.25)] w-[42%] md:w-[28%] rotate-[7deg] hover:rotate-[4deg] hover:scale-[1.05] transition-all duration-300 origin-center cursor-pointer"
-                  style={{ top: '4px', right: '4px' }}
-                  onClick={() => setActivePhoto(weddingPhotos[2])}
-                >
-                  <div className="relative w-full aspect-square overflow-hidden">
-                    <Image src={weddingPhotos[2]} alt={wedding.couple.joinedNames} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                </div>
-              )}
-
-              {/* Polaroid 3 */}
-              {weddingPhotos[3] && (
-                <div
-                  className="absolute z-20 hover:z-40 bg-white p-2 pb-7 shadow-[0_6px_24px_rgba(0,0,0,0.25)] w-[32%] md:w-[22%] rotate-[6deg] hover:rotate-[3deg] hover:scale-[1.05] transition-all duration-300 origin-center cursor-pointer"
-                  style={{ bottom: '-36px', left: '2px' }}
-                  onClick={() => setActivePhoto(weddingPhotos[3])}
-                >
-                  <div className="relative w-full aspect-square overflow-hidden">
-                    <Image src={weddingPhotos[3]} alt={wedding.couple.joinedNames} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                </div>
-              )}
-
-              {/* Polaroid 4 */}
-              {weddingPhotos[4] && (
-                <div
-                  className="absolute z-20 hover:z-40 bg-white p-2 pb-7 shadow-[0_6px_24px_rgba(0,0,0,0.25)] w-[32%] md:w-[22%] left-[34%] md:left-[39%] -rotate-[2deg] hover:rotate-0 hover:scale-[1.05] transition-all duration-300 origin-center cursor-pointer"
-                  style={{ bottom: '-40px' }}
-                  onClick={() => setActivePhoto(weddingPhotos[4])}
-                >
-                  <div className="relative w-full aspect-square overflow-hidden">
-                    <Image src={weddingPhotos[4]} alt={wedding.couple.joinedNames} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                </div>
-              )}
-
-              {/* Polaroid 5 */}
-              {weddingPhotos[5] && (
-                <div
-                  className="absolute z-20 hover:z-40 bg-white p-2 pb-7 shadow-[0_6px_24px_rgba(0,0,0,0.25)] w-[32%] md:w-[22%] -rotate-[7deg] hover:-rotate-[4deg] hover:scale-[1.05] transition-all duration-300 origin-center cursor-pointer"
-                  style={{ bottom: '-32px', right: '2px' }}
-                  onClick={() => setActivePhoto(weddingPhotos[5])}
-                >
-                  <div className="relative w-full aspect-square overflow-hidden">
-                    <Image src={weddingPhotos[5]} alt={wedding.couple.joinedNames} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                </div>
-              )}
-            </motion.div>
-
+            )}
           </motion.div>
+
+          {/*
+            El carrete va fuera del contenedor centrado para que ocupe todo el
+            ancho. `overflow-hidden` lo mantiene dentro de la pantalla: nunca
+            desplaza la página en horizontal.
+          */}
+          {weddingPhotos.length > 0 && (
+            <div className="relative w-full overflow-hidden group">
+              <div
+                className="flex gap-3 md:gap-5 w-max motion-safe:animate-[carrete_var(--carrete)_linear_infinite] group-hover:[animation-play-state:paused]"
+                style={{ '--carrete': `${wedding.gallery.speed}s` } as React.CSSProperties}
+              >
+                {/* Dos pasadas seguidas: al terminar la primera, el bucle encaja */}
+                {[...weddingPhotos, ...weddingPhotos].map((foto, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActivePhoto(foto)}
+                    aria-label="Ampliar foto"
+                    className="relative shrink-0 h-[220px] w-[160px] md:h-[300px] md:w-[220px] bg-cream p-2 shadow-[0_6px_20px_rgba(0,0,0,0.14)] cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+                  >
+                    <span className="relative block w-full h-full overflow-hidden">
+                      <Image
+                        src={foto}
+                        alt={wedding.couple.joinedNames}
+                        fill
+                        sizes="(max-width: 768px) 160px, 220px"
+                        className="object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
 
