@@ -8,22 +8,22 @@
  *  `bg-primary`, `text-primary`, `border-primary/20`, `fill-secondary`, etc.
  * ---------------------------------------------------------------------------*/
 @theme {
-  /* Color principal: navegación, botones, titulares y textos destacados. */
-  --color-primary: #5a5a40;
-  /* Color secundario: bloques sólidos (cuenta atrás, regalo, tarjetas, footer). */
-  --color-secondary: #afb5a6;
-  /* Fondo claro base de todas las secciones. */
-  --color-cream: #fbf9f4;
-  /* Tono más oscuro del principal: nombres de los novios y fecha. */
-  --color-deep: #3a3a28;
+  /* Verde azulado del sobre: navegación, botones, titulares y textos. */
+  --color-primary: #37535c;
+  /* Verde azulado claro: bloques sólidos (cuenta atrás, regalo, footer). */
+  --color-secondary: #5a7b83;
+  /* Papel de la tarjeta: fondo claro de todas las secciones. */
+  --color-cream: #d6cec1;
+  /* Tinta de la caligrafía: nombres de los novios y la fecha. */
+  --color-deep: #403d39;
   /* Texto secundario y párrafos. */
-  --color-muted: #7a7a60;
+  --color-muted: #6b665e;
   /* Texto claro sobre fondo oscuro (enlaces de la navegación). */
-  --color-soft: #e8e4da;
-  /* Beige suave: fondos de inputs, listas y cajas interiores. */
-  --color-sand: #efeae0;
-  /* Fondo del visor de fotos a pantalla completa. */
-  --color-overlay: #1e1e12;
+  --color-soft: #e3ddd2;
+  /* Papel algo más tostado: inputs, listas y cajas interiores. */
+  --color-sand: #c7bdac;
+  /* Visor de fotos a pantalla completa. */
+  --color-overlay: #1d2a2e;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -70,14 +70,14 @@
  *  AJUSTES DE FONDO EN MÓVIL
  * =============================================================================
  *  Algunas secciones con textura de papel usan otra imagen en pantallas
- *  pequeñas. La URL equivale a `backgrounds.hero.mobileTop` de
- *  `config/wedding.ts`: si la cambias allí, actualízala también aquí.
+ *  pequeñas. La URL equivale a `backgrounds.paper` de `config/wedding.ts`:
+ *  si la cambias allí, actualízala también aquí.
  * ---------------------------------------------------------------------------*/
 @media (max-width: 767px) {
   .dudas-section,
   .itinerario-section,
   .confirmacion-section {
-    background-image: url("https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_2_zuvzwr.png") !important;
+    background-image: url("/invitacion/textura-papel.webp") !important;
   }
 
   #lugar {

@@ -50,11 +50,38 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           className="fixed inset-0 pointer-events-none z-[-1] bg-cream"
           style={{
             backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: '360px 360px',
+            backgroundRepeat: 'repeat',
           }}
         ></div>
         {children}
+        {/* Cenefas florales de la invitación impresa (decorativas) */}
+        <div
+          aria-hidden
+          className="fixed inset-y-0 left-0 hidden md:block pointer-events-none z-30"
+          style={{
+            width: backgrounds.flowers.width,
+            maxWidth: backgrounds.flowers.maxWidth,
+            opacity: backgrounds.flowers.opacity,
+            backgroundImage: `url("${backgrounds.flowers.left}")`,
+            backgroundSize: '100% auto',
+            backgroundRepeat: 'repeat-y',
+            backgroundPosition: 'left top',
+          }}
+        />
+        <div
+          aria-hidden
+          className="fixed inset-y-0 right-0 hidden md:block pointer-events-none z-30"
+          style={{
+            width: backgrounds.flowers.width,
+            maxWidth: backgrounds.flowers.maxWidth,
+            opacity: backgrounds.flowers.opacity,
+            backgroundImage: `url("${backgrounds.flowers.right}")`,
+            backgroundSize: '100% auto',
+            backgroundRepeat: 'repeat-y',
+            backgroundPosition: 'right top',
+          }}
+        />
       </body>
     </html>
   );

@@ -23,24 +23,24 @@ export const wedding = {
     /** Iniciales del logo en la barra de navegación. */
     initials: 'J & P',
     /** Nombre corto, usado en títulos y metadatos. */
-    shortNames: 'Jules & Pabs',
+    shortNames: 'Julieta & Pablo',
     /** Nombre corto en formato "X y Z" (sobre, footer, alts de fotos). */
-    joinedNames: 'Jules y Pabs',
+    joinedNames: 'Julieta y Pablo',
 
     partnerA: {
-      firstName: 'Jules',
-      lastName: 'Apellido Apellido',
+      firstName: 'Julieta',
+      lastName: 'Bertorello Sartori',
       /** Teléfono con prefijo internacional y sin signos (para wa.me). */
       phone: '34600000000',
-      whatsappLabel: 'WhatsApp Jules',
-      whatsappMessage: '¡Hola Jules! Tengo una duda sobre la boda...',
+      whatsappLabel: 'WhatsApp Julieta',
+      whatsappMessage: '¡Hola Julieta! Tengo una duda sobre la boda...',
     },
     partnerB: {
-      firstName: 'Pabs',
-      lastName: 'Apellido Apellido',
+      firstName: 'Pablo',
+      lastName: 'Tejero Mancho',
       phone: '34600000001',
-      whatsappLabel: 'WhatsApp Pabs',
-      whatsappMessage: '¡Hola Pabs! Tengo una duda sobre la boda...',
+      whatsappLabel: 'WhatsApp Pablo',
+      whatsappMessage: '¡Hola Pablo! Tengo una duda sobre la boda...',
     },
   },
 
@@ -49,28 +49,27 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   date: {
     /** Fecha y hora exactas con zona horaria. Alimenta la cuenta atrás. */
-    iso: '2027-06-12T17:00:00+02:00',
+    iso: '2026-10-26T16:45:00+01:00',
     /** Partes sueltas que se muestran en el bloque grande de la portada. */
-    day: '12',
-    monthName: 'Junio',
-    year: '2027',
-    weekdayAndTime: 'Sábado • 17:00 H',
+    day: '26',
+    monthName: 'Octubre',
+    year: '2026',
+    weekdayAndTime: 'Lunes • 16:45 H',
     /** Formatos de texto usados en metadatos y footer. */
-    short: '12.06.2027',
-    long: '12 de Junio de 2027',
-    city: 'Sevilla',
+    short: '26.10.2026',
+    long: '26 de Octubre de 2026',
+    city: 'Madrid',
   },
 
   // ---------------------------------------------------------------------------
   // METADATOS / COMPARTIR (Open Graph)
   // ---------------------------------------------------------------------------
   seo: {
-    title: 'Jules & Pabs · 12.06.2027',
+    title: 'Julieta & Pablo · 26.10.2026',
     description:
-      '¡Nos casamos! El 12 de junio de 2027 celebramos el día más importante de nuestra vida y nos encantaría que nos acompañes.',
-    ogImage:
-      'https://res.cloudinary.com/scihumn2/image/upload/f_jpg,w_1200,h_630,c_fill,q_auto/Disen%CC%83o_sin_ti%CC%81tulo_6_wnd34x.png',
-    ogImageAlt: 'Jules & Pabs · Boda 12 de Junio 2027',
+      '¡Nos casamos! El 26 de octubre celebramos el día más importante de nuestra vida y nos encantaría que nos acompañes.',
+    ogImage: '/invitacion/tarjeta-invitacion.webp',
+    ogImageAlt: 'Julieta & Pablo · Boda 26 de Octubre',
     locale: 'es_ES',
   },
 
@@ -79,10 +78,10 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   envelope: {
     preTitle: 'Tienes una carta',
-    preSubtitle: 'de Jules & Pabs',
+    preSubtitle: 'de Julieta y Pablo',
     preButton: 'Abrir invitación',
     cardIntro: 'Estás invitado/a a la boda de',
-    cardNames: 'Jules y Pabs',
+    cardNames: 'Julieta y Pablo',
     cardButton: 'Ver Invitación',
   },
 
@@ -111,21 +110,21 @@ export const wedding = {
     title: 'Dónde y Cuándo',
     ceremony: {
       eyebrow: 'La Ceremonia',
-      name: 'Nombre de la Parroquia',
-      address: 'Dirección de la ceremonia, Ciudad',
-      time: '17:00 H',
+      name: 'Basílica de San Francisco el Grande',
+      address: 'Calle San Buenaventura 1, 28005 Madrid',
+      time: '16:45 H',
       image:
         'https://res.cloudinary.com/scihumn2/image/upload/acuarela-v1_corpus_transpa_whkfz1.png',
-      mapsUrl: 'https://maps.google.com/?q=Nombre+de+la+Parroquia',
+      mapsUrl: 'https://maps.google.com/?q=Basilica+de+San+Francisco+el+Grande+Madrid',
       ctaLabel: 'Ver ubicación',
     },
     reception: {
       eyebrow: 'La Celebración',
-      name: 'Nombre de la Finca',
-      address: 'Dirección de la celebración, Ciudad',
+      name: 'Castillo de Viñuelas',
+      address: 'Monte de Viñuelas, 28760 Tres Cantos, Madrid',
       time: 'A partir de las 19:00 H',
       image: 'https://res.cloudinary.com/scihumn2/image/upload/hacienda-v1_transpa_axivb6.png',
-      mapsUrl: 'https://maps.google.com/?q=Nombre+de+la+Finca',
+      mapsUrl: 'https://maps.google.com/?q=Castillo+de+Vinuelas+Madrid',
       ctaLabel: 'Ver ubicación',
     },
   },
@@ -167,7 +166,7 @@ export const wedding = {
     /** Se alternan izquierda/derecha automáticamente según el orden. */
     events: [
       {
-        time: '17:00 H',
+        time: '16:45 H',
         title: 'La Ceremonia',
         image:
           'https://res.cloudinary.com/scihumn2/image/upload/WhatsApp_Image_2026-05-29_at_16.37.21-removebg-preview_rpf1kt.png',
@@ -245,7 +244,7 @@ export const wedding = {
         'Tu presencia es nuestro mayor regalo. Sin embargo, si deseas acompañarnos de una forma diferente y ayudarnos a construir momentos mágicos en nuestra luna de miel, ponemos a tu disposición nuestra cuenta bancaria:',
       iban: 'ES00 0000 0000 0000 0000 0000',
       swift: 'XXXXESMM',
-      holders: 'Jules A. A. y Pabs A. A.',
+      holders: 'Julieta B. S. y Pablo T. M.',
       thanks: '¡Muchísimas gracias por formar parte de este sueño! ❤️',
     },
   },
@@ -256,12 +255,12 @@ export const wedding = {
   rsvp: {
     title: 'Confirma tu asistencia',
     /** Fecha límite mostrada en el formulario y en la introducción. */
-    deadline: '15 de agosto',
+    deadline: '26 de septiembre',
     bus: {
       /** Pon `false` si no hay servicio de autobuses (oculta los campos). */
       enabled: true,
-      idaHint: 'Salida: Nombre de la Parroquia (18:15h) → Nombre de la Finca',
-      vueltaHint: 'Salida: Nombre de la Finca → Ciudad (varios horarios)',
+      idaHint: 'Salida: Basílica de San Francisco el Grande (18:15h) → Castillo de Viñuelas',
+      vueltaHint: 'Salida: Castillo de Viñuelas → Madrid (varios horarios)',
     },
   },
 
@@ -282,8 +281,8 @@ export const wedding = {
         title: 'Servicio de Autobuses',
         body: 'Dispondremos de autobuses para los traslados del evento:',
         bullets: [
-          '• Ida: Nombre de la Parroquia (18:15h) → Nombre de la Finca',
-          '• Vuelta: Nombre de la Finca → Ciudad (varios horarios)',
+          '• Ida: Basílica de San Francisco el Grande (18:15h) → Castillo de Viñuelas',
+          '• Vuelta: Castillo de Viñuelas → Madrid (varios horarios)',
         ],
       },
       {
@@ -337,61 +336,61 @@ export const wedding = {
  *  Separadas del contenido porque cambian con el diseño, no con la boda.
  * ---------------------------------------------------------------------------*/
 export const backgrounds = {
-  /** Textura de papel global (detrás de todo el documento). */
-  paper:
-    'https://res.cloudinary.com/scihumn2/image/upload/texturapapel-limoncello-scaled_cgfzov.jpg',
+  /** Textura de papel de la tarjeta (detrás de todo el documento). */
+  paper: '/invitacion/textura-papel.webp',
 
+  /**
+   * Cenefas florales de la invitación impresa, en PNG con transparencia.
+   * Se repiten verticalmente a ambos lados de la página (ocultas en móvil).
+   */
+  flowers: {
+    left: '/invitacion/flores-izquierda.webp',
+    right: '/invitacion/flores-derecha.webp',
+    /** Ancho de cada cenefa y opacidad, para ajustarlas sin tocar el código. */
+    width: '16vw',
+    maxWidth: '230px',
+    opacity: 0.85,
+  },
+
+  /** Pantalla del sobre: la pared sobre la que cuelga la invitación. */
   intro: {
-    mobile:
-      'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_1_gwhl0u.png',
-    desktop: 'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_r7rwrs.png',
+    mobile: '/invitacion/fondo-pared.webp',
+    desktop: '/invitacion/fondo-pared.webp',
   },
   hero: {
-    mobileTop:
-      'https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_2_zuvzwr.png',
-    mobileBottom:
-      'https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_3_zgfwis.png',
-    desktop: 'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_jv7dnc.png',
+    mobileTop: '/invitacion/textura-papel.webp',
+    mobileBottom: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
   locations: {
-    mobileTop:
-      'https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_1_cjdhdl.png',
-    mobileBottom:
-      'https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_5_xgark7.png',
-    desktop:
-      'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_1_opovqp.png',
+    mobileTop: '/invitacion/textura-papel.webp',
+    mobileBottom: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
   photos: {
-    mobile:
-      'https://res.cloudinary.com/scihumn2/image/upload/An%CC%83adir_un_ti%CC%81tulo_5_umjcus.png',
-    desktop:
-      'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_2_xwwpnf.png',
+    mobile: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
   music: {
-    mobile: 'https://res.cloudinary.com/scihumn2/image/upload/FONDO_2_MOBILE_rwtluf.png',
-    desktop:
-      'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_3_jjgev3.png',
+    mobile: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
   info: {
-    mobile: 'https://res.cloudinary.com/scihumn2/image/upload/FONDO_1_MOBILE_hcidom.png',
-    desktop:
-      'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_5_vlhguk.png',
+    mobile: '/invitacion/textura-papel.webp',
+    desktop: '/invitacion/textura-papel.webp',
   },
-  footer:
-    'https://res.cloudinary.com/scihumn2/image/upload/Disen%CC%83o_sin_ti%CC%81tulo_3_t9bj44.png',
+  footer: '/invitacion/fondo-pared.webp',
 
   /** Imágenes de la animación del sobre. */
   envelope: {
-    front: 'https://res.cloudinary.com/scihumn2/image/upload/envelope_pg6sel.jpg',
-    backClosed: 'https://res.cloudinary.com/scihumn2/image/upload/envelope_4_eilius.png',
-    base: 'https://res.cloudinary.com/scihumn2/image/upload/2212.portrait.back_qvmv8o.webp',
-    flapClosed: 'https://res.cloudinary.com/scihumn2/image/upload/envelope_1_bd8ltr.webp',
-    flapOpen:
-      'https://res.cloudinary.com/scihumn2/image/upload/parte_arriba_abierta_d4ed3f.webp',
-    cardBg:
-      'https://res.cloudinary.com/scihumn2/image/upload/texturapapel-limoncello-scaled_cgfzov.jpg',
+    front: '/invitacion/sobre-frontal.webp',
+    backClosed: '/invitacion/sobre-cerrado.webp',
+    base: '/invitacion/sobre-abierto.png',
+    flapClosed: '/invitacion/sobre-solapa-nombres.webp',
+    flapOpen: '/invitacion/sobre-solapa-abierta.webp',
+    cardBg: '/invitacion/textura-papel.webp',
   },
-};
+} as const;
 
 /* =============================================================================
  *  HELPERS

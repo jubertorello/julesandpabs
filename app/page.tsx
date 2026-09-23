@@ -435,9 +435,9 @@ export default function Home() {
             className="absolute inset-0 md:hidden z-0"
             style={{
               backgroundImage: `url("${backgrounds.hero.mobileTop}")`,
-              backgroundSize: '100% auto',
+              backgroundSize: '360px 360px',
               backgroundPosition: 'top center',
-              backgroundRepeat: 'repeat-y',
+              backgroundRepeat: 'repeat',
               clipPath: 'inset(0 0 50% 0)',
             }}
           />
@@ -624,7 +624,7 @@ export default function Home() {
           className="w-full pt-20 pb-20 md:py-40 relative"
           style={{
             backgroundImage: `url("${backgrounds.locations.mobileTop}")`,
-            backgroundSize: 'contain',
+            backgroundSize: '360px 360px',
             backgroundPosition: 'top center',
             backgroundRepeat: 'repeat',
             backgroundColor: 'var(--color-cream)',
@@ -635,9 +635,9 @@ export default function Home() {
             className="absolute inset-0 md:hidden z-0"
             style={{
               backgroundImage: `url("${backgrounds.locations.mobileTop}")`,
-              backgroundSize: '100% auto',
+              backgroundSize: '360px 360px',
               backgroundPosition: 'top center',
-              backgroundRepeat: 'repeat-y',
+              backgroundRepeat: 'repeat',
               clipPath: 'inset(0 0 50% 0)',
             }}
           />
@@ -756,7 +756,7 @@ export default function Home() {
           className="py-24 pt-16 pb-16 relative overflow-hidden"
           style={{
             backgroundImage: `url("${backgrounds.photos.mobile}")`,
-            backgroundSize: 'contain',
+            backgroundSize: '360px 360px',
             backgroundPosition: 'top center',
             backgroundColor: 'var(--color-cream)',
           }}
@@ -925,7 +925,7 @@ export default function Home() {
           className="py-24 pt-16 pb-16 text-primary itinerario-section"
           style={{
             backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: 'contain',
+            backgroundSize: '360px 360px',
             backgroundPosition: 'top center',
             backgroundRepeat: 'repeat',
             backgroundColor: 'var(--color-cream)',
@@ -1025,7 +1025,7 @@ export default function Home() {
             className="w-full py-24 pt-16 pb-16 relative"
             style={{
               backgroundImage: `url("${backgrounds.music.mobile}")`,
-              backgroundSize: 'contain',
+              backgroundSize: '360px 360px',
               backgroundPosition: 'top center',
               backgroundRepeat: 'repeat',
               backgroundColor: 'var(--color-cream)',
@@ -1243,7 +1243,7 @@ export default function Home() {
           className="w-full py-24 pt-16 pb-16 confirmacion-section"
           style={{
             backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: 'contain',
+            backgroundSize: '360px 360px',
             backgroundPosition: 'top center',
             backgroundRepeat: 'repeat',
             backgroundColor: 'var(--color-cream)',
@@ -1326,7 +1326,7 @@ export default function Home() {
           className="py-20 pt-16 pb-16 relative"
           style={{
             backgroundImage: `url("${backgrounds.info.mobile}")`,
-            backgroundSize: 'contain',
+            backgroundSize: '360px 360px',
             backgroundPosition: 'top center',
             backgroundRepeat: 'repeat',
             backgroundColor: 'var(--color-cream)',

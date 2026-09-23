@@ -95,10 +95,10 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
                   />
                 </motion.div>
 
-                <p className="font-serif text-deep text-2xl md:text-3xl italic mb-1">
+                <p className="font-serif text-cream text-2xl md:text-3xl italic mb-1 drop-shadow-sm">
                   {wedding.envelope.preTitle}
                 </p>
-                <p className="font-sans text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
+                <p className="font-sans text-cream/80 text-[11px] uppercase tracking-[0.35em] mb-10 drop-shadow-sm">
                   {wedding.envelope.preSubtitle}
                 </p>
 
