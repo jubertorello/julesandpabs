@@ -869,7 +869,7 @@ export default function AdminDashboard() {
                             </div>
                           )}
                           {rsvp.message && (
-                            <p className="text-xs text-muted italic mt-2 pt-2 border-t border-primary/5">"{rsvp.message}"</p>
+                            <p className="text-xs text-muted italic mt-2 pt-2 border-t border-primary/5">&ldquo;{rsvp.message}&rdquo;</p>
                           )}
                           {companions.map((c: any, ci: number) => (
                             <div key={c.id} className="mt-2 pl-3 border-l-2 border-primary/10 pt-1">
