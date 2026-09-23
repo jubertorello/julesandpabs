@@ -271,8 +271,11 @@ export const wedding = {
       'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada entre Tanzania y las Seychelles.',
     invitation:
       'Si deseáis acompañarnos de una forma especial en esta experiencia inolvidable, podéis hacerlo rellenando vuestro granito de arena aquí:',
-    image: '',
-    imageAlt: 'Tanzania y Seychelles',
+    /** Láminas de los destinos. Lista vacía para ir sin ilustraciones. */
+    images: [
+      { src: '/invitacion/luna-tanzania.webp', alt: 'Tanzania' },
+      { src: '/invitacion/luna-seychelles.webp', alt: 'Seychelles' },
+    ],
     ctaHint: '¿Quieres hacernos un regalo? Haz click aquí:',
     ctaLabel: 'Ver datos regalo',
     modal: {

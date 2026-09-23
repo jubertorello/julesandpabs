@@ -795,9 +795,7 @@ export default function Home() {
                     <Image src={wedding.gallery.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
                   </div>
                 )}
-                <h3 className="font-serif text-[41px] md:text-[51px] text-ink font-light italic text-center mb-8">
-                  {wedding.gallery.title}
-                </h3>
+
               </div>
             )}
           </motion.div>
@@ -1096,25 +1094,32 @@ export default function Home() {
                 {wedding.gift.invitation}
               </motion.p>
 
-              <div className="flex justify-center">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.92, rotate: -2 },
-                    visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 60, damping: 15 } }
-                  }}
-                  className="relative w-84 h-52 md:w-106 md:h-80"
-                >
-                  {wedding.gift.image && (
-                    <Image
-                      src={wedding.gift.image}
-                      alt={wedding.gift.imageAlt}
-                      fill
-                      className="object-contain"
-                      referrerPolicy="no-referrer"
-                    />
-                  )}
-                </motion.div>
-              </div>
+              {wedding.gift.images.length > 0 && (
+                <div className="flex justify-center items-end gap-3 md:gap-6 mt-6 mb-14">
+                  {wedding.gift.images.map((lamina, i) => (
+                    <motion.div
+                      key={lamina.src}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.92, rotate: i % 2 ? 2 : -2 },
+                        visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 60, damping: 15 } }
+                      }}
+                      className="relative w-1/2 max-w-[230px] aspect-[4/5]"
+                    >
+                      <Image
+                        src={lamina.src}
+                        alt={lamina.alt}
+                        fill
+                        sizes="(max-width: 768px) 45vw, 230px"
+                        className="object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                      <span className="block text-center font-display uppercase tracking-[0.25em] text-white/90 text-[10px] font-semibold absolute -bottom-6 inset-x-0">
+                        {lamina.alt}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
               <motion.div
                 variants={{
