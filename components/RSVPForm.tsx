@@ -352,7 +352,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
           >
             <div className="text-center">
               <p className="font-serif text-[31px] text-ink mb-1">¿Podrás acompañarnos?</p>
-              <p className="font-serif text-[22px] text-muted">
+              <p className="font-serif text-[28px] text-muted">
                 Por favor, confirma tu asistencia antes del {wedding.rsvp.deadline}
               </p>
             </div>
@@ -386,8 +386,8 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             className="space-y-5"
           >
             <div className="text-center mb-2">
-              <p className="font-serif text-[27px] text-ink">Gracias por avisarnos</p>
-              <p className="font-serif text-[22px] text-muted mt-1">
+              <p className="font-serif text-[28px] text-ink">Gracias por avisarnos</p>
+              <p className="font-serif text-[28px] text-muted mt-1">
                 Lamentamos que no puedas estar con nosotros
               </p>
             </div>
@@ -472,7 +472,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
               <p className="text-[10px] font-display text-muted/70 text-center mb-4 font-semibold">(si procede)</p>
               <div className="flex items-start gap-2 bg-sand/60 border border-primary/10 rounded px-3 py-2.5 mb-5">
                 <Info size={13} className="text-muted mt-0.5 shrink-0" />
-                <p className="font-serif text-[20px] text-[11px] text-muted">
+                <p className="font-serif text-[28px] text-muted">
                   Los niños no están invitados al evento
                 </p>
               </div>

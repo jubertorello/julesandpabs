@@ -681,7 +681,7 @@ export default function Home() {
                       {place.name}
                     </h3>
 
-                    <p className="font-serif text-muted text-[24px] italic mb-6 leading-relaxed text-center">
+                    <p className="font-serif text-muted text-[28px] italic mb-6 leading-relaxed text-center">
                       {place.address}
                     </p>
 
@@ -764,7 +764,7 @@ export default function Home() {
                 </p>
               ) : (
                 <>
-                  <p className="font-serif text-muted text-[26px] leading-none mb-6">{wedding.countdown.lead}</p>
+                  <p className="font-serif text-muted text-[28px] leading-none mb-6">{wedding.countdown.lead}</p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-2">
                     {([
                       ['days', wedding.countdown.labels.days],
@@ -879,7 +879,7 @@ export default function Home() {
                 {wedding.itinerary.title}
               </h2>
               <p
-                className="font-serif text-muted mt-2 italic text-[24px] leading-snug"
+                className="font-serif text-muted mt-2 italic text-[28px] leading-snug"
               >
                 {wedding.itinerary.subtitle}
               </p>
@@ -987,7 +987,7 @@ export default function Home() {
                   {wedding.music.title}
                 </h3>
 
-                <p className="text-muted text-[15px] italic leading-relaxed max-w-lg mx-auto mb-10">
+                <p className="font-serif text-muted text-[28px] italic leading-relaxed max-w-lg mx-auto mb-10">
                   {wedding.music.description}
                 </p>
 
@@ -1090,7 +1090,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-[26px] text-white/95 italic leading-relaxed max-w-xl mx-auto mb-2"
+                className="font-serif text-[28px] text-white/95 italic leading-relaxed max-w-xl mx-auto mb-2"
               >
                 {wedding.gift.description}
               </motion.p>
@@ -1100,7 +1100,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-[26px] text-white leading-relaxed max-w-lg mx-auto mb-1"
+                className="font-serif text-[28px] text-white leading-relaxed max-w-lg mx-auto mb-1"
               >
                 {wedding.gift.invitation}
               </motion.p>
@@ -1139,7 +1139,7 @@ export default function Home() {
                 }}
                 className="flex flex-col items-center gap-2"
               >
-                <p className="font-serif text-white/75 text-[24px] italic">
+                <p className="font-serif text-white/75 text-[28px] italic">
                   {wedding.gift.ctaHint}
                 </p>
                 <button
@@ -1218,7 +1218,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-[24px] md:text-[26px] text-muted leading-relaxed max-w-md mx-auto"
+                className="font-display text-[17px] md:text-[18px] text-muted leading-relaxed max-w-md mx-auto"
               >
                 Para poder organizar con cariño y detalle este día, por favor, agradeceríamos que rellenarais este formulario antes del <strong className="text-ink">{wedding.rsvp.deadline}</strong>, gracias.
               </motion.p>
@@ -1295,10 +1295,10 @@ export default function Home() {
                         <Image src={card.image} alt="" fill className="object-contain object-left" referrerPolicy="no-referrer" />
                       </div>
                     )}
-                    <h4 className="text-[17px] text-white font-medium mb-3" style={{ fontFamily: 'var(--font-display)' }}>
+                    <h4 className="font-display text-[19px] text-white font-semibold mb-3 tracking-wide">
                       {card.title}
                     </h4>
-                    <p className="font-serif text-[22px] text-white/90 leading-snug">
+                    <p className="font-display text-[17px] text-white/95 leading-relaxed">
                       {card.body}
                       {card.bullets.map((bullet, i) => (
                         <span key={i} className={`block font-semibold ${i === 0 ? 'mt-2' : 'mt-1.5'}`}>
@@ -1357,7 +1357,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="font-serif text-[26px] text-muted leading-relaxed mb-10 max-w-md mx-auto"
+              className="font-serif text-[28px] text-muted leading-relaxed mb-10 max-w-md mx-auto"
             >
               {wedding.contact.description}
             </motion.p>
