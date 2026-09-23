@@ -410,12 +410,16 @@ export const backgrounds = {
   envelope: {
     /** Frente del sobre, con la estampilla. */
     front: '/invitacion/sobre-frontal-limpio.webp',
-    /** Dorso completo con la solapa cerrada (solo para el giro inicial). */
-    back: '/invitacion/sobre-cerrado.webp',
+    /** Dorso cerrado: el bolsillo con la solapa encima, como se ve de verdad. */
+    back: '/invitacion/sobre-dorso-cerrado.png',
     /** Bolsillo con el escote en V: va por delante de la tarjeta. */
     pocket: '/invitacion/sobre-abierto.png',
-    /** Solapa cerrada, cara exterior. Gira de 0° a 90° y se oculta. */
-    flapClosed: '/invitacion/solapa-cerrada.png',
+    /**
+     * Solapa cerrada, cara exterior, con el lacre en la punta. Es más larga que
+     * el escote del bolsillo: la punta cae sobre el cuerpo del sobre.
+     * Gira de 0° a 90° y se oculta.
+     */
+    flapClosed: '/invitacion/sobre-solapa-limpia.webp',
     /** Solapa abierta, con el lacre. Aparece a 89° y baja hasta 0°. */
     flapOpen: '/invitacion/solapa-abierta.png',
     /** Sombra que proyecta la solapa al abrirse. */
@@ -427,8 +431,8 @@ export const backgrounds = {
   /** Relación alto/ancho de cada capa, medida sobre las imágenes. */
   envelopeLayers: {
     envelope: 840 / 600,
-    flapClosed: 287 / 840,
-    flapOpen: 360 / 840,
+    flapClosed: 549 / 840,
+    flapOpen: 549 / 840,
   },
 } as const;
 
