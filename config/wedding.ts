@@ -136,8 +136,8 @@ export const wedding = {
       name: 'Basílica de San Francisco el Grande',
       address: 'Calle San Buenaventura 1, 28005 Madrid',
       time: '16:45 H',
-      /** Deja la cadena vacía para que la tarjeta vaya sin ilustración. */
-      image: '',
+      /** Acuarela de la basílica. Cadena vacía para ir sin ilustración. */
+      image: '/invitacion/acuarela-ceremonia.webp',
       mapsUrl: 'https://maps.google.com/?q=Basilica+de+San+Francisco+el+Grande+Madrid',
       ctaLabel: 'Ver ubicación',
     },
@@ -146,7 +146,8 @@ export const wedding = {
       name: 'Castillo de Viñuelas',
       address: 'Monte de Viñuelas, 28760 Tres Cantos, Madrid',
       time: 'A partir de las 19:00 H',
-      image: '',
+      /** Acuarela del castillo. Cadena vacía para ir sin ilustración. */
+      image: '/invitacion/acuarela-celebracion.webp',
       mapsUrl: 'https://maps.google.com/?q=Castillo+de+Vinuelas+Madrid',
       ctaLabel: 'Ver ubicación',
     },
