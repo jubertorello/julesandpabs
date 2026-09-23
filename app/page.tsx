@@ -53,6 +53,10 @@ const weddingPhotos = wedding.photos;
  * las del layout, estas también se ven en móvil: van más estrechas y más
  * tenues para no pelearse con el texto.
  */
+/** Las cenefas entran y salen en degradado: así no se cortan en seco. */
+const desvanecido =
+  'linear-gradient(to bottom, transparent 0, #000 72px, #000 calc(100% - 72px), transparent 100%)';
+
 function Cenefas() {
   if (!backgrounds.flowers.left && !backgrounds.flowers.right) return null;
   return (
@@ -65,6 +69,8 @@ function Cenefas() {
           backgroundSize: '100% auto',
           backgroundRepeat: 'repeat-y',
           backgroundPosition: 'left top',
+          maskImage: desvanecido,
+          WebkitMaskImage: desvanecido,
         }}
       />
       <span
@@ -75,6 +81,8 @@ function Cenefas() {
           backgroundSize: '100% auto',
           backgroundRepeat: 'repeat-y',
           backgroundPosition: 'right top',
+          maskImage: desvanecido,
+          WebkitMaskImage: desvanecido,
         }}
       />
     </>
@@ -1334,6 +1342,12 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
+
+        {/* Remate entre la confirmación y la información: cierra el bloque y
+            da a las cenefas florales dónde empezar. */}
+        <div className="py-2">
+          <Divider />
+        </div>
 
         {/* 9. INFORMACIÓN DE INTERÉS */}
         <section
