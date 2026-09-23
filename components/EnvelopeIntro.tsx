@@ -374,7 +374,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             <p className="font-serif text-muted italic mb-1 text-[clamp(1.445rem,5.78vw,1.912rem)]">
               {wedding.envelope.cardIntro}
             </p>
-            <h2 className="font-handwritten text-ink mb-3 font-light text-[clamp(1.05rem,4.6vw,1.6rem)] leading-[1.6]">
+            <h2 className="font-handwritten text-ink mb-3 font-light text-[clamp(1.8rem,7.8vw,2.7rem)] leading-[1.25]">
               {wedding.envelope.cardNames}
             </h2>
             <div className="h-px w-10 bg-primary/25 mb-3" />

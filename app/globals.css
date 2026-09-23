@@ -31,7 +31,8 @@
   --font-sans: var(--font-sans);
   --font-body: var(--font-body);
   --font-display: var(--font-display);
-  --font-handwritten: var(--font-handwritten);
+  /* Los nombres de los novios van en la misma caligráfica que los textos. */
+  --font-handwritten: var(--font-serif);
 }
 
 /* =============================================================================

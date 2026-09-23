@@ -536,7 +536,7 @@ export default function Home() {
               className="my-10 md:my-14 mb-12 flex flex-col items-center select-text"
             >
               <div className="flex flex-col items-center">
-                <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
+                <h1 className="font-handwritten text-[58px] leading-[62px] text-deep font-light">
                   {wedding.couple.partnerA.firstName}
                 </h1>
                 <span className="font-display tracking-[0.05em] text-[18px] text-deep uppercase mt-1 font-semibold">
@@ -549,7 +549,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col items-center">
-                <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
+                <h1 className="font-handwritten text-[58px] leading-[62px] text-deep font-light">
                   {wedding.couple.partnerB.firstName}
                 </h1>
                 <span className="font-display tracking-[0.05em] text-[18px] leading-[26px] text-deep uppercase mt-1 font-semibold">

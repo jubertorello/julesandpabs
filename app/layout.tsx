@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import { Tangerine, Inter, Italiana, Cormorant_Garamond, Playwrite_CU } from 'next/font/google';
+import { Tangerine, Inter, Italiana, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { wedding, backgrounds } from '@/config/wedding';
 
@@ -32,15 +32,6 @@ const italiana = Italiana({
   variable: '--font-display',
 });
 
-/**
- * Caligrafía: los nombres de los novios. Esta familia no declara subsets.
- * Ojo con la variante `Playwrite_CU_Guides`: dibuja las pautas de caligrafía
- * dentro de las letras, que se ven como rayas cruzando el texto.
- */
-const playwrite = Playwrite_CU({
-  weight: '400',
-  variable: '--font-handwritten',
-});
 
 const { seo } = wedding;
 
@@ -74,7 +65,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang="es"
-      className={`scroll-smooth ${tangerine.variable} ${inter.variable} ${cormorant.variable} ${italiana.variable} ${playwrite.variable}`}
+      className={`scroll-smooth ${tangerine.variable} ${inter.variable} ${cormorant.variable} ${italiana.variable}`}
     >
       <body suppressHydrationWarning className="text-ink">
         {/* Fondo global */}
