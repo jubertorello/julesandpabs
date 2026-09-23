@@ -428,8 +428,8 @@ export const backgrounds = {
     flapOpen: '/invitacion/solapa-abierta.png',
     /** Sombra que proyecta la solapa al abrirse. */
     flapShadow: '/invitacion/sombra-solapa.png',
-    /** Textura del papel de la tarjeta impresa (más tostada que el fondo). */
-    cardBg: '/invitacion/textura-papel.webp',
+    /** Textura del papel de la tarjeta que sale del sobre. */
+    cardBg: '/invitacion/textura-papel-clara.webp',
   },
 
   /** Relación alto/ancho de cada capa, medida sobre las imágenes. */
