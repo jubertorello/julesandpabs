@@ -371,6 +371,12 @@ export const backgrounds = {
   paper: '/invitacion/textura-papel-clara.webp',
 
   /**
+   * Filigrana de la papelería impresa: la línea con el lazo que separa los
+   * bloques de texto. Cadena vacía para volver al filete de 1px.
+   */
+  divider: '/invitacion/filigrana-superior.webp',
+
+  /**
    * Cenefas florales de la invitación impresa, en PNG con transparencia.
    * Se repiten verticalmente a ambos lados de la página (ocultas en móvil).
    */

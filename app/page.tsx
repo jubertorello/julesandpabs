@@ -6,7 +6,7 @@ import EnvelopeIntro from '@/components/EnvelopeIntro';
 import RSVPForm from '@/components/RSVPForm';
 import type { RSVPState } from '@/components/RSVPForm';
 import { supabase } from '@/lib/supabase';
-import { wedding, whatsappUrl } from '@/config/wedding';
+import { wedding, backgrounds, whatsappUrl } from '@/config/wedding';
 import Image from 'next/image';
 import {
   MapPin,
@@ -43,6 +43,24 @@ interface SuggestedSong {
 }
 
 const weddingPhotos = wedding.photos;
+
+/**
+ * Separador entre bloques: la filigrana de la papelería impresa. Si
+ * `backgrounds.divider` está vacío, cae al filete de 1px de siempre.
+ * `tone="claro"` la aclara para los fondos verdes.
+ */
+function Divider({ className = '', tone }: { className?: string; tone?: 'claro' }) {
+  if (!backgrounds.divider) {
+    return <div className={`h-px w-10 mx-auto ${tone === 'claro' ? 'bg-white/40' : 'bg-primary/20'} ${className}`} />;
+  }
+  return (
+    <div
+      aria-hidden
+      className={`mx-auto w-40 h-5 bg-center bg-no-repeat bg-contain ${tone === 'claro' ? 'brightness-0 invert opacity-70' : 'opacity-70'} ${className}`}
+      style={{ backgroundImage: `url("${backgrounds.divider}")` }}
+    />
+  );
+}
 
 export default function Home() {
   const [showMain, setShowMain] = useState(false);
@@ -612,7 +630,7 @@ export default function Home() {
               <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.locations.title}
               </h2>
-              <div className="h-px w-10 bg-primary/20 mx-auto mt-4" />
+              <Divider className="mt-4" />
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
@@ -710,7 +728,7 @@ export default function Home() {
               <h3 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.countdown.title}
               </h3>
-              <div className="h-px w-10 bg-primary/20 mx-auto mt-4" />
+              <Divider className="mt-4" />
             </motion.div>
 
             {/* Temporizador Section */}
@@ -875,7 +893,7 @@ export default function Home() {
               >
                 {wedding.itinerary.subtitle}
               </p>
-              <div className="h-px w-10 bg-primary/20 mx-auto mt-4" />
+              <Divider className="mt-4" />
             </motion.div>
 
             {/* TIMELINE TRACK */}
@@ -1073,8 +1091,9 @@ export default function Home() {
                   hidden: { opacity: 0, scaleX: 0 },
                   visible: { opacity: 1, scaleX: 1, transition: { duration: 0.6 } }
                 }}
-                className="h-px w-10 bg-white/40 mx-auto mb-3"
-              />
+              >
+                <Divider className="mb-3" tone="claro" />
+              </motion.div>
 
               <motion.p
                 variants={{
@@ -1194,8 +1213,9 @@ export default function Home() {
                   hidden: { opacity: 0, scaleX: 0 },
                   visible: { opacity: 1, scaleX: 1, transition: { duration: 0.6 } }
                 }}
-                className="h-px w-10 bg-primary/20 mx-auto mt-4 mb-6"
-              />
+              >
+                <Divider className="mt-4 mb-6" />
+              </motion.div>
               <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 20 },
