@@ -555,6 +555,17 @@ export default function Home() {
               </div>
             </motion.div>
 
+            {wedding.hero.families && (
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
+                }}
+                className="font-display uppercase tracking-[0.28em] text-ink text-[11px] font-semibold mb-6"
+              >
+                {wedding.hero.families}
+              </motion.p>
+            )}
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 20 },
@@ -1385,6 +1396,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-primary/15 pointer-events-none z-0" />
 
           <div className="max-w-2xl mx-auto px-6 relative z-10">
+            {wedding.footer.image && (
+              <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-2 brightness-0 invert opacity-85">
+                <Image src={wedding.footer.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
+              </div>
+            )}
             <span
               className="text-[clamp(2.6rem,13vw,4.5rem)] leading-[1.15] block mb-6 text-cream drop-shadow-sm font-serif"
             >

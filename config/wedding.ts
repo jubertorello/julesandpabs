@@ -125,6 +125,11 @@ export const wedding = {
     ],
     announcement: '¡Nos casamos!',
     subtitle: 'Y nos encantaría disfrutar contigo el día más importante de nuestra vida',
+    /**
+     * Fórmula que acompaña a los nombres, como en la invitación impresa.
+     * Cadena vacía para no ponerla.
+     */
+    families: 'Junto a sus familias',
     /** Texto bajo los nombres, antes de la fecha. */
     closing:
       'queremos celebrar este "Sí" rodeados de quienes habéis formado parte de nuestra historia desde el principio',
@@ -225,7 +230,7 @@ export const wedding = {
       },
       {
         time: '23:00 H',
-        title: 'El Baile & Fiesta',
+        title: 'La Fiesta',
         image: '/invitacion/icono-fiesta.webp',
       },
     ],
@@ -324,12 +329,6 @@ export const wedding = {
      */
     cards: [
       {
-        title: 'Recomendación de Hoteles',
-        image: '',
-        body: 'Os recomendamos reservar por el centro de Madrid: los autobuses de vuelta paran en Santiago Bernabéu y en Plaza Colón.',
-        bullets: [] as string[],
-      },
-      {
         title: 'Servicio de Autobuses',
         image: '/invitacion/icono-buses.webp',
         body: 'Habrá autobuses de vuelta del castillo a Madrid, con dos salidas:',
@@ -354,7 +353,7 @@ export const wedding = {
   contact: {
     title: '¿Dudas?',
     /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
-    image: '/invitacion/flor-musica.webp',
+    image: '',
     description:
       'Si tenéis alguna duda, pregunta o necesitáis consultarnos algo, no dudéis en llamarnos o escribirnos por WhatsApp:',
   },
@@ -364,6 +363,8 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   footer: {
     headline: '¡Te esperamos!',
+    /** Ilustración sobre el titular. Cadena vacía para no ponerla. */
+    image: '/invitacion/icono-paloma.webp',
     /** Segunda línea: por defecto los nombres de la pareja. */
     credit: {
       label: 'Jules',
