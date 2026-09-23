@@ -202,6 +202,8 @@ export const wedding = {
     '/invitacion/foto-3.webp',
     '/invitacion/foto-4.webp',
     '/invitacion/foto-5.webp',
+    '/invitacion/foto-6.webp',
+    '/invitacion/foto-7.webp',
   ],
 
   // ---------------------------------------------------------------------------
@@ -281,7 +283,8 @@ export const wedding = {
       { src: '/invitacion/luna-tanzania.webp', alt: 'Tanzania' },
       { src: '/invitacion/luna-seychelles.webp', alt: 'Seychelles' },
     ],
-    ctaHint: '¿Quieres hacernos un regalo? Haz click aquí:',
+    /** Reclamo sobre el botón. Vacío: el propio botón ya lo dice. */
+    ctaHint: '',
     ctaLabel: 'Ver datos regalo',
     modal: {
       title: 'Luna de Miel · Regalo',

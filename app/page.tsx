@@ -1090,7 +1090,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-[28px] text-white/95 italic leading-relaxed max-w-xl mx-auto mb-2"
+                className="font-display text-[17px] md:text-[18px] text-white/95 leading-relaxed max-w-xl mx-auto mb-3"
               >
                 {wedding.gift.description}
               </motion.p>
@@ -1100,7 +1100,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-serif text-[28px] text-white leading-relaxed max-w-lg mx-auto mb-1"
+                className="font-display text-[17px] md:text-[18px] text-white leading-relaxed max-w-lg mx-auto"
               >
                 {wedding.gift.invitation}
               </motion.p>
@@ -1139,9 +1139,9 @@ export default function Home() {
                 }}
                 className="flex flex-col items-center gap-2"
               >
-                <p className="font-serif text-white/75 text-[28px] italic">
-                  {wedding.gift.ctaHint}
-                </p>
+                {wedding.gift.ctaHint && (
+                  <p className="font-display text-[15px] text-white/80">{wedding.gift.ctaHint}</p>
+                )}
                 <button
                   onClick={() => setShowIbanModal(true)}
                   className="inline-flex items-center space-x-2 px-8 py-3.5 bg-white text-ink hover:bg-white/90 font-display text-[11px] uppercase tracking-[0.22em] rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer font-semibold"
@@ -1406,9 +1406,19 @@ export default function Home() {
             >
               {wedding.footer.headline}
             </span>
-            <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 drop-shadow-xs font-semibold">
-              {wedding.couple.joinedNames}
-            </p>
+            {wedding.couple.heart ? (
+              <p className="font-serif text-cream text-[38px] md:text-[46px] leading-none tracking-tighter mb-3 flex items-center justify-center gap-1 drop-shadow-xs">
+                J
+                <span className="relative inline-block w-[0.5em] h-[0.5em] brightness-0 invert">
+                  <Image src={wedding.couple.heart} alt="y" fill className="object-contain" referrerPolicy="no-referrer" />
+                </span>
+                P
+              </p>
+            ) : (
+              <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 drop-shadow-xs font-semibold">
+                {wedding.couple.joinedNames}
+              </p>
+            )}
             <p className="font-display text-[9px] md:text-[10px] text-cream/85 tracking-widest uppercase drop-shadow-xs font-semibold">
               {wedding.date.long} • {wedding.date.city}
             </p>
