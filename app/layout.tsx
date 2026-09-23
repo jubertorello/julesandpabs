@@ -73,7 +73,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           className="fixed inset-0 pointer-events-none z-[-1] bg-cream"
           style={{
             backgroundImage: `url("${backgrounds.paper}")`,
-            backgroundSize: '360px 360px',
+            backgroundSize: '480px 480px',
             backgroundRepeat: 'repeat',
           }}
         ></div>

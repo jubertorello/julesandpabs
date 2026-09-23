@@ -12,8 +12,8 @@
   --color-primary: #37535c;
   /* Verde azulado claro: bloques sólidos (cuenta atrás, regalo, footer). */
   --color-secondary: #5a7b83;
-  /* Papel de la tarjeta: fondo claro de todas las secciones. */
-  --color-cream: #d6cec1;
+  /* Papel claro: fondo de todas las secciones. */
+  --color-cream: #f8f4f2;
   /* Texto en general, titulares y cuerpo: negro, para que se lea bien. */
   --color-ink: #111111;
   /* El negro más fuerte: nombres de los novios y la fecha. */
@@ -86,7 +86,7 @@
   .dudas-section,
   .itinerario-section,
   .confirmacion-section {
-    background-image: url("/invitacion/textura-papel.webp") !important;
+    background-image: url("/invitacion/textura-papel-clara.webp") !important;
   }
 
   #lugar {

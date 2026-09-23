@@ -280,7 +280,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
         className="absolute inset-0 z-[-1] bg-cream"
         style={{
           backgroundImage: `url("${backgrounds.intro.desktop}")`,
-          backgroundSize: '360px 360px',
+          backgroundSize: '480px 480px',
           backgroundRepeat: 'repeat',
         }}
       />

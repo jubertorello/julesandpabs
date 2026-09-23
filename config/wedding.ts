@@ -352,8 +352,8 @@ export const wedding = {
  *  Separadas del contenido porque cambian con el diseño, no con la boda.
  * ---------------------------------------------------------------------------*/
 export const backgrounds = {
-  /** Textura de papel de la tarjeta (detrás de todo el documento). */
-  paper: '/invitacion/textura-papel.webp',
+  /** Textura de papel clara del fondo (detrás de todo el documento). */
+  paper: '/invitacion/textura-papel-clara.webp',
 
   /**
    * Cenefas florales de la invitación impresa, en PNG con transparencia.
@@ -374,30 +374,30 @@ export const backgrounds = {
    * pon aquí '/invitacion/fondo-pared.webp'.
    */
   intro: {
-    mobile: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobile: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   hero: {
-    mobileTop: '/invitacion/textura-papel.webp',
-    mobileBottom: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobileTop: '/invitacion/textura-papel-clara.webp',
+    mobileBottom: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   locations: {
-    mobileTop: '/invitacion/textura-papel.webp',
-    mobileBottom: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobileTop: '/invitacion/textura-papel-clara.webp',
+    mobileBottom: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   photos: {
-    mobile: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobile: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   music: {
-    mobile: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobile: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   info: {
-    mobile: '/invitacion/textura-papel.webp',
-    desktop: '/invitacion/textura-papel.webp',
+    mobile: '/invitacion/textura-papel-clara.webp',
+    desktop: '/invitacion/textura-papel-clara.webp',
   },
   footer: '/invitacion/fondo-pared.webp',
 
@@ -428,7 +428,7 @@ export const backgrounds = {
     flapOpen: '/invitacion/solapa-abierta.png',
     /** Sombra que proyecta la solapa al abrirse. */
     flapShadow: '/invitacion/sombra-solapa.png',
-    /** Textura del papel de la tarjeta. */
+    /** Textura del papel de la tarjeta impresa (más tostada que el fondo). */
     cardBg: '/invitacion/textura-papel.webp',
   },
 
