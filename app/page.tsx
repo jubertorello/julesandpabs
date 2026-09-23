@@ -1307,6 +1307,11 @@ export default function Home() {
                   className="bg-secondary p-8 border border-white/10 rounded shadow-sm flex flex-col justify-between items-start text-left"
                 >
                   <div>
+                    {card.image && (
+                      <div className="relative w-24 h-24 mb-3 brightness-0 invert opacity-90">
+                        <Image src={card.image} alt="" fill className="object-contain object-left" referrerPolicy="no-referrer" />
+                      </div>
+                    )}
                     <h4 className="text-[17px] text-white font-medium mb-3" style={{ fontFamily: 'var(--font-display)' }}>
                       {card.title}
                     </h4>

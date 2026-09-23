@@ -288,8 +288,8 @@ export const wedding = {
     bus: {
       /** Pon `false` si no hay servicio de autobuses (oculta los campos). */
       enabled: true,
-      idaHint: 'Salida: Basílica de San Francisco el Grande (18:15h) → Castillo de Viñuelas',
-      vueltaHint: 'Salida: Castillo de Viñuelas → Madrid (varios horarios)',
+      idaHint: 'Desde Madrid hasta el Castillo de Viñuelas',
+      vueltaHint: 'Del castillo a Madrid, a las 02:00 o a las 04:45',
     },
   },
 
@@ -301,23 +301,30 @@ export const wedding = {
     title: 'Datos de Interés',
     /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
     image: '/invitacion/flor-celebracion.webp',
-    /** Tarjetas informativas. Añade o quita las que necesites. */
+    /**
+     * Tarjetas informativas. Añade o quita las que necesites.
+     * `image` es opcional: se dibuja en blanco sobre el verde de la tarjeta.
+     */
     cards: [
       {
         title: 'Recomendación de Hoteles',
-        body: 'Respecto a los hoteles, os recomendamos reservar por la zona de la ceremonia, ya que los autobuses de vuelta tendrán ahí una de las paradas principales de regreso.',
+        image: '',
+        body: 'Os recomendamos reservar por el centro de Madrid: los autobuses de vuelta paran en Santiago Bernabéu y en Plaza Colón.',
         bullets: [] as string[],
       },
       {
         title: 'Servicio de Autobuses',
-        body: 'Dispondremos de autobuses para los traslados del evento:',
+        image: '/invitacion/icono-buses.webp',
+        body: 'Habrá autobuses de vuelta del castillo a Madrid, con dos salidas:',
         bullets: [
-          '• Ida: Basílica de San Francisco el Grande (18:15h) → Castillo de Viñuelas',
-          '• Vuelta: Castillo de Viñuelas → Madrid (varios horarios)',
+          '• 02:00 y 04:45',
+          '• Paradas: Santiago Bernabéu y Plaza Colón',
+          '• Uber y Bolt también llegan hasta el castillo',
         ],
       },
       {
         title: 'Celebración de Adultos',
+        image: '',
         body: 'Aunque adoramos y apreciamos con todo el alma a los más pequeños, por temas organizativos del espacio y dinámica, esta será una celebración reservada solo para mayores de 18 años.',
         bullets: [] as string[],
       },
