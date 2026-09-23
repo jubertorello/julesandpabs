@@ -136,7 +136,8 @@ export const wedding = {
       name: 'Basílica de San Francisco el Grande',
       address: 'Calle San Buenaventura 1, 28005 Madrid',
       time: '16:45 H',
-      image: '/invitacion/flor-ceremonia.webp',
+      /** Deja la cadena vacía para que la tarjeta vaya sin ilustración. */
+      image: '',
       mapsUrl: 'https://maps.google.com/?q=Basilica+de+San+Francisco+el+Grande+Madrid',
       ctaLabel: 'Ver ubicación',
     },
@@ -145,7 +146,7 @@ export const wedding = {
       name: 'Castillo de Viñuelas',
       address: 'Monte de Viñuelas, 28760 Tres Cantos, Madrid',
       time: 'A partir de las 19:00 H',
-      image: '/invitacion/flor-celebracion.webp',
+      image: '',
       mapsUrl: 'https://maps.google.com/?q=Castillo+de+Vinuelas+Madrid',
       ctaLabel: 'Ver ubicación',
     },
@@ -190,22 +191,22 @@ export const wedding = {
       {
         time: '16:45 H',
         title: 'La Ceremonia',
-        image: '/invitacion/flor-itinerario-1.webp',
+        image: '',
       },
       {
         time: '19:00 H',
         title: 'El Cóctel',
-        image: '/invitacion/flor-itinerario-2.webp',
+        image: '',
       },
       {
         time: '21:30 H',
         title: 'La Cena',
-        image: '/invitacion/flor-itinerario-3.webp',
+        image: '',
       },
       {
         time: '23:00 H',
         title: 'El Baile & Fiesta',
-        image: '/invitacion/flor-itinerario-4.webp',
+        image: '',
       },
     ],
   },
@@ -220,7 +221,7 @@ export const wedding = {
     description:
       '¿Qué canciones te gustaría que sonaran en la fiesta? Compártelas con nosotros y las añadiremos a la playlist para darlo todo en la pista 💃',
     ctaLabel: 'Sugerir Canciones',
-    image: '/invitacion/flor-musica.webp',
+    image: '',
     /**
      * `true` arranca la canción de fondo en cuanto el invitado toca la pantalla.
      * `false` (por defecto) la deja en silencio hasta que pulse el altavoz.
@@ -250,7 +251,7 @@ export const wedding = {
       'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada por destinos aún por descubrir.',
     invitation:
       'Si deseáis acompañarnos de una forma especial en esta experiencia inolvidable, podéis hacerlo rellenando vuestro granito de arena aquí:',
-    image: '/invitacion/flor-regalo.webp',
+    image: '',
     imageAlt: 'Nuestra luna de miel',
     ctaHint: '¿Quieres hacernos un regalo? Haz click aquí:',
     ctaLabel: 'Ver datos regalo',
@@ -270,6 +271,8 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   rsvp: {
     title: 'Confirma tu asistencia',
+    /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
+    image: '/invitacion/flor-ceremonia.webp',
     /** Fecha límite mostrada en el formulario y en la introducción. */
     deadline: '26 de septiembre',
     bus: {
@@ -286,6 +289,8 @@ export const wedding = {
   info: {
     eyebrow: 'Información',
     title: 'Datos de Interés',
+    /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
+    image: '/invitacion/flor-celebracion.webp',
     /** Tarjetas informativas. Añade o quita las que necesites. */
     cards: [
       {
@@ -314,6 +319,8 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   contact: {
     title: '¿Dudas?',
+    /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
+    image: '/invitacion/flor-musica.webp',
     description:
       'Si tenéis alguna duda, pregunta o necesitáis consultarnos algo, no dudéis en llamarnos o escribirnos por WhatsApp:',
   },

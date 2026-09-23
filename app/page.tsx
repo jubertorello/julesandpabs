@@ -642,16 +642,18 @@ export default function Home() {
                       {place.address}
                     </p>
 
-                    <div className="relative h-64 md:h-72 w-full">
-                      <Image
-                        src={place.image}
-                        alt={place.eyebrow}
-                        fill
-                        priority
-                        className="object-contain object-center"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
+                    {place.image && (
+                      <div className="relative h-64 md:h-72 w-full">
+                        <Image
+                          src={place.image}
+                          alt={place.eyebrow}
+                          fill
+                          priority
+                          className="object-contain object-center"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    )}
 
                     <div className="flex items-center justify-center space-x-1.5 mb-8 text-muted text-xs">
                       <Clock size={13} className="opacity-85" />
@@ -883,17 +885,19 @@ export default function Home() {
                       transition={{ type: "spring", stiffness: 90, damping: 13 }}
                       className="relative flex flex-col md:flex-row items-start md:items-center min-h-[48px]"
                     >
-                      <div className="absolute left-[60px] md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-10">
-                        <div className="relative w-28 h-28 md:w-36 md:h-36">
-                          <Image
-                            src={event.image}
-                            alt={event.title}
-                            fill
-                            className="object-contain"
-                            referrerPolicy="no-referrer"
-                          />
+                      {event.image && (
+                        <div className="absolute left-[60px] md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-10">
+                          <div className="relative w-28 h-28 md:w-36 md:h-36">
+                            <Image
+                              src={event.image}
+                              alt={event.title}
+                              fill
+                              className="object-contain"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {/* Columna vacía para alternar el lado en escritorio */}
                       {!alignLeft && <div className="w-full md:w-1/2 hidden md:block" />}
@@ -947,17 +951,19 @@ export default function Home() {
                 className="bg-cream border border-primary/10 rounded-sm p-10 md:p-14 shadow-sm relative overflow-hidden"
               >
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-primary/10" />
-                <div className="flex justify-center mb-6">
-                  <div className="relative w-28 h-28 md:w-36 md:h-36">
-                    <Image
-                      src={wedding.music.image}
-                      alt={wedding.music.title}
-                      fill
-                      className="object-contain"
-                      referrerPolicy="no-referrer"
-                    />
+                {wedding.music.image && (
+                  <div className="flex justify-center mb-6">
+                    <div className="relative w-28 h-28 md:w-36 md:h-36">
+                      <Image
+                        src={wedding.music.image}
+                        alt={wedding.music.title}
+                        fill
+                        className="object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <h3 className="font-serif text-[41px] md:text-[51px] text-ink mb-4 font-light italic">
                   {wedding.music.title}
@@ -1088,13 +1094,15 @@ export default function Home() {
                   }}
                   className="relative w-84 h-52 md:w-106 md:h-80"
                 >
-                  <Image
-                    src={wedding.gift.image}
-                    alt={wedding.gift.imageAlt}
-                    fill
-                    className="object-contain"
-                    referrerPolicy="no-referrer"
-                  />
+                  {wedding.gift.image && (
+                    <Image
+                      src={wedding.gift.image}
+                      alt={wedding.gift.imageAlt}
+                      fill
+                      className="object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
                 </motion.div>
               </div>
 
@@ -1139,17 +1147,29 @@ export default function Home() {
             className="max-w-4xl mx-auto px-6"
           >
             <div className="text-center mb-12">
-              <div className="flex justify-center mb-6">
+              {wedding.rsvp.image ? (
                 <motion.div
                   variants={{
-                    hidden: { opacity: 0, scale: 0.8 },
-                    visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 70, damping: 15 } }
+                    hidden: { opacity: 0, scale: 0.9 },
+                    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
                   }}
-                  className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10"
+                  className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-4"
                 >
-                  <Check size={32} className="text-ink" />
+                  <Image src={wedding.rsvp.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
                 </motion.div>
-              </div>
+              ) : (
+                <div className="flex justify-center mb-6">
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 70, damping: 15 } }
+                    }}
+                    className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10"
+                  >
+                    <Check size={32} className="text-ink" />
+                  </motion.div>
+                </div>
+              )}
               <motion.h2
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -1220,6 +1240,11 @@ export default function Home() {
               }}
               className="text-center mb-12"
             >
+              {wedding.info.image && (
+                <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-4">
+                  <Image src={wedding.info.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
+                </div>
+              )}
               <span className="font-display text-[9px] uppercase tracking-[0.3em] text-ink/70 font-semibold">{wedding.info.eyebrow}</span>
               <h3 className="font-serif text-[41px] md:text-[51px] text-ink mt-1 font-light italic">
                 {wedding.info.title}
@@ -1273,6 +1298,18 @@ export default function Home() {
             }}
             className="max-w-4xl mx-auto px-6 text-center"
           >
+            {wedding.contact.image && (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9 },
+                  visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
+                }}
+                className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-4"
+              >
+                <Image src={wedding.contact.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
+              </motion.div>
+            )}
+
             <motion.h3
               variants={{
                 hidden: { opacity: 0, y: 30 },
