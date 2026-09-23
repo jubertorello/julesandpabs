@@ -322,7 +322,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.5 }}
           onClick={togglePlay}
-          className="fixed bottom-6 right-6 z-[70] flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:bg-black/30 hover:text-white transition-all duration-200 text-[11px] font-display uppercase tracking-[0.2em] font-semibold"
+          className="fixed bottom-6 right-6 z-[70] flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:bg-black/30 hover:text-white transition-all duration-200 text-[14px] font-display uppercase tracking-[0.2em] font-semibold"
         >
           {isPlaying ? <VolumeX size={14} /> : <Volume2 size={14} />}
           {isPlaying ? '' : ''}
@@ -356,7 +356,7 @@ export default function Home() {
                 wedding.couple.initials
               )}
             </a>
-            <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[11px] uppercase tracking-[0.25em] font-display text-soft font-semibold">
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[14px] uppercase tracking-[0.25em] font-display text-soft font-semibold">
               {navLinks
                 .filter((link) => !link.mobileOnly)
                 .map((link) => (
@@ -398,7 +398,7 @@ export default function Home() {
               <a
                 href="#confirmacion"
                 onClick={(e) => handleNavClick(e, 'confirmacion')}
-                className="hidden md:inline-block px-4 py-1.5 border border-white/30 text-cream hover:bg-cream hover:text-ink transition-all duration-300 rounded-full text-[10px] uppercase font-display tracking-[0.2em] font-semibold"
+                className="hidden md:inline-block px-4 py-1.5 border border-white/30 text-cream hover:bg-cream hover:text-ink transition-all duration-300 rounded-full text-[14px] uppercase font-display tracking-[0.2em] font-semibold"
               >
                 {wedding.nav.ctaLabel}
               </a>
@@ -406,7 +406,7 @@ export default function Home() {
               {/* Mobile Menu button */}
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="md:hidden flex items-center space-x-1 px-3 py-1.5 border border-white/35 text-cream hover:bg-white/10 transition-all rounded-full text-[10px] uppercase font-display tracking-[0.15em] cursor-pointer font-semibold"
+                className="md:hidden flex items-center space-x-1 px-3 py-1.5 border border-white/35 text-cream hover:bg-white/10 transition-all rounded-full text-[14px] uppercase font-display tracking-[0.15em] cursor-pointer font-semibold"
                 aria-label="Menú de secciones"
               >
                 <span>Menú</span>
@@ -425,7 +425,7 @@ export default function Home() {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className="md:hidden overflow-hidden bg-primary border-t border-white/10"
               >
-                <div className="px-6 py-4 flex flex-col space-y-4 text-center text-xs uppercase tracking-[0.2em] font-display text-soft font-semibold">
+                <div className="px-6 py-4 flex flex-col space-y-4 text-center text-[14px] uppercase tracking-[0.2em] font-display text-soft font-semibold">
                   {navLinks.map((link) => (
                     <a
                       key={link.id}
@@ -561,7 +561,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
                 }}
-                className="font-display uppercase tracking-[0.28em] text-ink text-[11px] font-semibold mb-6"
+                className="font-display uppercase tracking-[0.28em] text-ink text-[14px] mb-6 font-semibold"
               >
                 {wedding.hero.families}
               </motion.p>
@@ -589,7 +589,7 @@ export default function Home() {
                 <div className="border-y border-deep/40 py-2 px-3 sm:px-5 text-center min-w-[76px] sm:min-w-[150px] flex-shrink">
                   <span
                     className="tracking-[0.2em] uppercase text-deep block font-display font-semibold"
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(11px, 3.4vw, 14px)', lineHeight: '1.1', textAlign: 'center' }}
+                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(14px, 3.6vw, 16px)', lineHeight: '1.1', textAlign: 'center' }}
                   >
                     {wedding.date.monthName}
                   </span>
@@ -603,8 +603,8 @@ export default function Home() {
                 {/* Year with borders */}
                 <div className="border-y border-deep/40 py-2 px-3 sm:px-5 text-center min-w-[76px] sm:min-w-[150px] flex-shrink">
                   <span
-                    className="tracking-[0.2em] text-deep font-light block"
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(13px, 4vw, 18px)', lineHeight: '1.1', textAlign: 'center' }}
+                    className="tracking-[0.2em] text-deep font-semibold block"
+                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(14px, 4vw, 18px)', lineHeight: '1.1', textAlign: 'center' }}
                   >
                     {wedding.date.year}
                   </span>
@@ -651,7 +651,7 @@ export default function Home() {
               }}
               className="text-center mb-16"
             >
-              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.locations.eyebrow}</span>
+              <span className="font-display text-[14px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.locations.eyebrow}</span>
               <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.locations.title}
               </h2>
@@ -671,11 +671,11 @@ export default function Home() {
                 >
                   <div>
                     <div className="mb-6 text-center">
-                      <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted font-semibold">{place.eyebrow}</span>
+                      <span className="font-display text-[14px] uppercase tracking-[0.3em] text-muted font-semibold">{place.eyebrow}</span>
                     </div>
 
                     <h3
-                      className="text-2xl text-ink mb-4 font-normal tracking-wide text-center"
+                      className="text-2xl text-ink mb-4 font-semibold tracking-wide text-center"
                       style={{ fontFamily: 'var(--font-display)' }}
                     >
                       {place.name}
@@ -698,9 +698,9 @@ export default function Home() {
                       </div>
                     )}
 
-                    <div className="flex items-center justify-center space-x-1.5 mb-8 text-muted text-xs">
+                    <div className="flex items-center justify-center space-x-1.5 mb-8 text-muted text-[14px]">
                       <Clock size={13} className="opacity-85" />
-                      <span style={{ fontFamily: 'var(--font-display)' }}>{place.time}</span>
+                      <span className="font-semibold" style={{ fontFamily: 'var(--font-display)' }}>{place.time}</span>
                     </div>
                   </div>
 
@@ -709,7 +709,7 @@ export default function Home() {
                       href={place.mapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 w-[220px] py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] font-semibold"
+                      className="inline-flex items-center justify-center space-x-2 w-[220px] py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[14px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] font-semibold"
                     >
                       <span>{place.ctaLabel}</span>
                       <ChevronRight size={12} />
@@ -788,7 +788,7 @@ export default function Home() {
                             </motion.span>
                           </AnimatePresence>
                         </div>
-                        <p className="font-display uppercase tracking-[0.18em] text-muted text-[9px] font-semibold mt-1">
+                        <p className="font-display uppercase tracking-[0.18em] text-muted text-[14px] mt-1 font-semibold">
                           {rotulo}
                         </p>
                       </div>
@@ -874,7 +874,7 @@ export default function Home() {
               }}
               className="text-center mb-16"
             >
-              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.itinerary.eyebrow}</span>
+              <span className="font-display text-[14px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.itinerary.eyebrow}</span>
               <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-medium italic">
                 {wedding.itinerary.title}
               </h2>
@@ -927,7 +927,7 @@ export default function Home() {
                             />
                           </div>
                         )}
-                        <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display text-xs mb-2 font-semibold">
+                        <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display text-[14px] mb-2 font-semibold">
                           {event.time}
                         </div>
                         <h4 className="text-[clamp(1.15rem,5.4vw,2.1rem)] leading-tight text-ink font-display font-semibold">
@@ -993,7 +993,7 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowMusicModal(true)}
-                  className="inline-flex items-center space-x-3 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-display text-[10px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer font-semibold"
+                  className="inline-flex items-center space-x-3 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-display text-[14px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer font-semibold"
                 >
                   <Music size={13} />
                   <span>{wedding.music.ctaLabel}</span>
@@ -1001,7 +1001,7 @@ export default function Home() {
 
                 {musicList.length > 0 && (
                   <div className="mt-12 text-left max-w-md mx-auto">
-                    <span className="text-[10px] uppercase tracking-wider text-muted block mb-4 border-b border-primary/10 pb-2 font-display font-semibold">
+                    <span className="text-[14px] uppercase tracking-wider text-muted block mb-4 border-b border-primary/10 pb-2 font-display font-semibold">
                       Top canciones sugeridas:
                     </span>
                     <div className="space-y-3">
@@ -1011,7 +1011,7 @@ export default function Home() {
                           className="flex items-center justify-between text-xs bg-sand/30 p-2.5 rounded-md border border-primary/5"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <span className="text-[10px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
+                            <span className="text-[14px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
                             <div className="min-w-0">
                               <span className="font-bold text-ink block truncate">{song.title}</span>
                               <span className="text-muted">{song.artist}</span>
@@ -1019,7 +1019,7 @@ export default function Home() {
                           </div>
                           <button
                             onClick={() => handleVoteSong(song.id)}
-                            className="flex items-center space-x-1.5 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] uppercase text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
+                            className="flex items-center space-x-1.5 px-2 py-1 hover:bg-primary/5 rounded font-display text-[14px] uppercase text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
                           >
                             <Heart size={10} className="fill-primary/20 text-ink" />
                             <span>{song.votes}</span>
@@ -1030,7 +1030,7 @@ export default function Home() {
                     {musicList.length > 3 && (
                       <button
                         onClick={() => setShowAllSongsModal(true)}
-                        className="mt-4 w-full py-2 text-[10px] uppercase tracking-wider font-display text-muted border border-primary/15 rounded-full hover:bg-primary/5 transition-colors cursor-pointer font-semibold"
+                        className="mt-4 w-full py-2 text-[14px] uppercase tracking-wider font-display text-muted border border-primary/15 rounded-full hover:bg-primary/5 transition-colors cursor-pointer font-semibold"
                       >
                         Ver todas las canciones ({musicList.length})
                       </button>
@@ -1063,7 +1063,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
                 }}
-                className="font-display text-[10px] uppercase tracking-[0.3em] text-white/80 mb-2 block font-semibold"
+                className="font-display text-[14px] uppercase tracking-[0.3em] text-white/80 mb-2 block font-semibold"
               >
                 {wedding.gift.eyebrow}
               </motion.span>
@@ -1090,7 +1090,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-display text-[17px] md:text-[18px] text-white/95 leading-relaxed max-w-xl mx-auto mb-3"
+                className="font-display text-[17px] md:text-[18px] text-white/95 leading-relaxed max-w-xl mx-auto mb-3 font-semibold"
               >
                 {wedding.gift.description}
               </motion.p>
@@ -1100,7 +1100,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-display text-[17px] md:text-[18px] text-white leading-relaxed max-w-lg mx-auto"
+                className="font-display text-[17px] md:text-[18px] text-white leading-relaxed max-w-lg mx-auto font-semibold"
               >
                 {wedding.gift.invitation}
               </motion.p>
@@ -1124,7 +1124,7 @@ export default function Home() {
                         className="object-contain"
                         referrerPolicy="no-referrer"
                       />
-                      <span className="block text-center font-display uppercase tracking-[0.25em] text-white/90 text-[10px] font-semibold absolute -bottom-6 inset-x-0">
+                      <span className="block text-center font-display uppercase tracking-[0.25em] text-white/90 text-[14px] absolute -bottom-6 inset-x-0 font-semibold">
                         {lamina.alt}
                       </span>
                     </motion.div>
@@ -1140,11 +1140,11 @@ export default function Home() {
                 className="flex flex-col items-center gap-2"
               >
                 {wedding.gift.ctaHint && (
-                  <p className="font-display text-[15px] text-white/80">{wedding.gift.ctaHint}</p>
+                  <p className="font-display text-[15px] text-white/80 font-semibold">{wedding.gift.ctaHint}</p>
                 )}
                 <button
                   onClick={() => setShowIbanModal(true)}
-                  className="inline-flex items-center space-x-2 px-8 py-3.5 bg-white text-ink hover:bg-white/90 font-display text-[11px] uppercase tracking-[0.22em] rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer font-semibold"
+                  className="inline-flex items-center space-x-2 px-8 py-3.5 bg-white text-ink hover:bg-white/90 font-display text-[14px] uppercase tracking-[0.22em] rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer font-semibold"
                 >
                   <Gift size={13} />
                   <span>{wedding.gift.ctaLabel}</span>
@@ -1218,7 +1218,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-display text-[17px] md:text-[18px] text-muted leading-relaxed max-w-md mx-auto"
+                className="font-display text-[17px] md:text-[18px] text-muted leading-relaxed max-w-md mx-auto font-semibold"
               >
                 Para poder organizar con cariño y detalle este día, por favor, agradeceríamos que rellenarais este formulario antes del <strong className="text-ink">{wedding.rsvp.deadline}</strong>, gracias.
               </motion.p>
@@ -1272,7 +1272,7 @@ export default function Home() {
                   <Image src={wedding.info.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
                 </div>
               )}
-              <span className="font-display text-[9px] uppercase tracking-[0.3em] text-ink/70 font-semibold">{wedding.info.eyebrow}</span>
+              <span className="font-display text-[14px] uppercase tracking-[0.3em] text-ink/70 font-semibold">{wedding.info.eyebrow}</span>
               <h3 className="font-serif text-[41px] md:text-[51px] text-ink mt-1 font-light italic">
                 {wedding.info.title}
               </h3>
@@ -1295,13 +1295,13 @@ export default function Home() {
                         <Image src={card.image} alt="" fill className="object-contain object-left" referrerPolicy="no-referrer" />
                       </div>
                     )}
-                    <h4 className="font-display text-[19px] text-white font-semibold mb-3 tracking-wide">
+                    <h4 className="font-display text-[19px] text-white mb-3 tracking-wide font-semibold">
                       {card.title}
                     </h4>
-                    <p className="font-display text-[17px] text-white/95 leading-relaxed">
+                    <p className="font-serif text-[28px] text-white leading-snug">
                       {card.body}
                       {card.bullets.map((bullet, i) => (
-                        <span key={i} className={`block font-semibold ${i === 0 ? 'mt-2' : 'mt-1.5'}`}>
+                        <span key={i} className={`block ${i === 0 ? 'mt-3' : 'mt-1'}`}>
                           {bullet}
                         </span>
                       ))}
@@ -1375,7 +1375,7 @@ export default function Home() {
                   href={whatsappUrl(partner)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-3 w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 font-semibold"
+                  className="inline-flex items-center justify-center space-x-3 w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[14px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 font-semibold"
                 >
                   <PhoneCall size={12} />
                   <span>{partner.whatsappLabel}</span>
@@ -1415,18 +1415,18 @@ export default function Home() {
                 P
               </p>
             ) : (
-              <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 drop-shadow-xs font-semibold">
+              <p className="font-display text-[14px] md:text-[14px] uppercase tracking-[0.3em] text-cream mb-2 drop-shadow-xs font-semibold">
                 {wedding.couple.joinedNames}
               </p>
             )}
-            <p className="font-display text-[9px] md:text-[10px] text-cream/85 tracking-widest uppercase drop-shadow-xs font-semibold">
+            <p className="font-display text-[14px] md:text-[14px] text-cream/85 tracking-widest uppercase drop-shadow-xs font-semibold">
               {wedding.date.long} • {wedding.date.city}
             </p>
           </div>
 
           {/* Bottom thin bar */}
           <div className="absolute bottom-0 left-0 right-0 py-3 bg-primary/30 border-t border-cream/10 z-10">
-            <p className="font-display text-[9px] md:text-[10px] text-cream/80 tracking-widest font-semibold">
+            <p className="font-display text-[14px] md:text-[14px] text-cream/80 tracking-widest font-semibold">
               By{' '}
               <a
                 href={wedding.footer.credit.url}
@@ -1482,11 +1482,11 @@ export default function Home() {
 
                 <div className="bg-sand/60 p-4 rounded-md border border-primary/10 mb-6 relative text-left">
                   {/* IBAN Section */}
-                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
+                  <span className="block text-[14px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
                     Número de cuenta (IBAN):
                   </span>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-display text-xs md:text-sm text-ink select-all tracking-wider font-semibold">
+                    <span className="font-display text-[14px] md:text-sm text-ink select-all tracking-wider font-semibold">
                       {wedding.gift.modal.iban}
                     </span>
                     <button
@@ -1495,7 +1495,7 @@ export default function Home() {
                       title="Copiar IBAN"
                     >
                       {copied ? (
-                        <span className="text-[10px] font-display uppercase tracking-wider font-semibold">¡Copiado!</span>
+                        <span className="text-[14px] font-display uppercase tracking-wider font-semibold">¡Copiado!</span>
                       ) : (
                         <Copy size={14} />
                       )}
@@ -1503,11 +1503,11 @@ export default function Home() {
                   </div>
 
                   {/* SWIFT/BIC Section */}
-                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
+                  <span className="block text-[14px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
                     Código Swift/BIC:
                   </span>
                   <div className="flex items-center justify-between">
-                    <span className="font-display text-xs md:text-sm text-ink select-all tracking-wider font-semibold">
+                    <span className="font-display text-[14px] md:text-sm text-ink select-all tracking-wider font-semibold">
                       {wedding.gift.modal.swift}
                     </span>
                     <button
@@ -1516,7 +1516,7 @@ export default function Home() {
                       title="Copiar Swift/BIC"
                     >
                       {copiedSwift ? (
-                        <span className="text-[10px] font-display uppercase tracking-wider font-semibold">¡Copiado!</span>
+                        <span className="text-[14px] font-display uppercase tracking-wider font-semibold">¡Copiado!</span>
                       ) : (
                         <Copy size={14} />
                       )}
@@ -1534,7 +1534,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <p className="text-[10px] text-muted uppercase tracking-wider italic font-display font-semibold">
+                <p className="text-[14px] text-muted uppercase tracking-wider italic font-display font-semibold">
                   {wedding.gift.modal.thanks}
                 </p>
               </motion.div>
@@ -1579,7 +1579,7 @@ export default function Home() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="bg-primary/10 border border-primary/25 rounded text-ink p-3 text-center mb-4 font-display text-xs flex items-center justify-center gap-1.5 overflow-hidden font-semibold"
+                      className="bg-primary/10 border border-primary/25 rounded text-ink p-3 text-center mb-4 font-display text-[14px] flex items-center justify-center gap-1.5 overflow-hidden font-semibold"
                     >
                       <Check size={14} />
                       <span>¡Canción añadida con éxito!</span>
@@ -1589,7 +1589,7 @@ export default function Home() {
 
                 <form onSubmit={handleAddSong} className="space-y-4 text-xs">
                   <div>
-                    <label className="block text-[9px] uppercase tracking-wider font-display text-muted mb-1 font-semibold">
+                    <label className="block text-[14px] uppercase tracking-wider font-display text-muted mb-1 font-semibold">
                       Título de la Canción
                     </label>
                     <input
@@ -1603,7 +1603,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label className="block text-[9px] uppercase tracking-wider font-display text-muted mb-1 font-semibold">
+                    <label className="block text-[14px] uppercase tracking-wider font-display text-muted mb-1 font-semibold">
                       Artista
                     </label>
                     <input
@@ -1618,14 +1618,14 @@ export default function Home() {
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md cursor-pointer hover:scale-[1.02] active:scale-[0.98] font-semibold"
+                    className="w-full py-3 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[14px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md cursor-pointer hover:scale-[1.02] active:scale-[0.98] font-semibold"
                   >
                     {wedding.music.modal.submitLabel}
                   </button>
                 </form>
 
                 <div className="mt-6 border-t border-primary/10 pt-4 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
-                  <span className="block text-[9px] uppercase tracking-wider text-muted mb-2 font-display font-semibold">
+                  <span className="block text-[14px] uppercase tracking-wider text-muted mb-2 font-display font-semibold">
                     Sugiriendo actualmente ({musicList.length}):
                   </span>
                   <div className="space-y-2">
@@ -1634,7 +1634,7 @@ export default function Home() {
                         <div className="truncate pr-4">
                           <span className="font-bold text-ink">{song.title}</span> - <span className="text-muted">{song.artist}</span>
                         </div>
-                        <span className="text-[10px] font-display bg-primary/5 px-2 py-0.5 rounded text-ink font-semibold">
+                        <span className="text-[14px] font-display bg-primary/5 px-2 py-0.5 rounded text-ink font-semibold">
                           {song.votes} votos
                         </span>
                       </div>
@@ -1678,7 +1678,7 @@ export default function Home() {
                   {musicList.map((song, index) => (
                     <div key={song.id} className="flex items-center justify-between bg-sand/30 p-2.5 rounded text-[11px] border border-primary/5">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <span className="text-[10px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
+                        <span className="text-[14px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
                         <div className="min-w-0 truncate">
                           <span className="font-bold text-ink">{song.title}</span>
                           <span className="text-muted"> — {song.artist}</span>
@@ -1686,7 +1686,7 @@ export default function Home() {
                       </div>
                       <button
                         onClick={() => handleVoteSong(song.id)}
-                        className="flex items-center space-x-1 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
+                        className="flex items-center space-x-1 px-2 py-1 hover:bg-primary/5 rounded font-display text-[14px] text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
                       >
                         <Heart size={9} className="fill-primary/20 text-ink" />
                         <span>{song.votes}</span>

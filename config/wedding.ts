@@ -358,7 +358,7 @@ export const wedding = {
     /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
     image: '',
     description:
-      'Si tenéis alguna duda, pregunta o necesitáis consultarnos algo, no dudéis en llamarnos o escribirnos por WhatsApp:',
+      'Si tenéis alguna duda o preguntas no dudéis en escribirnos',
   },
 
   // ---------------------------------------------------------------------------
@@ -367,7 +367,7 @@ export const wedding = {
   footer: {
     headline: '¡Te esperamos!',
     /** Ilustración sobre el titular. Cadena vacía para no ponerla. */
-    image: '/invitacion/icono-paloma.webp',
+    image: '',
     /** Segunda línea: por defecto los nombres de la pareja. */
     credit: {
       label: 'Jules',
