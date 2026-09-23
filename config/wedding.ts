@@ -119,10 +119,22 @@ export const wedding = {
   hero: {
     /** Párrafos introductorios, en orden. Añade o quita los que quieras. */
     intro: [
-      'Hay encuentros que cambian una vida entera…',
-      'El nuestro nos ha llevado a compartir sueños, afrontar nuevos retos, descubrir lugares inesperados y construir un proyecto común lleno de alegría e ilusión.',
-      'Ahora, con la certeza de querer recorrer juntos todo lo que está por venir, queremos anunciar que...',
+      'Dicen que no existen las casualidades. Nosotros preferimos llamarlo destino.',
+      'Una argentina que vino a Madrid de intercambio y un español que aquella noche decidió salir. Parecía una noche cualquiera, hasta que dejó de serlo.',
+      'Desde entonces, todo ha sido un conjunto de decisiones, las grandes y las pequeñas, que nos han traído hasta aquí. Y ahora, con ganas de formar juntos una familia, queremos anunciar que...',
     ],
+    /**
+     * Ilustraciones que acompañan a la introducción: aquí, las banderas de
+     * Argentina y España. `after` es el párrafo tras el que se dibujan,
+     * empezando en 1. Lista vacía para no poner ninguna.
+     */
+    flags: {
+      after: 2,
+      images: [
+        { src: '/invitacion/bandera-argentina.webp', alt: 'Argentina' },
+        { src: '/invitacion/bandera-espana.webp', alt: 'España' },
+      ],
+    },
     announcement: '¡Nos casamos!',
     subtitle: 'Y nos encantaría disfrutar contigo el día más importante de nuestra vida',
     /**
@@ -167,8 +179,8 @@ export const wedding = {
   // CUENTA ATRÁS Y FOTOS
   // ---------------------------------------------------------------------------
   countdown: {
-    /** Texto pequeño sobre el número. */
-    lead: 'Faltan',
+    /** Texto pequeño sobre el número. Cadena vacía para no poner ninguno. */
+    lead: '',
     /** Rótulo bajo cada número. */
     labels: {
       days: 'Días',
@@ -259,7 +271,6 @@ export const wedding = {
       'https://res.cloudinary.com/scihumn2/video/upload/Can_t_Take_My_Eyes_off_You_hnormu.mp3',
     modal: {
       title: 'Sugerir Canción',
-      subtitle: 'Queremos que la pista de baile no pare de sonar',
       songPlaceholder: 'Ej. La Camisa Negra',
       artistPlaceholder: 'Ej. Juanes',
       submitLabel: 'Añadir a la lista',
@@ -273,11 +284,11 @@ export const wedding = {
     /** Pon `false` para ocultar la sección del regalo. */
     enabled: true,
     eyebrow: 'Luna de Miel · Regalo',
-    title: 'Nuestra próxima aventura',
+    title: 'Nuestro próximo destino',
     description:
-      'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada entre Tanzania y las Seychelles.',
+      'Del castillo al Serengeti, y del Serengeti a las Seychelles. Es el viaje que llevamos años imaginando y que por fin tiene fecha.',
     invitation:
-      'Si deseáis acompañarnos de una forma especial en esta experiencia inolvidable, podéis hacerlo rellenando vuestro granito de arena aquí:',
+      'Que estéis ahí ese día ya es el mejor regalo. Si además os apetece ayudarnos a llenar el viaje de recuerdos, aquí os dejamos cómo:',
     /** Láminas de los destinos. Lista vacía para ir sin ilustraciones. */
     images: [
       { src: '/invitacion/luna-tanzania.webp', alt: 'Tanzania' },
@@ -287,9 +298,7 @@ export const wedding = {
     ctaHint: '',
     ctaLabel: 'Ver datos regalo',
     modal: {
-      title: 'Luna de Miel · Regalo',
-      description:
-        'Tu presencia es nuestro mayor regalo. Sin embargo, si deseas acompañarnos de una forma diferente y ayudarnos a construir momentos mágicos en Tanzania y las Seychelles, ponemos a tu disposición nuestra cuenta bancaria:',
+      title: 'Nuestros datos',
       /**
        * ⚠️ DE EJEMPLO. Es el IBAN que se usa como muestra en la documentación
        * bancaria, no una cuenta real: hay que sustituirlo antes de publicar.
@@ -297,7 +306,7 @@ export const wedding = {
       iban: 'ES91 2100 0418 4502 0005 1332',
       swift: 'CAIXESBBXXX',
       holders: 'Julieta B. S. y Pablo T. M.',
-      thanks: '¡Muchísimas gracias por formar parte de este sueño! ❤️',
+      thanks: '¡Gracias por acompañarnos hasta aquí! ❤️',
     },
   },
 

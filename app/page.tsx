@@ -24,7 +24,6 @@ import {
   X,
   PhoneCall,
   Sparkles,
-  Info,
   Volume2,
   VolumeX,
   Church,
@@ -347,7 +346,7 @@ export default function Home() {
               {wedding.couple.heart ? (
                 <span className="flex items-center gap-1">
                   J
-                  <span className="relative inline-block w-[0.5em] h-[0.5em] brightness-0 invert">
+                  <span className="relative inline-block w-[0.5em] h-[0.5em] ml-[0.12em] brightness-0 invert">
                     <Image src={wedding.couple.heart} alt="y" fill className="object-contain" referrerPolicy="no-referrer" />
                   </span>
                   P
@@ -473,8 +472,8 @@ export default function Home() {
             className="max-w-4xl mx-auto px-6 w-full flex flex-col items-center relative z-10"
           >
             {wedding.hero.intro.map((paragraph, i) => (
+              <React.Fragment key={i}>
               <motion.p
-                key={i}
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
@@ -483,6 +482,29 @@ export default function Home() {
               >
                 {paragraph}
               </motion.p>
+                {wedding.hero.flags.images.length > 0 && i + 1 === wedding.hero.flags.after && (
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: 14 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } }
+                    }}
+                    className="flex justify-center items-center gap-5 mb-7 -mt-1"
+                  >
+                    {wedding.hero.flags.images.map((bandera) => (
+                      <div key={bandera.src} className="relative w-[104px] h-[58px] md:w-[124px] md:h-[70px]">
+                        <Image
+                          src={bandera.src}
+                          alt={bandera.alt}
+                          fill
+                          sizes="124px"
+                          className="object-contain"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </React.Fragment>
             ))}
 
             <motion.h2
@@ -764,7 +786,9 @@ export default function Home() {
                 </p>
               ) : (
                 <>
-                  <p className="font-serif text-muted text-[28px] leading-none mb-6">{wedding.countdown.lead}</p>
+                  {wedding.countdown.lead && (
+                    <p className="font-serif text-muted text-[28px] leading-none mb-6">{wedding.countdown.lead}</p>
+                  )}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-2">
                     {([
                       ['days', wedding.countdown.labels.days],
@@ -887,7 +911,7 @@ export default function Home() {
             </motion.div>
 
             {/* TIMELINE TRACK */}
-            <div className="relative mt-12 pl-8 md:pl-0">
+            <div className="relative mt-12">
               {/* Center line */}
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 transform -translate-x-1/2" />
 
@@ -1090,7 +1114,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-display text-[17px] md:text-[18px] text-white/95 leading-relaxed max-w-xl mx-auto mb-3 font-semibold"
+                className="font-display text-[19px] md:text-[21px] text-white/95 leading-relaxed max-w-xl mx-auto mb-4 font-semibold"
               >
                 {wedding.gift.description}
               </motion.p>
@@ -1100,7 +1124,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
                 }}
-                className="font-display text-[17px] md:text-[18px] text-white leading-relaxed max-w-lg mx-auto font-semibold"
+                className="font-display text-[19px] md:text-[21px] text-white leading-relaxed max-w-xl mx-auto font-semibold"
               >
                 {wedding.gift.invitation}
               </motion.p>
@@ -1357,7 +1381,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
-              className="font-serif text-[28px] text-muted leading-relaxed mb-10 max-w-md mx-auto"
+              className="font-display text-[17px] md:text-[18px] text-muted leading-relaxed mb-10 max-w-md mx-auto font-semibold"
             >
               {wedding.contact.description}
             </motion.p>
@@ -1409,7 +1433,7 @@ export default function Home() {
             {wedding.couple.heart ? (
               <p className="font-serif text-cream text-[38px] md:text-[46px] leading-none tracking-tighter mb-3 flex items-center justify-center gap-1 drop-shadow-xs">
                 J
-                <span className="relative inline-block w-[0.5em] h-[0.5em] brightness-0 invert">
+                <span className="relative inline-block w-[0.5em] h-[0.5em] ml-[0.12em] brightness-0 invert">
                   <Image src={wedding.couple.heart} alt="y" fill className="object-contain" referrerPolicy="no-referrer" />
                 </span>
                 P
@@ -1474,11 +1498,7 @@ export default function Home() {
                   <Plane size={32} className="animate-bounce" />
                 </div>
 
-                <h3 className="font-serif text-[41px] text-ink mb-3">{wedding.gift.modal.title}</h3>
-
-                <p className="text-xs text-muted leading-relaxed mb-6">
-                  {wedding.gift.modal.description}
-                </p>
+                <h3 className="font-serif text-[41px] text-ink mb-5">{wedding.gift.modal.title}</h3>
 
                 <div className="bg-sand/60 p-4 rounded-md border border-primary/10 mb-6 relative text-left">
                   {/* IBAN Section */}
@@ -1523,13 +1543,7 @@ export default function Home() {
                     </button>
                   </div>
 
-                  {/* Info notice */}
-                  <div className="flex items-start gap-1.5 mt-3 text-[9px] text-muted leading-snug">
-                    <Info size={11} className="mt-0.5 flex-shrink-0 text-muted" />
-                    <span>Con este código podrás recibir transferencias internacionales</span>
-                  </div>
-
-                  <span className="block text-[8px] text-muted mt-3 pt-2 border-t border-primary/5">
+                  <span className="block font-display text-[15px] text-ink mt-4 pt-3 border-t border-primary/5 font-semibold">
                     Titulares: {wedding.gift.modal.holders}
                   </span>
                 </div>
@@ -1570,7 +1584,6 @@ export default function Home() {
                 <div className="text-center mb-6">
                   <Music size={26} className="text-muted mx-auto mb-2" />
                   <h3 className="font-serif text-[34px] text-ink">{wedding.music.modal.title}</h3>
-                  <p className="text-xs text-muted mt-1">{wedding.music.modal.subtitle}</p>
                 </div>
 
                 <AnimatePresence>
