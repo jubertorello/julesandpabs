@@ -1,10 +1,16 @@
 import type {Metadata} from 'next';
-import { Roboto_Serif, Inter, Italiana, Cormorant_Garamond, Playwrite_CU_Guides } from 'next/font/google';
+import { Tangerine, Inter, Italiana, Cormorant_Garamond, Playwrite_CU_Guides } from 'next/font/google';
 import './globals.css';
 import { wedding, backgrounds } from '@/config/wedding';
 
-const robotoSerif = Roboto_Serif({
+/**
+ * Familia de los textos largos (todo lo que lleva `font-serif`).
+ * Tangerine es caligráfica y no tiene cursiva propia, así que el navegador se
+ * la inventa inclinándola; tenlo en cuenta si algo se ve raro.
+ */
+const tangerine = Tangerine({
   subsets: ['latin'],
+  weight: ['400', '700'],
   variable: '--font-serif',
 });
 
@@ -64,7 +70,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang="es"
-      className={`scroll-smooth ${robotoSerif.variable} ${inter.variable} ${cormorant.variable} ${italiana.variable} ${playwrite.variable}`}
+      className={`scroll-smooth ${tangerine.variable} ${inter.variable} ${cormorant.variable} ${italiana.variable} ${playwrite.variable}`}
     >
       <body suppressHydrationWarning className="text-ink">
         {/* Fondo global */}
