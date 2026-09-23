@@ -46,6 +46,8 @@ const weddingPhotos = wedding.photos;
 
 export default function Home() {
   const [showMain, setShowMain] = useState(false);
+  // La intro se desmonta cuando acaba su propio fundido, no al empezarlo.
+  const [introDone, setIntroDone] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
@@ -1817,14 +1819,12 @@ export default function Home() {
 
       </motion.div>
 
-      <AnimatePresence>
-        {!showMain && (
-          <EnvelopeIntro
-            onStartExit={() => setShowMain(true)}
-            onComplete={() => setShowMain(true)}
-          />
-        )}
-      </AnimatePresence>
+      {!introDone && (
+        <EnvelopeIntro
+          onStartExit={() => setShowMain(true)}
+          onComplete={() => setIntroDone(true)}
+        />
+      )}
     </main>
   );
 }

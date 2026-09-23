@@ -83,6 +83,30 @@ export const wedding = {
     cardIntro: 'Estás invitado/a a la boda de',
     cardNames: 'Julieta y Pablo',
     cardButton: 'Ver Invitación',
+
+    /** Ajustes de la animación de apertura. */
+    animation: {
+      /**
+       * Multiplica todas las duraciones: 1 = normal, 0.5 = el doble de rápido.
+       * Quien tenga activado "reducir movimiento" ve el estado final al
+       * instante, sin animación, independientemente de este valor.
+       */
+      timeScale: 1,
+      /**
+       * Paso final de escritorio: el sobre se aparta a la izquierda y la
+       * tarjeta se centra. Desactivado por defecto porque en esta invitación
+       * la tarjeta lleva el botón y queda mejor centrada sobre el sobre.
+       */
+      finalComposition: false,
+      skipLabel: 'Saltar animación',
+      /** Mensajes que se anuncian por lector de pantalla en cada paso. */
+      announcements: {
+        flipping: 'El sobre gira para mostrar el dorso',
+        flapOpening: 'Se abre la solapa del sobre',
+        cardOut: 'Sale la tarjeta de la invitación',
+        done: 'Invitación abierta',
+      },
+    },
   },
 
   // ---------------------------------------------------------------------------
@@ -378,14 +402,33 @@ export const backgrounds = {
   },
   footer: '/invitacion/fondo-pared.webp',
 
-  /** Imágenes de la animación del sobre. */
+  /**
+   * Imágenes de la animación del sobre. Las proporciones importan: cada capa
+   * se dimensiona a partir de ellas, así que si cambias una imagen ajusta
+   * también su ratio en `envelopeLayers`.
+   */
   envelope: {
+    /** Frente del sobre, con la estampilla. */
     front: '/invitacion/sobre-frontal-limpio.webp',
-    backClosed: '/invitacion/sobre-cerrado.webp',
-    base: '/invitacion/sobre-abierto.png',
-    flapClosed: '/invitacion/sobre-solapa-limpia.webp',
-    flapOpen: '/invitacion/sobre-solapa-abierta.webp',
+    /** Dorso completo con la solapa cerrada (solo para el giro inicial). */
+    back: '/invitacion/sobre-cerrado.webp',
+    /** Bolsillo con el escote en V: va por delante de la tarjeta. */
+    pocket: '/invitacion/sobre-abierto.png',
+    /** Solapa cerrada, cara exterior. Gira de 0° a 90° y se oculta. */
+    flapClosed: '/invitacion/solapa-cerrada.png',
+    /** Solapa abierta, con el lacre. Aparece a 89° y baja hasta 0°. */
+    flapOpen: '/invitacion/solapa-abierta.png',
+    /** Sombra que proyecta la solapa al abrirse. */
+    flapShadow: '/invitacion/sombra-solapa.png',
+    /** Textura del papel de la tarjeta. */
     cardBg: '/invitacion/textura-papel.webp',
+  },
+
+  /** Relación alto/ancho de cada capa, medida sobre las imágenes. */
+  envelopeLayers: {
+    envelope: 840 / 600,
+    flapClosed: 287 / 840,
+    flapOpen: 360 / 840,
   },
 } as const;
 

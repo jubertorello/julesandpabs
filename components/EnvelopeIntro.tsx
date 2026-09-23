@@ -1,8 +1,22 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'motion/react';
+/**
+ * Animación de apertura del sobre.
+ *
+ * Secuencia lineal con `async/await` sobre `Animation.finished` (Web Animations
+ * API). Nada de callbacks encadenados: cada paso espera al anterior y toda la
+ * secuencia se puede cancelar en cualquier momento desde `Saltar animación`.
+ *
+ * TRUCO DE LA SOLAPA: no es un elemento 3D de dos caras. Son dos imágenes
+ * distintas — la exterior gira de 0° a 90° y se oculta; la interior aparece a
+ * 89° y baja hasta 0°. Así se evitan los fallos de `backface-visibility` y el
+ * parpadeo entre navegadores.
+ *
+ * Curvas: `ease-in` cuando algo va HACIA 90° (se esconde) y `ease-out` cuando
+ * vuelve DESDE 90° (aparece).
+ */
+
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { wedding, backgrounds } from '@/config/wedding';
 
 interface EnvelopeIntroProps {
@@ -10,254 +24,425 @@ interface EnvelopeIntroProps {
   onStartExit?: () => void;
 }
 
-type AnimState = 'FRONT' | 'FLIPPING' | 'BACK_CLOSED' | 'OPENING' | 'OPENED' | 'EXITING';
+const assets = backgrounds.envelope;
+const ratios = backgrounds.envelopeLayers;
+const settings = wedding.envelope.animation;
+
+/** Alto de cada capa en % del alto del sobre, derivado de las imágenes. */
+const FLAP_CLOSED_H = (ratios.flapClosed / (1 / ratios.envelope)) * 100;
+const FLAP_OPEN_H = (ratios.flapOpen / (1 / ratios.envelope)) * 100;
+
+/** Cuánto sube la tarjeta al salir, en fracción de su propio alto. */
+const CARD_RISE = 0.42;
+
+const DESKTOP_QUERY = '(min-width: 769px)';
 
 export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntroProps) {
   const [showPre, setShowPre] = useState(true);
-  const [state, setState] = useState<AnimState>('FRONT');
-  const [showBackAssets, setShowBackAssets] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [opened, setOpened] = useState(false);
+  const [exiting, setExiting] = useState(false);
 
-  const assets = backgrounds.envelope;
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const frontRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+  const flapClosedRef = useRef<HTMLDivElement>(null);
+  const flapOpenRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const liveRef = useRef<HTMLParagraphElement>(null);
+
+  /** Animaciones vivas, para poder cancelarlas al saltar o al desmontar. */
+  const running = useRef<Animation[]>([]);
+  const cancelled = useRef(false);
+
+  const announce = useCallback((mensaje: string) => {
+    if (liveRef.current) liveRef.current.textContent = mensaje;
+  }, []);
+
+  /**
+   * Lanza una animación y devuelve su promesa. Pone `will-change` solo
+   * mientras dura y lo quita al terminar, para no dejar capas promovidas.
+   */
+  const run = useCallback(
+    (el: HTMLElement | null, keyframes: Keyframe[], options: KeyframeAnimationOptions) => {
+      if (!el) return Promise.resolve();
+      el.style.willChange = 'transform, opacity';
+      const anim = el.animate(keyframes, { fill: 'forwards', ...options });
+      running.current.push(anim);
+      return anim.finished
+        .catch(() => {
+          /* cancelada al saltar: no es un error */
+        })
+        .finally(() => {
+          el.style.willChange = '';
+          running.current = running.current.filter((a) => a !== anim);
+        });
+    },
+    []
+  );
+
+  const wait = useCallback((ms: number) => new Promise((r) => setTimeout(r, ms)), []);
+
+  /** Estado final: lo que se ve si se salta la animación o se reduce el movimiento. */
+  const applyFinalState = useCallback(() => {
+    const set = (el: HTMLElement | null, styles: Partial<CSSStyleDeclaration>) => {
+      if (el) Object.assign(el.style, styles);
+    };
+    set(frontRef.current, { visibility: 'hidden' });
+    set(backRef.current, { visibility: 'visible', transform: 'none', filter: 'none' });
+    set(flapClosedRef.current, { visibility: 'hidden' });
+    set(flapOpenRef.current, { visibility: 'visible', transform: 'rotateX(0deg)', opacity: '1' });
+    set(shadowRef.current, { visibility: 'hidden' });
+    set(cardRef.current, { transform: `translateY(-${CARD_RISE * 100}%)`, opacity: '1' });
+    setOpened(true);
+    setAnimating(false);
+    announce(settings.announcements.done);
+  }, [announce]);
+
+  const skip = useCallback(() => {
+    cancelled.current = true;
+    running.current.forEach((a) => a.cancel());
+    running.current = [];
+    applyFinalState();
+  }, [applyFinalState]);
+
+  // Cancela todo si el componente se desmonta a mitad de la secuencia.
+  useEffect(() => {
+    const vivas = running;
+    return () => {
+      cancelled.current = true;
+      vivas.current.forEach((a) => a.cancel());
+    };
+  }, []);
 
   useEffect(() => {
-    // Only start the flip animation after the user interacts with the pre-screen
     if (showPre) return;
-    const startTimer = setTimeout(() => {
-      if (state === 'FRONT') setState('FLIPPING');
-    }, 800);
-    return () => clearTimeout(startTimer);
-  }, [showPre, state]);
 
-  useEffect(() => {
-    if (state === 'FLIPPING') {
-      const timer = setTimeout(() => setShowBackAssets(true), 400);
-      return () => clearTimeout(timer);
-    }
-  }, [state]);
+    // React vuelve a montar el componente en modo estricto, y la limpieza del
+    // montaje anterior deja la bandera levantada: hay que bajarla al arrancar.
+    cancelled.current = false;
+
+    const secuencia = async () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const t = reduce ? 0 : settings.timeScale;
+
+      // Nada arranca hasta que las imágenes estén decodificadas: si no, el
+      // primer fotograma llega con capas a medio pintar.
+      await Promise.all(
+        [assets.front, assets.back, assets.pocket, assets.flapClosed, assets.flapOpen, assets.flapShadow]
+          .map(async (src) => {
+            const img = new window.Image();
+            img.src = src;
+            try {
+              await img.decode();
+            } catch {
+              /* si una imagen falla, seguimos igualmente */
+            }
+          })
+      );
+      if (cancelled.current) return;
+
+      if (reduce) {
+        applyFinalState();
+        return;
+      }
+
+      setAnimating(true);
+      await wait(500 * t);
+      if (cancelled.current) return;
+
+      // 1. Giro del sobre — dos imágenes, nunca las dos visibles a la vez.
+      announce(settings.announcements.flipping);
+      await run(
+        frontRef.current,
+        [
+          { transform: 'rotateY(0deg)', filter: 'brightness(1)' },
+          { transform: 'rotateY(90deg)', filter: 'brightness(0.6)' },
+        ],
+        { duration: 875 * t, easing: 'ease-in' }
+      );
+      if (cancelled.current) return;
+
+      if (frontRef.current) frontRef.current.style.visibility = 'hidden';
+      if (backRef.current) backRef.current.style.visibility = 'visible';
+
+      await run(
+        backRef.current,
+        [
+          { transform: 'rotateY(-89deg)', filter: 'brightness(0.6)' },
+          { transform: 'rotateY(0deg)', filter: 'brightness(1)' },
+        ],
+        { duration: 875 * t, easing: 'ease-out' }
+      );
+      if (cancelled.current) return;
+
+      if (backRef.current) {
+        backRef.current.style.boxShadow = '20px 60px 60px rgba(0, 0, 0, 0.2)';
+      }
+
+      // 2. Solapa exterior: gira hasta ponerse de canto y desaparece.
+      await wait(500 * t);
+      if (cancelled.current) return;
+      announce(settings.announcements.flapOpening);
+
+      if (shadowRef.current) shadowRef.current.style.visibility = 'visible';
+      const sombraCreciendo = (async () => {
+        await run(shadowRef.current, [{ transform: 'scaleY(1)' }, { transform: 'scaleY(1.2)' }], {
+          duration: 312 * t,
+          easing: 'linear',
+        });
+        await run(shadowRef.current, [{ transform: 'scaleY(1.2)' }, { transform: 'scaleY(0.7)' }], {
+          duration: 312 * t,
+          easing: 'linear',
+        });
+      })();
+
+      await run(
+        flapClosedRef.current,
+        [{ transform: 'rotateX(0deg)' }, { transform: 'rotateX(90deg)' }],
+        { duration: 625 * t, easing: 'ease-in' }
+      );
+      if (cancelled.current) return;
+
+      // 3. Solapa interior: entra de canto y se tumba hacia arriba.
+      if (flapClosedRef.current) flapClosedRef.current.style.visibility = 'hidden';
+      if (flapOpenRef.current) flapOpenRef.current.style.visibility = 'visible';
+
+      await Promise.all([
+        run(flapOpenRef.current, [{ transform: 'rotateX(89deg)' }, { transform: 'rotateX(0deg)' }], {
+          duration: 625 * t,
+          easing: 'ease-out',
+        }),
+        sombraCreciendo.then(() =>
+          run(shadowRef.current, [{ transform: 'scaleY(0.7)', opacity: 1 }, { transform: 'scaleY(0.5)', opacity: 0 }], {
+            duration: 312 * t,
+            easing: 'linear',
+          })
+        ),
+      ]);
+      if (cancelled.current) return;
+      if (shadowRef.current) shadowRef.current.style.visibility = 'hidden';
+
+      // 4. Sale la tarjeta. El alto se mide ahora, no antes: si la ventana
+      //    cambió de tamaño por el camino, la medida de antes ya no valdría.
+      announce(settings.announcements.cardOut);
+      const alto = cardRef.current?.offsetHeight ?? 0;
+      await run(
+        cardRef.current,
+        [
+          { transform: 'translateY(0px)', opacity: 1 },
+          { transform: `translateY(-${Math.round(alto * CARD_RISE)}px)`, opacity: 1 },
+        ],
+        { duration: 1500 * t, easing: 'cubic-bezier(0.33, 1, 0.68, 1)' }
+      );
+      if (cancelled.current) return;
+
+      setOpened(true);
+
+      // 5. Composición final, solo en escritorio y si está activada.
+      if (settings.finalComposition && window.matchMedia(DESKTOP_QUERY).matches) {
+        await wait(500 * t);
+        if (cancelled.current) return;
+        await Promise.all([
+          run(
+            sceneRef.current,
+            [
+              { transform: 'scale(1) translate(0, 0)' },
+              { transform: 'scale(0.8) translate(-35%, 20%)' },
+            ],
+            { duration: 1000 * t, easing: 'ease-in-out' }
+          ),
+          run(
+            cardRef.current,
+            [
+              { transform: `translateY(-${Math.round(alto * CARD_RISE)}px) translateX(0)` },
+              { transform: `translateY(-${Math.round(alto * CARD_RISE)}px) translateX(10%) scale(1.05)` },
+            ],
+            { duration: 1000 * t, easing: 'ease-in-out' }
+          ),
+        ]);
+      }
+
+      setAnimating(false);
+      announce(settings.announcements.done);
+    };
+
+    secuencia();
+  }, [showPre, announce, applyFinalState, run, wait]);
+
+  const salir = () => {
+    // El overlay se funde mientras la invitación aparece por debajo; solo al
+    // acabar el fundido avisamos de que se puede desmontar.
+    setExiting(true);
+    onStartExit?.();
+    setTimeout(onComplete, 1000);
+  };
 
   return (
-    <AnimatePresence>
-      {state !== 'EXITING' && (
-        <motion.div
-          key="intro-overlay"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none"
-        >
-          {/* Fondo: el papel de la tarjeta con las cenefas florales a los lados */}
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none transition-opacity duration-1000 ${
+        exiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}
+    >
+      {/* Fondo: el papel de la tarjeta con las cenefas florales a los lados */}
+      <div
+        className="absolute inset-0 z-[-1] bg-cream"
+        style={{
+          backgroundImage: `url("${backgrounds.intro.desktop}")`,
+          backgroundSize: '360px 360px',
+          backgroundRepeat: 'repeat',
+        }}
+      />
+      {(['left', 'right'] as const).map((lado) => (
+        <div
+          key={lado}
+          aria-hidden
+          className={`absolute inset-y-0 ${lado === 'left' ? 'left-0' : 'right-0'} z-[-1] pointer-events-none w-[26vw] max-w-[230px]`}
+          style={{
+            opacity: backgrounds.flowers.opacity,
+            backgroundImage: `url("${backgrounds.flowers[lado]}")`,
+            backgroundSize: '100% auto',
+            backgroundRepeat: 'repeat-y',
+            backgroundPosition: `${lado} top`,
+          }}
+        />
+      ))}
+
+      {/* Lo que va contando la animación, para lectores de pantalla */}
+      <p ref={liveRef} aria-live="polite" className="sr-only" />
+
+      {/* Pantalla previa */}
+      {showPre && (
+        <div className="absolute inset-0 z-[60] flex flex-col items-center justify-center">
           <div
-            className="absolute inset-0 z-[-1] bg-cream"
-            style={{
-              backgroundImage: `url("${backgrounds.intro.desktop}")`,
-              backgroundSize: '360px 360px',
-              backgroundRepeat: 'repeat',
-            }}
+            className="relative mb-8 w-[180px] md:w-[220px] aspect-[4/3] motion-safe:animate-[flotar_3s_ease-in-out_infinite]"
+            style={{ backgroundImage: `url("${assets.back}")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
           />
-          <div
-            aria-hidden
-            className="absolute inset-y-0 left-0 z-[-1] pointer-events-none w-[26vw] max-w-[230px]"
-            style={{
-              opacity: backgrounds.flowers.opacity,
-              backgroundImage: `url("${backgrounds.flowers.left}")`,
-              backgroundSize: '100% auto',
-              backgroundRepeat: 'repeat-y',
-              backgroundPosition: 'left top',
-            }}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-y-0 right-0 z-[-1] pointer-events-none w-[26vw] max-w-[230px]"
-            style={{
-              opacity: backgrounds.flowers.opacity,
-              backgroundImage: `url("${backgrounds.flowers.right}")`,
-              backgroundSize: '100% auto',
-              backgroundRepeat: 'repeat-y',
-              backgroundPosition: 'right top',
-            }}
-          />
-
-          {/* Pre-screen: shown before the envelope animation starts */}
-          <AnimatePresence>
-            {showPre && (
-              <motion.div
-                key="pre-screen"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0 z-[60] flex flex-col items-center justify-center cursor-pointer"
-                onClick={() => setShowPre(false)}
-              >
-                {/* Floating envelope image */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  className="relative mb-8 w-[180px] md:w-[220px] aspect-[4/3]"
-                >
-                  <Image
-                    src={backgrounds.envelope.backClosed}
-                    alt="Sobre"
-                    fill
-                    className="object-contain"
-                    priority
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-
-                <p className="font-serif text-deep text-2xl md:text-3xl italic mb-1">
-                  {wedding.envelope.preTitle}
-                </p>
-                <p className="font-sans text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
-                  {wedding.envelope.preSubtitle}
-                </p>
-
-                <motion.button
-                  type="button"
-                  animate={{ scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="px-8 py-3 rounded-full bg-primary text-cream font-sans text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors"
-                >
-                  {wedding.envelope.preButton}
-                </motion.button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Envelope (hidden behind pre-screen, shown after click) */}
-          <AnimatePresence>
-            {!showPre && (
-              <motion.div
-                key="envelope"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative w-[88vw] max-w-[430px] aspect-[4/3] flex items-center justify-center perspective-[1500px] translate-y-[10vh] md:translate-y-[20vh]"
-              >
-                <motion.div
-                  className="relative w-full h-full preserve-3d"
-                  animate={state !== 'FRONT' ? { rotateY: 180 } : { rotateY: 0 }}
-                  transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1] }}
-                  onAnimationComplete={() => {
-                    if (state === 'FLIPPING') {
-                      setTimeout(() => setState('OPENING'), 700);
-                    }
-                  }}
-                >
-                  {/* --- FACE A: FRONT --- */}
-                  <div className="absolute inset-0 z-50 backface-hidden shadow-2xl rounded-sm overflow-hidden">
-                    <Image src={assets.front} alt="Sobre Frontal" fill className="object-cover" priority referrerPolicy="no-referrer" />
-                  </div>
-
-                  {/* --- FACE B: BACK --- */}
-                  <div
-                    className="absolute inset-0 z-40 overflow-visible"
-                    style={{ transform: 'rotateY(180deg)' }}
-                  >
-                    {/*
-                      Orden de capas, de atrás hacia delante:
-                      1. solapa abierta (triángulo con el lacre, apuntando
-                         hacia arriba por encima del sobre)
-                      2. tarjeta, que sale del sobre al abrirse
-                      3. bolsillo del sobre, con su escote en V, por delante
-                         de la tarjeta para que parezca que sale de dentro
-                      4. dorso cerrado, que se desvanece al abrir
-                    */}
-
-                    {/* 1. Solapa abierta */}
-                    {(state === 'OPENING' || state === 'OPENED') && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute inset-x-0 bottom-[99%] z-10 pointer-events-none"
-                        style={{ aspectRatio: '840 / 549' }}
-                      >
-                        <Image
-                          src={assets.flapOpen}
-                          alt="Solapa abierta"
-                          fill
-                          className="object-contain rotate-180"
-                          referrerPolicy="no-referrer"
-                        />
-                      </motion.div>
-                    )}
-
-                    {/* 2. La tarjeta */}
-                    <motion.div
-                      className="absolute inset-x-[4%] top-[14%] h-[235px] md:h-[265px] rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.28)] flex flex-col items-center justify-center px-6 py-5 text-center"
-                      style={{
-                        backgroundImage: `url(${assets.cardBg})`,
-                        backgroundSize: '260px 260px',
-                        // Al terminar de salir, la tarjeta pasa por delante del
-                        // sobre, como en la invitación impresa.
-                        zIndex: state === 'OPENED' ? 35 : 20,
-                      }}
-                      initial={{ y: '8%', opacity: 0 }}
-                      animate={
-                        state === 'OPENED'
-                          ? { y: '-42%', opacity: 1 }
-                          : state === 'OPENING'
-                          ? { y: '8%', opacity: 1 }
-                          : { y: '8%', opacity: 0 }
-                      }
-                      transition={{ y: { duration: 1.5, ease: [0.33, 1, 0.68, 1], delay: 0.3 } }}
-                    >
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={state === 'OPENED' ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.3, duration: 0.1 }}
-                        className="relative flex flex-col items-center pointer-events-auto"
-                      >
-                        <p className="font-serif text-muted text-base md:text-lg mb-1 italic">{wedding.envelope.cardIntro}</p>
-                        <h2 className="font-serif text-2xl md:text-3xl text-primary mb-4 leading-tight font-light italic">
-                          {wedding.envelope.cardNames}
-                        </h2>
-                        <div className="h-px w-10 bg-primary/25 mb-4" />
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setState('EXITING');
-                            if (onStartExit) onStartExit();
-                            setTimeout(onComplete, 1000);
-                          }}
-                          className="px-6 py-2 bg-primary text-cream font-sans tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
-                        >
-                          {wedding.envelope.cardButton}
-                        </button>
-                      </motion.div>
-                    </motion.div>
-
-                    {/* 3. Bolsillo del sobre, por delante de la tarjeta */}
-                    <div className="absolute inset-0 z-30 pointer-events-none">
-                      <Image src={assets.base} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
-                    </div>
-
-                    {/* 4. Dorso cerrado */}
-                    <div className="absolute inset-0 z-40 pointer-events-none">
-                      {(state === 'FLIPPING' || state === 'OPENING') && (
-                        <motion.div
-                          className="absolute inset-0"
-                          initial={{ opacity: 1 }}
-                          animate={state === 'OPENING' ? { opacity: 0 } : { opacity: 1 }}
-                          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                          onAnimationComplete={() => {
-                            if (state === 'OPENING') setState('OPENED');
-                          }}
-                        >
-                          <Image src={assets.backClosed} alt="Dorso cerrado" fill className="object-contain" referrerPolicy="no-referrer" />
-                        </motion.div>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+          <p className="font-serif text-deep text-2xl md:text-3xl italic mb-1">{wedding.envelope.preTitle}</p>
+          <p className="font-sans text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
+            {wedding.envelope.preSubtitle}
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowPre(false)}
+            className="px-8 py-3 rounded-full bg-primary text-cream font-sans text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors"
+          >
+            {wedding.envelope.preButton}
+          </button>
+        </div>
       )}
-    </AnimatePresence>
+
+      {/* Saltar animación */}
+      {animating && (
+        <button
+          type="button"
+          onClick={skip}
+          className="absolute bottom-6 right-6 z-[70] px-4 py-2 rounded-full border border-primary/30 bg-cream/80 text-primary font-sans text-[10px] uppercase tracking-[0.2em] hover:bg-cream transition-colors"
+        >
+          {settings.skipLabel}
+        </button>
+      )}
+
+      {/* Escena del sobre */}
+      <div
+        ref={sceneRef}
+        className={`relative w-[88vw] max-w-[430px] translate-y-[10vh] md:translate-y-[20vh] transition-opacity duration-500 ${
+          showPre ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{ aspectRatio: '840 / 600', perspective: '800px' }}
+      >
+        {/* Frente */}
+        <div
+          ref={frontRef}
+          className="absolute inset-0 rounded-sm shadow-2xl bg-center bg-cover"
+          style={{ backgroundImage: `url("${assets.front}")` }}
+        />
+
+        {/* Dorso: contiene solapa, tarjeta y bolsillo */}
+        <div
+          ref={backRef}
+          className="absolute inset-0 rounded-sm"
+          style={{ visibility: 'hidden', perspective: '1800px' }}
+        >
+          {/* Solapa interior (abierta), por encima del sobre y con bisagra abajo */}
+          <div
+            ref={flapOpenRef}
+            aria-hidden
+            className="absolute inset-x-0 z-10 pointer-events-none bg-bottom bg-contain bg-no-repeat"
+            style={{
+              visibility: 'hidden',
+              bottom: '99%',
+              height: `${FLAP_OPEN_H}%`,
+              transformOrigin: '50% 100%',
+              transform: 'rotateX(89deg)',
+              backgroundImage: `url("${assets.flapOpen}")`,
+            }}
+          />
+
+          {/* Tarjeta */}
+          <div
+            ref={cardRef}
+            className="absolute inset-x-[4%] top-[8%] h-[92%] rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.28)] flex flex-col items-center justify-center px-5 py-4 text-center"
+            style={{
+              backgroundImage: `url("${assets.cardBg}")`,
+              backgroundSize: '260px 260px',
+              // Al terminar de salir pasa por delante del sobre, como en la
+              // invitación impresa.
+              zIndex: opened ? 35 : 20,
+            }}
+          >
+            <p className="font-serif text-muted italic mb-1 text-[clamp(0.85rem,3.4vw,1.125rem)]">
+              {wedding.envelope.cardIntro}
+            </p>
+            <h2 className="font-serif text-primary mb-3 leading-tight font-light italic text-[clamp(1.2rem,5.2vw,1.875rem)]">
+              {wedding.envelope.cardNames}
+            </h2>
+            <div className="h-px w-10 bg-primary/25 mb-3" />
+            <button
+              type="button"
+              onClick={salir}
+              disabled={!opened}
+              className="px-6 py-2 bg-primary text-cream font-sans tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0"
+            >
+              {wedding.envelope.cardButton}
+            </button>
+          </div>
+
+          {/* Bolsillo, por delante de la tarjeta */}
+          <div
+            aria-hidden
+            className="absolute inset-0 z-30 pointer-events-none bg-contain bg-no-repeat bg-center"
+            style={{ backgroundImage: `url("${assets.pocket}")` }}
+          />
+
+          {/* Sombra de la solapa */}
+          <div
+            ref={shadowRef}
+            aria-hidden
+            className="absolute inset-x-0 top-0 z-[31] pointer-events-none bg-top bg-contain bg-no-repeat"
+            style={{
+              visibility: 'hidden',
+              height: `${FLAP_CLOSED_H}%`,
+              transformOrigin: '50% 0',
+              backgroundImage: `url("${assets.flapShadow}")`,
+            }}
+          />
+
+          {/* Solapa exterior (cerrada), bisagra arriba */}
+          <div
+            ref={flapClosedRef}
+            aria-hidden
+            className="absolute inset-x-0 top-0 z-40 pointer-events-none bg-top bg-contain bg-no-repeat"
+            style={{
+              height: `${FLAP_CLOSED_H}%`,
+              transformOrigin: '50% 0',
+              backfaceVisibility: 'hidden',
+              backgroundImage: `url("${assets.flapClosed}")`,
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
