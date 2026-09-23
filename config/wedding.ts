@@ -49,15 +49,15 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   date: {
     /** Fecha y hora exactas con zona horaria. Alimenta la cuenta atrás. */
-    iso: '2026-10-26T16:45:00+01:00',
+    iso: '2024-10-26T16:45:00+02:00',
     /** Partes sueltas que se muestran en el bloque grande de la portada. */
     day: '26',
     monthName: 'Octubre',
-    year: '2026',
-    weekdayAndTime: 'Lunes • 16:45 H',
+    year: '2024',
+    weekdayAndTime: 'Sábado • 16:45 H',
     /** Formatos de texto usados en metadatos y footer. */
-    short: '26.10.2026',
-    long: '26 de Octubre de 2026',
+    short: '26.10.2024',
+    long: '26 de Octubre de 2024',
     city: 'Madrid',
   },
 
@@ -65,11 +65,11 @@ export const wedding = {
   // METADATOS / COMPARTIR (Open Graph)
   // ---------------------------------------------------------------------------
   seo: {
-    title: 'Julieta & Pablo · 26.10.2026',
+    title: 'Julieta & Pablo · 26.10.2024',
     description:
       '¡Nos casamos! El 26 de octubre celebramos el día más importante de nuestra vida y nos encantaría que nos acompañes.',
     ogImage: '/invitacion/tarjeta-invitacion.webp',
-    ogImageAlt: 'Julieta & Pablo · Boda 26 de Octubre',
+    ogImageAlt: 'Julieta & Pablo · Boda 26 de Octubre de 2024',
     locale: 'es_ES',
   },
 
@@ -113,8 +113,7 @@ export const wedding = {
       name: 'Basílica de San Francisco el Grande',
       address: 'Calle San Buenaventura 1, 28005 Madrid',
       time: '16:45 H',
-      image:
-        'https://res.cloudinary.com/scihumn2/image/upload/acuarela-v1_corpus_transpa_whkfz1.png',
+      image: '/invitacion/flor-ceremonia.webp',
       mapsUrl: 'https://maps.google.com/?q=Basilica+de+San+Francisco+el+Grande+Madrid',
       ctaLabel: 'Ver ubicación',
     },
@@ -123,7 +122,7 @@ export const wedding = {
       name: 'Castillo de Viñuelas',
       address: 'Monte de Viñuelas, 28760 Tres Cantos, Madrid',
       time: 'A partir de las 19:00 H',
-      image: 'https://res.cloudinary.com/scihumn2/image/upload/hacienda-v1_transpa_axivb6.png',
+      image: '/invitacion/flor-celebracion.webp',
       mapsUrl: 'https://maps.google.com/?q=Castillo+de+Vinuelas+Madrid',
       ctaLabel: 'Ver ubicación',
     },
@@ -168,26 +167,22 @@ export const wedding = {
       {
         time: '16:45 H',
         title: 'La Ceremonia',
-        image:
-          'https://res.cloudinary.com/scihumn2/image/upload/WhatsApp_Image_2026-05-29_at_16.37.21-removebg-preview_rpf1kt.png',
+        image: '/invitacion/flor-itinerario-1.webp',
       },
       {
         time: '19:00 H',
         title: 'El Cóctel',
-        image:
-          'https://res.cloudinary.com/scihumn2/image/upload/ChatGPT_Image_31_may_2026_12_58_38_rcugl3.png',
+        image: '/invitacion/flor-itinerario-2.webp',
       },
       {
         time: '21:30 H',
         title: 'La Cena',
-        image:
-          'https://res.cloudinary.com/scihumn2/image/upload/WhatsApp_Image_2026-05-26_at_23.44.58-removebg-preview_auvopz.png',
+        image: '/invitacion/flor-itinerario-3.webp',
       },
       {
         time: '23:00 H',
         title: 'El Baile & Fiesta',
-        image:
-          'https://res.cloudinary.com/scihumn2/image/upload/WhatsApp_Image_2026-05-28_at_00.18.22-removebg-preview_mpdsw2.png',
+        image: '/invitacion/flor-itinerario-4.webp',
       },
     ],
   },
@@ -202,8 +197,7 @@ export const wedding = {
     description:
       '¿Qué canciones te gustaría que sonaran en la fiesta? Compártelas con nosotros y las añadiremos a la playlist para darlo todo en la pista 💃',
     ctaLabel: 'Sugerir Canciones',
-    image:
-      'https://res.cloudinary.com/scihumn2/image/upload/ChatGPT_Image_31_may_2026_13_17_09_xdrx3s.png',
+    image: '/invitacion/flor-musica.webp',
     /**
      * `true` arranca la canción de fondo en cuanto el invitado toca la pantalla.
      * `false` (por defecto) la deja en silencio hasta que pulse el altavoz.
@@ -233,8 +227,7 @@ export const wedding = {
       'Emprendemos juntos el viaje más importante de nuestras vidas, que continuará con una luna de miel soñada por destinos aún por descubrir.',
     invitation:
       'Si deseáis acompañarnos de una forma especial en esta experiencia inolvidable, podéis hacerlo rellenando vuestro granito de arena aquí:',
-    image:
-      'https://res.cloudinary.com/scihumn2/image/upload/WhatsApp_Image_2026-05-29_at_16.26.02-removebg-preview_xyaohc.png',
+    image: '/invitacion/flor-regalo.webp',
     imageAlt: 'Nuestra luna de miel',
     ctaHint: '¿Quieres hacernos un regalo? Haz click aquí:',
     ctaLabel: 'Ver datos regalo',
