@@ -323,7 +323,7 @@ export default function Home() {
             <a
               href="#inicio"
               onClick={(e) => handleNavClick(e, 'inicio')}
-              className="text-[38px] md:text-[46px] leading-none tracking-[0.12em] text-cream hover:opacity-80 transition-opacity cursor-pointer font-serif"
+              className="text-[38px] md:text-[46px] leading-none tracking-tighter text-cream hover:opacity-80 transition-opacity cursor-pointer font-serif"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {wedding.couple.initials}

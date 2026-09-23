@@ -21,7 +21,7 @@ export const wedding = {
   // ---------------------------------------------------------------------------
   couple: {
     /** Iniciales del logo en la barra de navegación. */
-    initials: 'J & P',
+    initials: 'J&P',
     /** Nombre corto, usado en títulos y metadatos. */
     shortNames: 'Julieta & Pablo',
     /** Nombre corto en formato "X y Z" (sobre, footer, alts de fotos). */
