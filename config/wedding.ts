@@ -420,7 +420,12 @@ export const backgrounds = {
      * Gira de 0° a 90° y se oculta.
      */
     flapClosed: '/invitacion/sobre-solapa-limpia.webp',
-    /** Solapa abierta, con el lacre. Aparece a 89° y baja hasta 0°. */
+    /**
+     * Solapa abierta: la cara INTERIOR, con el forro y el lacre asomando por
+     * la punta. Viene ya volteada, porque al abrirse la solapa da la vuelta
+     * sobre su bisagra y la punta queda arriba. Aparece a 89° y baja a 0°.
+     * Sin voltear está en solapa-interior.webp.
+     */
     flapOpen: '/invitacion/solapa-abierta.png',
     /** Sombra que proyecta la solapa al abrirse. */
     flapShadow: '/invitacion/sombra-solapa.png',
