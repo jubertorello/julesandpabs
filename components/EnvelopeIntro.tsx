@@ -326,7 +326,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
       {/* Escena del sobre */}
       <div
         ref={sceneRef}
-        className={`relative w-[88vw] max-w-[430px] translate-y-[10vh] md:translate-y-[20vh] transition-opacity duration-500 ${
+        className={`relative w-[88vw] max-w-[430px] translate-y-[5vh] md:translate-y-[8vh] transition-opacity duration-500 ${
           showPre ? 'opacity-0' : 'opacity-100'
         }`}
         style={{ aspectRatio: '840 / 600', perspective: '800px' }}

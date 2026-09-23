@@ -167,17 +167,17 @@ export const wedding = {
   },
 
   /**
-   * Collage de la portada. Se necesitan 6 fotos, en este orden:
+   * Collage de la portada. Admite hasta 6 fotos, en este orden:
    * [0] polaroid sup. izq · [1] foto central grande · [2] polaroid sup. dcha
    * [3] polaroid inf. izq · [4] polaroid inf. centro · [5] polaroid inf. dcha
+   * Con menos de 6, los huecos sobrantes sencillamente no se dibujan.
    */
   photos: [
-    'https://res.cloudinary.com/scihumn2/image/upload/PHOTO-2026-05-17-16-41-18_yxwhdd.jpg',
-    'https://res.cloudinary.com/scihumn2/image/upload/PHOTO-2026-05-17-16-47-47_gvmlkc.jpg',
-    'https://res.cloudinary.com/scihumn2/image/upload/PHOTO-2026-05-17-16-41-17_w4a3qm.jpg',
-    'https://res.cloudinary.com/scihumn2/image/upload/PHOTO-2026-05-17-16-41-17_2_zhvxcp.jpg',
-    'https://res.cloudinary.com/scihumn2/image/upload/74ea0529-8ba3-4380-b687-f34ced26c06d_vw7cs1.jpg',
-    'https://res.cloudinary.com/scihumn2/image/upload/c62f8ae5-e96b-46bb-b6ce-27a6dfa36272_ztmret.jpg',
+    '/invitacion/foto-1.webp',
+    '/invitacion/foto-2.webp',
+    '/invitacion/foto-3.webp',
+    '/invitacion/foto-4.webp',
+    '/invitacion/foto-5.webp',
   ],
 
   // ---------------------------------------------------------------------------
