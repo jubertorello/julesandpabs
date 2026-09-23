@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import { Roboto_Serif, Inter } from 'next/font/google';
+import { Roboto_Serif, Inter, Italiana, Cormorant_Garamond, Playwrite_CU_Guides } from 'next/font/google';
 import './globals.css';
 import { wedding, backgrounds } from '@/config/wedding';
 
@@ -11,6 +11,25 @@ const robotoSerif = Roboto_Serif({
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
+});
+
+/** Cuerpo de texto: la serif del diseño, que hasta ahora se declaraba sin cargarse. */
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-body',
+});
+
+/** Titulares y CTAs. */
+const italiana = Italiana({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-display',
+});
+
+/** Caligrafía: los nombres de los novios. Esta familia no declara subsets. */
+const playwrite = Playwrite_CU_Guides({
+  weight: '400',
+  variable: '--font-handwritten',
 });
 
 const { seo } = wedding;
@@ -43,8 +62,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="es" className={`scroll-smooth ${robotoSerif.variable} ${inter.variable} [--font-handwritten:var(--font-serif)]`}>
-      <body suppressHydrationWarning className="text-primary">
+    <html
+      lang="es"
+      className={`scroll-smooth ${robotoSerif.variable} ${inter.variable} ${cormorant.variable} ${italiana.variable} ${playwrite.variable}`}
+    >
+      <body suppressHydrationWarning className="text-ink">
         {/* Fondo global */}
         <div
           className="fixed inset-0 pointer-events-none z-[-1] bg-cream"

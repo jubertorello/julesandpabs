@@ -39,7 +39,6 @@ const DESKTOP_QUERY = '(min-width: 769px)';
 
 export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntroProps) {
   const [showPre, setShowPre] = useState(true);
-  const [animating, setAnimating] = useState(false);
   const [opened, setOpened] = useState(false);
   const [exiting, setExiting] = useState(false);
 
@@ -96,16 +95,9 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
     set(shadowRef.current, { visibility: 'hidden' });
     set(cardRef.current, { transform: `translateY(-${CARD_RISE * 100}%)`, opacity: '1' });
     setOpened(true);
-    setAnimating(false);
     announce(settings.announcements.done);
   }, [announce]);
 
-  const skip = useCallback(() => {
-    cancelled.current = true;
-    running.current.forEach((a) => a.cancel());
-    running.current = [];
-    applyFinalState();
-  }, [applyFinalState]);
 
   // Cancela todo si el componente se desmonta a mitad de la secuencia.
   useEffect(() => {
@@ -148,7 +140,6 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
         return;
       }
 
-      setAnimating(true);
       await wait(500 * t);
       if (cancelled.current) return;
 
@@ -264,7 +255,6 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
         ]);
       }
 
-      setAnimating(false);
       announce(settings.announcements.done);
     };
 
@@ -320,28 +310,17 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             style={{ backgroundImage: `url("${assets.back}")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
           />
           <p className="font-serif text-deep text-2xl md:text-3xl italic mb-1">{wedding.envelope.preTitle}</p>
-          <p className="font-sans text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
+          <p className="font-display text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
             {wedding.envelope.preSubtitle}
           </p>
           <button
             type="button"
             onClick={() => setShowPre(false)}
-            className="px-8 py-3 rounded-full bg-primary text-cream font-sans text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors"
+            className="px-8 py-3 rounded-full bg-primary text-cream font-display text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors"
           >
             {wedding.envelope.preButton}
           </button>
         </div>
-      )}
-
-      {/* Saltar animación */}
-      {animating && (
-        <button
-          type="button"
-          onClick={skip}
-          className="absolute bottom-6 right-6 z-[70] px-4 py-2 rounded-full border border-primary/30 bg-cream/80 text-primary font-sans text-[10px] uppercase tracking-[0.2em] hover:bg-cream transition-colors"
-        >
-          {settings.skipLabel}
-        </button>
       )}
 
       {/* Escena del sobre */}
@@ -395,7 +374,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             <p className="font-serif text-muted italic mb-1 text-[clamp(0.85rem,3.4vw,1.125rem)]">
               {wedding.envelope.cardIntro}
             </p>
-            <h2 className="font-serif text-primary mb-3 leading-tight font-light italic text-[clamp(1.2rem,5.2vw,1.875rem)]">
+            <h2 className="font-handwritten text-ink mb-3 font-light text-[clamp(1.05rem,4.6vw,1.6rem)] leading-[1.6]">
               {wedding.envelope.cardNames}
             </h2>
             <div className="h-px w-10 bg-primary/25 mb-3" />
@@ -403,7 +382,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
               type="button"
               onClick={salir}
               disabled={!opened}
-              className="px-6 py-2 bg-primary text-cream font-sans tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0"
+              className="px-6 py-2 bg-primary text-cream font-display tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0"
             >
               {wedding.envelope.cardButton}
             </button>

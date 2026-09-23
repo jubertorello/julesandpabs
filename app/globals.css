@@ -3,21 +3,23 @@
 /* =============================================================================
  *  PALETA DE COLORES
  * =============================================================================
- *  Cambia solo estos 8 valores para repintar toda la invitación.
+ *  Cambia solo estos 9 valores para repintar toda la invitación.
  *  Cada uno genera automáticamente las utilidades de Tailwind:
- *  `bg-primary`, `text-primary`, `border-primary/20`, `fill-secondary`, etc.
+ *  `bg-primary`, `text-ink`, `border-primary/20`, `fill-secondary`, etc.
  * ---------------------------------------------------------------------------*/
 @theme {
-  /* Verde azulado del sobre: navegación, botones, titulares y textos. */
+  /* Verde azulado del sobre: navegación, botones y filetes. No se usa en texto. */
   --color-primary: #37535c;
   /* Verde azulado claro: bloques sólidos (cuenta atrás, regalo, footer). */
   --color-secondary: #5a7b83;
   /* Papel de la tarjeta: fondo claro de todas las secciones. */
   --color-cream: #d6cec1;
-  /* Tinta de la caligrafía: nombres de los novios y la fecha. */
-  --color-deep: #403d39;
+  /* Texto en general, titulares y cuerpo: negro, para que se lea bien. */
+  --color-ink: #111111;
+  /* El negro más fuerte: nombres de los novios y la fecha. */
+  --color-deep: #000000;
   /* Texto secundario y párrafos. */
-  --color-muted: #6b665e;
+  --color-muted: #333333;
   /* Texto claro sobre fondo oscuro (enlaces de la navegación). */
   --color-soft: #e3ddd2;
   /* Papel algo más tostado: inputs, listas y cajas interiores. */
@@ -27,6 +29,8 @@
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
+  --font-body: var(--font-body);
+  --font-display: var(--font-display);
   --font-handwritten: var(--font-handwritten);
 }
 
@@ -36,12 +40,11 @@
  *  Las familias se cargan en `app/layout.tsx` (next/font). Aquí se define qué
  *  fuente usa cada rol.
  * ---------------------------------------------------------------------------*/
-:root {
-  --font-serif: "Playfair Display", serif;
-  --font-body: "Cormorant Garamond", serif;
-  /* Titulares tipo "display": nombres, horas y títulos de tarjeta. */
-  --font-display: Georgia, serif;
-}
+/*
+ * Las familias las carga `app/layout.tsx` con next/font y llegan aquí como
+ * variables: --font-serif, --font-body, --font-display y --font-handwritten.
+ * Para cambiar una tipografía se toca allí, no aquí.
+ */
 
 @layer base {
   body {

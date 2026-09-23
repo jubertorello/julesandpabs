@@ -98,7 +98,6 @@ export const wedding = {
        * la tarjeta lleva el botón y queda mejor centrada sobre el sobre.
        */
       finalComposition: false,
-      skipLabel: 'Saltar animación',
       /** Mensajes que se anuncian por lector de pantalla en cada paso. */
       announcements: {
         flipping: 'El sobre gira para mostrar el dorso',
