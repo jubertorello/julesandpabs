@@ -48,6 +48,39 @@ const weddingPhotos = wedding.photos;
  * `backgrounds.divider` está vacío, cae al filete de 1px de siempre.
  * `tone="claro"` la aclara para los fondos verdes.
  */
+/**
+ * Cenefas florales de la papelería a los lados de una sección. A diferencia de
+ * las del layout, estas también se ven en móvil: van más estrechas y más
+ * tenues para no pelearse con el texto.
+ */
+function Cenefas() {
+  if (!backgrounds.flowers.left && !backgrounds.flowers.right) return null;
+  return (
+    <>
+      <span
+        aria-hidden
+        className="absolute inset-y-0 left-0 w-[22vw] max-w-[150px] md:hidden pointer-events-none opacity-45"
+        style={{
+          backgroundImage: `url("${backgrounds.flowers.left}")`,
+          backgroundSize: '100% auto',
+          backgroundRepeat: 'repeat-y',
+          backgroundPosition: 'left top',
+        }}
+      />
+      <span
+        aria-hidden
+        className="absolute inset-y-0 right-0 w-[22vw] max-w-[150px] md:hidden pointer-events-none opacity-45"
+        style={{
+          backgroundImage: `url("${backgrounds.flowers.right}")`,
+          backgroundSize: '100% auto',
+          backgroundRepeat: 'repeat-y',
+          backgroundPosition: 'right top',
+        }}
+      />
+    </>
+  );
+}
+
 function Divider({ className = '', tone }: { className?: string; tone?: 'claro' }) {
   if (!backgrounds.divider) {
     return <div className={`h-px w-10 mx-auto ${tone === 'claro' ? 'bg-white/40' : 'bg-primary/20'} ${className}`} />;
@@ -744,7 +777,7 @@ export default function Home() {
         </section>
 
         {/* 3. CUENTA ATRÁS */}
-        <section className="py-24 pt-16 pb-16 relative">
+        <section className="py-10 relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -755,43 +788,6 @@ export default function Home() {
             }}
             className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center"
           >
-            {/* Relojito de agujas, al pulso de las ilustraciones de la papelería */}
-            {wedding.countdown.clock && (
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 14 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-                }}
-                aria-hidden
-                className="mb-10"
-              >
-                <svg width="62" height="62" viewBox="0 0 62 62" fill="none" className="text-ink/70">
-                  <circle cx="31" cy="31" r="25" stroke="currentColor" strokeWidth="1.1" />
-                  <circle cx="31" cy="31" r="28.5" stroke="currentColor" strokeWidth="0.6" opacity="0.45" />
-                  {[0, 90, 180, 270].map((a) => (
-                    <line
-                      key={a}
-                      x1="31" y1="9.5" x2="31" y2="13.5"
-                      stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"
-                      transform={`rotate(${a} 31 31)`}
-                    />
-                  ))}
-                  {/* La aguja larga da la vuelta en 6s; la corta, en 72s */}
-                  <line
-                    x1="31" y1="31" x2="31" y2="14"
-                    stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"
-                    className="origin-center motion-safe:animate-[girar_6s_linear_infinite]"
-                  />
-                  <line
-                    x1="31" y1="31" x2="31" y2="20"
-                    stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"
-                    className="origin-center motion-safe:animate-[girar_72s_linear_infinite]"
-                  />
-                  <circle cx="31" cy="31" r="1.6" fill="currentColor" />
-                </svg>
-              </motion.div>
-            )}
-
             {/* Cuenta atrás: una lámina más de la papelería */}
             <motion.div
               variants={{
@@ -823,6 +819,43 @@ export default function Home() {
                 </p>
               ) : (
                 <>
+              {/* Relojito de agujas, al pulso de las ilustraciones de la papelería */}
+              {wedding.countdown.clock && (
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  }}
+                  aria-hidden
+                  className="flex justify-center mb-6"
+                >
+                  <svg width="62" height="62" viewBox="0 0 62 62" fill="none" className="text-ink/70">
+                    <circle cx="31" cy="31" r="25" stroke="currentColor" strokeWidth="1.1" />
+                    <circle cx="31" cy="31" r="28.5" stroke="currentColor" strokeWidth="0.6" opacity="0.45" />
+                    {[0, 90, 180, 270].map((a) => (
+                      <line
+                        key={a}
+                        x1="31" y1="9.5" x2="31" y2="13.5"
+                        stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"
+                        transform={`rotate(${a} 31 31)`}
+                      />
+                    ))}
+                    {/* La aguja larga da la vuelta en 6s; la corta, en 72s */}
+                    <line
+                      x1="31" y1="31" x2="31" y2="14"
+                      stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"
+                      className="origin-center motion-safe:animate-[girar_6s_linear_infinite]"
+                    />
+                    <line
+                      x1="31" y1="31" x2="31" y2="20"
+                      stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"
+                      className="origin-center motion-safe:animate-[girar_72s_linear_infinite]"
+                    />
+                    <circle cx="31" cy="31" r="1.6" fill="currentColor" />
+                  </svg>
+                </motion.div>
+              )}
+
                   {wedding.countdown.lead && (
                     <p className="font-serif text-muted text-[31px] leading-snug mb-7">{wedding.countdown.lead}</p>
                   )}
@@ -865,7 +898,7 @@ export default function Home() {
         {/* 4. ITINERARIO SECTION */}
         <section
           id="itinerario"
-          className="py-24 pt-16 pb-16 text-ink itinerario-section"
+          className="py-10 text-ink itinerario-section"
         >
           <motion.div
             initial="hidden"
@@ -956,7 +989,7 @@ export default function Home() {
         </section>
 
         {/* 5. CARRETE DE FOTOS */}
-        <section id="fotos" className="py-24 pt-16 pb-16 relative overflow-hidden">
+        <section id="fotos" className="py-10 relative overflow-hidden">
           {wedding.gallery.image && (
             <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-2">
               <Image src={wedding.gallery.image} alt="" fill className="object-contain" referrerPolicy="no-referrer" />
@@ -1006,7 +1039,7 @@ export default function Home() {
         {wedding.music.enabled && (
           <section
             id="musica"
-            className="w-full py-24 pt-16 pb-16 relative"
+            className="w-full py-10 relative"
           >
             <motion.div
               initial="hidden"
@@ -1104,7 +1137,7 @@ export default function Home() {
 
         {/* 7. NEXT ADVENTURE / LUNA DE MIEL */}
         {wedding.gift.enabled && (
-          <section id="viaje" className="py-24 pt-16 pb-16 bg-secondary relative text-white">
+          <section id="viaje" className="py-10 bg-secondary relative text-white">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -1217,7 +1250,7 @@ export default function Home() {
         {/* 8. CONFIRMA TU ASISTENCIA (RSVP Form) */}
         <section
           id="confirmacion"
-          className="w-full py-24 pt-16 pb-16 confirmacion-section"
+          className="w-full py-10 confirmacion-section"
         >
           <motion.div
             initial="hidden"
@@ -1305,8 +1338,9 @@ export default function Home() {
         {/* 9. INFORMACIÓN DE INTERÉS */}
         <section
           id="informacion"
-          className="py-20 pt-16 pb-16 relative"
+          className="py-10 relative overflow-hidden"
         >
+          <Cenefas />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1375,8 +1409,9 @@ export default function Home() {
 
         {/* 10. ¿DUDAS? (WHATSAPP INVITADOS CHAT LINKS) */}
         <section
-          className="py-20 pt-16 pb-16 dudas-section"
+          className="py-10 dudas-section relative overflow-hidden"
         >
+          <Cenefas />
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -1388,7 +1423,7 @@ export default function Home() {
                 transition: { staggerChildren: 0.1 }
               }
             }}
-            className="max-w-4xl mx-auto px-6 text-center"
+            className="max-w-4xl mx-auto px-6 text-center relative z-10"
           >
             {wedding.contact.image && (
               <motion.div

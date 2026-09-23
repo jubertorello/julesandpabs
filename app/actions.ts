@@ -2,10 +2,10 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-const serverSupabase = createClient(supabaseUrl, supabaseAnonKey);
+const serverSupabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://sin-configurar.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sin-configurar'
+);
 
 export async function verifyAdminLogin(usernameInput: string, passwordInput: string) {
   const username = usernameInput.trim().toLowerCase();
