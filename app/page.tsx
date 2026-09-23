@@ -987,7 +987,7 @@ export default function Home() {
                   {wedding.music.title}
                 </h3>
 
-                <p className="font-serif text-muted text-[28px] italic leading-relaxed max-w-lg mx-auto mb-10">
+                <p className="font-display text-muted text-[16px] leading-relaxed max-w-md mx-auto mb-10 font-semibold">
                   {wedding.music.description}
                 </p>
 
@@ -1298,7 +1298,7 @@ export default function Home() {
                     <h4 className="font-display text-[19px] text-white mb-3 tracking-wide font-semibold">
                       {card.title}
                     </h4>
-                    <p className="font-serif text-[28px] text-white leading-snug">
+                    <p className="font-display text-[15px] text-white leading-relaxed font-semibold">
                       {card.body}
                       {card.bullets.map((bullet, i) => (
                         <span key={i} className={`block ${i === 0 ? 'mt-3' : 'mt-1'}`}>

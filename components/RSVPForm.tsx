@@ -6,6 +6,9 @@ import { supabase } from '@/lib/supabase';
 import { Check, ChevronLeft, ChevronRight, Info, Minus, Plus, Smile, Frown, Heart } from 'lucide-react';
 import { wedding } from '@/config/wedding';
 
+/** Máximo de acompañantes que puede añadir un invitado. */
+const MAX_COMPANIONS = 3;
+
 export interface CompanionData {
   name: string;
   hasIntolerance: boolean;
@@ -112,14 +115,14 @@ function GuestFields({
         <>
           <div>
             <FieldLabel>¿Necesitas autobús de ida?</FieldLabel>
-            <p className="text-[10.5px] text-muted italic mb-2 leading-snug">
+            <p className="font-display text-[14px] text-muted mb-2 leading-snug font-semibold">
               {wedding.rsvp.bus.idaHint}
             </p>
             <YesNoToggle value={busIda} onChange={onBusIda} />
           </div>
           <div>
             <FieldLabel>¿Necesitas autobús de vuelta?</FieldLabel>
-            <p className="text-[10.5px] text-muted italic mb-2 leading-snug">
+            <p className="font-display text-[14px] text-muted mb-2 leading-snug font-semibold">
               {wedding.rsvp.bus.vueltaHint}
             </p>
             <YesNoToggle value={busVuelta} onChange={onBusVuelta} />
@@ -170,7 +173,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
   };
 
   const updateCompanionCount = (delta: number) => {
-    const next = Math.max(0, Math.min(1, companionCount + delta));
+    const next = Math.max(0, Math.min(MAX_COMPANIONS, companionCount + delta));
     setCompanionCount(next);
     setCompanions((prev) => {
       if (next > prev.length) {
@@ -469,7 +472,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
               <p className="text-[14px] font-display text-muted/70 text-center mb-4 font-semibold">(si procede)</p>
               <div className="flex items-start gap-2 bg-sand/60 border border-primary/10 rounded px-3 py-2.5 mb-5">
                 <Info size={13} className="text-muted mt-0.5 shrink-0" />
-                <p className="font-serif text-[28px] text-muted">
+                <p className="font-display text-[14px] text-muted leading-snug font-semibold">
                   Los niños no están invitados al evento
                 </p>
               </div>
@@ -486,7 +489,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 <button
                   type="button"
                   onClick={() => updateCompanionCount(1)}
-                  disabled={companionCount === 1}
+                  disabled={companionCount === MAX_COMPANIONS}
                   className="w-9 h-9 rounded-full border border-primary/25 flex items-center justify-center text-ink hover:bg-sand transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <Plus size={14} />

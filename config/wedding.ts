@@ -199,8 +199,8 @@ export const wedding = {
   photos: [
     '/invitacion/foto-1.webp',
     '/invitacion/foto-2.webp',
-    '/invitacion/foto-3.webp',
     '/invitacion/foto-4.webp',
+    '/invitacion/foto-3.webp',
     '/invitacion/foto-5.webp',
     '/invitacion/foto-6.webp',
     '/invitacion/foto-7.webp',
@@ -246,7 +246,7 @@ export const wedding = {
     enabled: true,
     title: 'Ayúdanos con la música',
     description:
-      '¿Qué canciones te gustaría que sonaran en la fiesta? Compártelas con nosotros y las añadiremos a la playlist para darlo todo en la pista.',
+      'Comparte qué canciones te gustaría escuchar para darlo todo en la pista.',
     ctaLabel: 'Sugerir Canciones',
     image: '/invitacion/icono-musica.webp',
     /**
