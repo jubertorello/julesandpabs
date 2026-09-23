@@ -310,13 +310,13 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             style={{ backgroundImage: `url("${assets.back}")`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
           />
           <p className="font-serif text-deep text-[41px] md:text-[51px] italic mb-1">{wedding.envelope.preTitle}</p>
-          <p className="font-display text-muted text-[11px] uppercase tracking-[0.35em] mb-10">
+          <p className="font-display text-muted text-[11px] uppercase tracking-[0.35em] mb-10 font-semibold">
             {wedding.envelope.preSubtitle}
           </p>
           <button
             type="button"
             onClick={() => setShowPre(false)}
-            className="px-8 py-3 rounded-full bg-primary text-cream font-display text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors"
+            className="px-8 py-3 rounded-full bg-primary text-cream font-display text-xs uppercase tracking-[0.25em] shadow-lg hover:bg-primary/90 transition-colors font-semibold"
           >
             {wedding.envelope.preButton}
           </button>
@@ -382,7 +382,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
               type="button"
               onClick={salir}
               disabled={!opened}
-              className="px-6 py-2 bg-primary text-cream font-display tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0"
+              className="px-6 py-2 bg-primary text-cream font-display tracking-[0.2em] text-[9px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0 font-semibold"
             >
               {wedding.envelope.cardButton}
             </button>

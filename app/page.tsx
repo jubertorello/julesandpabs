@@ -304,7 +304,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.5 }}
           onClick={togglePlay}
-          className="fixed bottom-6 right-6 z-[70] flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:bg-black/30 hover:text-white transition-all duration-200 text-[11px] font-display uppercase tracking-[0.2em]"
+          className="fixed bottom-6 right-6 z-[70] flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm text-white/80 hover:bg-black/30 hover:text-white transition-all duration-200 text-[11px] font-display uppercase tracking-[0.2em] font-semibold"
         >
           {isPlaying ? <VolumeX size={14} /> : <Volume2 size={14} />}
           {isPlaying ? '' : ''}
@@ -323,12 +323,12 @@ export default function Home() {
             <a
               href="#inicio"
               onClick={(e) => handleNavClick(e, 'inicio')}
-              className="text-2xl md:text-3xl font-light tracking-[0.2em] uppercase text-cream hover:opacity-80 transition-opacity cursor-pointer font-display"
+              className="text-2xl md:text-3xl tracking-[0.2em] uppercase text-cream hover:opacity-80 transition-opacity cursor-pointer font-display font-semibold"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
             >
               {wedding.couple.initials}
             </a>
-            <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[11px] uppercase tracking-[0.25em] font-display text-soft font-medium">
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[11px] uppercase tracking-[0.25em] font-display text-soft font-semibold">
               {navLinks
                 .filter((link) => !link.mobileOnly)
                 .map((link) => (
@@ -370,7 +370,7 @@ export default function Home() {
               <a
                 href="#confirmacion"
                 onClick={(e) => handleNavClick(e, 'confirmacion')}
-                className="hidden md:inline-block px-4 py-1.5 border border-white/30 text-cream hover:bg-cream hover:text-ink transition-all duration-300 rounded-full text-[10px] uppercase font-display tracking-[0.2em]"
+                className="hidden md:inline-block px-4 py-1.5 border border-white/30 text-cream hover:bg-cream hover:text-ink transition-all duration-300 rounded-full text-[10px] uppercase font-display tracking-[0.2em] font-semibold"
               >
                 {wedding.nav.ctaLabel}
               </a>
@@ -378,7 +378,7 @@ export default function Home() {
               {/* Mobile Menu button */}
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="md:hidden flex items-center space-x-1 px-3 py-1.5 border border-white/35 text-cream hover:bg-white/10 transition-all rounded-full text-[10px] uppercase font-display tracking-[0.15em] cursor-pointer"
+                className="md:hidden flex items-center space-x-1 px-3 py-1.5 border border-white/35 text-cream hover:bg-white/10 transition-all rounded-full text-[10px] uppercase font-display tracking-[0.15em] cursor-pointer font-semibold"
                 aria-label="Menú de secciones"
               >
                 <span>Menú</span>
@@ -397,7 +397,7 @@ export default function Home() {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className="md:hidden overflow-hidden bg-primary border-t border-white/10"
               >
-                <div className="px-6 py-4 flex flex-col space-y-4 text-center text-xs uppercase tracking-[0.2em] font-display text-soft font-medium">
+                <div className="px-6 py-4 flex flex-col space-y-4 text-center text-xs uppercase tracking-[0.2em] font-display text-soft font-semibold">
                   {navLinks.map((link) => (
                     <a
                       key={link.id}
@@ -497,7 +497,7 @@ export default function Home() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
               }}
-              className="tracking-[0.25em] uppercase text-[24px] leading-[24px] text-ink mb-8 text-center no-underline font-display"
+              className="tracking-[0.25em] uppercase text-[24px] leading-[24px] text-ink mb-8 text-center no-underline font-display font-semibold"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 'normal' }}
             >
               {wedding.hero.announcement}
@@ -539,7 +539,7 @@ export default function Home() {
                 <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
                   {wedding.couple.partnerA.firstName}
                 </h1>
-                <span className="font-display tracking-[0.05em] text-[18px] text-deep uppercase mt-1 font-light">
+                <span className="font-display tracking-[0.05em] text-[18px] text-deep uppercase mt-1 font-semibold">
                   {wedding.couple.partnerA.lastName}
                 </span>
               </div>
@@ -552,7 +552,7 @@ export default function Home() {
                 <h1 className="font-handwritten text-[34px] leading-[46px] text-deep font-light">
                   {wedding.couple.partnerB.firstName}
                 </h1>
-                <span className="font-display tracking-[0.05em] text-[18px] leading-[26px] text-deep uppercase mt-1 font-light">
+                <span className="font-display tracking-[0.05em] text-[18px] leading-[26px] text-deep uppercase mt-1 font-semibold">
                   {wedding.couple.partnerB.lastName}
                 </span>
               </div>
@@ -580,7 +580,7 @@ export default function Home() {
                 {/* Month with borders */}
                 <div className="border-y border-deep/40 py-2 px-3 sm:px-5 text-center min-w-[76px] sm:min-w-[150px] flex-shrink">
                   <span
-                    className="tracking-[0.2em] uppercase text-deep font-light block font-display"
+                    className="tracking-[0.2em] uppercase text-deep block font-display font-semibold"
                     style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(11px, 3.4vw, 14px)', lineHeight: '1.1', textAlign: 'center' }}
                   >
                     {wedding.date.monthName}
@@ -606,7 +606,7 @@ export default function Home() {
               {/* Time below */}
               <div className="mt-6 text-center">
                 <span
-                  className="font-display tracking-[0.25em] text-deep uppercase font-light"
+                  className="font-display tracking-[0.25em] text-deep uppercase font-semibold"
                   style={{ fontSize: '16px', lineHeight: '16px' }}
                 >
                   {wedding.date.weekdayAndTime}
@@ -682,7 +682,7 @@ export default function Home() {
               }}
               className="text-center mb-16"
             >
-              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block">{wedding.locations.eyebrow}</span>
+              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.locations.eyebrow}</span>
               <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-light italic">
                 {wedding.locations.title}
               </h2>
@@ -702,7 +702,7 @@ export default function Home() {
                 >
                   <div>
                     <div className="mb-6 text-center">
-                      <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted font-medium">{place.eyebrow}</span>
+                      <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted font-semibold">{place.eyebrow}</span>
                     </div>
 
                     <h3
@@ -738,7 +738,7 @@ export default function Home() {
                       href={place.mapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-2 w-[220px] py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center space-x-2 w-[220px] py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] font-semibold"
                     >
                       <span>{place.ctaLabel}</span>
                       <ChevronRight size={12} />
@@ -831,7 +831,7 @@ export default function Home() {
                     className="bg-secondary aspect-square rounded-full shadow-md border border-primary/10 flex flex-col items-center justify-center p-2 sm:p-3"
                   >
                     <span className="text-[51px] sm:text-[61px] md:text-[64px] font-serif text-white font-medium leading-none">{timeLeft[unit]}</span>
-                    <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-white/90 mt-1 sm:mt-1.5 font-light font-display">{label}</span>
+                    <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-white/90 mt-1 sm:mt-1.5 font-display font-semibold">{label}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -951,7 +951,7 @@ export default function Home() {
               }}
               className="text-center mb-16"
             >
-              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-medium">{wedding.itinerary.eyebrow}</span>
+              <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted mb-2 block font-semibold">{wedding.itinerary.eyebrow}</span>
               <h2 className="font-serif text-[51px] md:text-[61px] text-ink font-medium italic">
                 {wedding.itinerary.title}
               </h2>
@@ -1001,7 +1001,7 @@ export default function Home() {
                           alignLeft ? 'md:pr-28 md:text-right md:pl-0' : 'md:pl-28'
                         }`}
                       >
-                        <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display font-medium text-xs mb-2">
+                        <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display text-xs mb-2 font-semibold">
                           {event.time}
                         </div>
                         <h4 className="font-serif text-[34px] text-ink font-medium" style={{ fontFamily: 'var(--font-display)' }}>
@@ -1084,7 +1084,7 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowMusicModal(true)}
-                  className="inline-flex items-center space-x-3 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-display text-[10px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+                  className="inline-flex items-center space-x-3 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-display text-[10px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer font-semibold"
                 >
                   <Music size={13} />
                   <span>{wedding.music.ctaLabel}</span>
@@ -1102,7 +1102,7 @@ export default function Home() {
                           className="flex items-center justify-between text-xs bg-sand/30 p-2.5 rounded-md border border-primary/5"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <span className="text-[10px] font-bold text-ink/40 font-display w-4 shrink-0">#{index + 1}</span>
+                            <span className="text-[10px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
                             <div className="min-w-0">
                               <span className="font-bold text-ink block truncate">{song.title}</span>
                               <span className="text-muted">{song.artist}</span>
@@ -1110,7 +1110,7 @@ export default function Home() {
                           </div>
                           <button
                             onClick={() => handleVoteSong(song.id)}
-                            className="flex items-center space-x-1.5 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] uppercase text-muted border border-primary/10 transition-colors shrink-0 ml-2"
+                            className="flex items-center space-x-1.5 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] uppercase text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
                           >
                             <Heart size={10} className="fill-primary/20 text-ink" />
                             <span>{song.votes}</span>
@@ -1121,7 +1121,7 @@ export default function Home() {
                     {musicList.length > 3 && (
                       <button
                         onClick={() => setShowAllSongsModal(true)}
-                        className="mt-4 w-full py-2 text-[10px] uppercase tracking-wider font-display font-semibold text-muted border border-primary/15 rounded-full hover:bg-primary/5 transition-colors cursor-pointer"
+                        className="mt-4 w-full py-2 text-[10px] uppercase tracking-wider font-display text-muted border border-primary/15 rounded-full hover:bg-primary/5 transition-colors cursor-pointer font-semibold"
                       >
                         Ver todas las canciones ({musicList.length})
                       </button>
@@ -1154,7 +1154,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
                 }}
-                className="font-display text-[10px] uppercase tracking-[0.3em] text-white/80 mb-2 block font-medium"
+                className="font-display text-[10px] uppercase tracking-[0.3em] text-white/80 mb-2 block font-semibold"
               >
                 {wedding.gift.eyebrow}
               </motion.span>
@@ -1362,7 +1362,7 @@ export default function Home() {
               }}
               className="text-center mb-12"
             >
-              <span className="font-display text-[9px] uppercase tracking-[0.3em] font-bold text-ink/70">{wedding.info.eyebrow}</span>
+              <span className="font-display text-[9px] uppercase tracking-[0.3em] text-ink/70 font-semibold">{wedding.info.eyebrow}</span>
               <h3 className="font-serif text-[41px] md:text-[51px] text-ink mt-1 font-light italic">
                 {wedding.info.title}
               </h3>
@@ -1455,7 +1455,7 @@ export default function Home() {
                   href={whatsappUrl(partner)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-3 w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center space-x-3 w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 font-semibold"
                 >
                   <PhoneCall size={12} />
                   <span>{partner.whatsappLabel}</span>
@@ -1485,17 +1485,17 @@ export default function Home() {
             >
               {wedding.footer.headline}
             </span>
-            <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 font-medium drop-shadow-xs">
+            <p className="font-display text-[11px] md:text-xs uppercase tracking-[0.3em] text-cream mb-2 drop-shadow-xs font-semibold">
               {wedding.couple.joinedNames}
             </p>
-            <p className="font-display font-medium text-[9px] md:text-[10px] text-cream/85 tracking-widest uppercase drop-shadow-xs">
+            <p className="font-display text-[9px] md:text-[10px] text-cream/85 tracking-widest uppercase drop-shadow-xs font-semibold">
               {wedding.date.long} • {wedding.date.city}
             </p>
           </div>
 
           {/* Bottom thin bar */}
           <div className="absolute bottom-0 left-0 right-0 py-3 bg-primary/30 border-t border-cream/10 z-10">
-            <p className="font-display text-[9px] md:text-[10px] text-cream/80 tracking-widest">
+            <p className="font-display text-[9px] md:text-[10px] text-cream/80 tracking-widest font-semibold">
               By{' '}
               <a
                 href={wedding.footer.credit.url}
@@ -1551,11 +1551,11 @@ export default function Home() {
 
                 <div className="bg-sand/60 p-4 rounded-md border border-primary/10 mb-6 relative text-left">
                   {/* IBAN Section */}
-                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-bold">
+                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
                     Número de cuenta (IBAN):
                   </span>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-display text-xs md:text-sm text-ink select-all font-bold tracking-wider">
+                    <span className="font-display text-xs md:text-sm text-ink select-all tracking-wider font-semibold">
                       {wedding.gift.modal.iban}
                     </span>
                     <button
@@ -1572,11 +1572,11 @@ export default function Home() {
                   </div>
 
                   {/* SWIFT/BIC Section */}
-                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-bold">
+                  <span className="block text-[8px] font-display uppercase tracking-[0.2em] text-muted mb-2 font-semibold">
                     Código Swift/BIC:
                   </span>
                   <div className="flex items-center justify-between">
-                    <span className="font-display text-xs md:text-sm text-ink select-all font-bold tracking-wider">
+                    <span className="font-display text-xs md:text-sm text-ink select-all tracking-wider font-semibold">
                       {wedding.gift.modal.swift}
                     </span>
                     <button
@@ -1603,7 +1603,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <p className="text-[10px] text-muted uppercase tracking-wider italic font-display">
+                <p className="text-[10px] text-muted uppercase tracking-wider italic font-display font-semibold">
                   {wedding.gift.modal.thanks}
                 </p>
               </motion.div>
@@ -1648,7 +1648,7 @@ export default function Home() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="bg-primary/10 border border-primary/25 rounded text-ink p-3 text-center mb-4 font-display text-xs font-semibold flex items-center justify-center gap-1.5 overflow-hidden"
+                      className="bg-primary/10 border border-primary/25 rounded text-ink p-3 text-center mb-4 font-display text-xs flex items-center justify-center gap-1.5 overflow-hidden font-semibold"
                     >
                       <Check size={14} />
                       <span>¡Canción añadida con éxito!</span>
@@ -1667,7 +1667,7 @@ export default function Home() {
                       placeholder={wedding.music.modal.songPlaceholder}
                       value={newSongTitle}
                       onChange={(e) => setNewSongTitle(e.target.value)}
-                      className="w-full bg-sand/30 border border-primary/20 rounded p-2 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors font-display"
+                      className="w-full bg-sand/30 border border-primary/20 rounded p-2 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors font-display font-semibold"
                     />
                   </div>
 
@@ -1681,20 +1681,20 @@ export default function Home() {
                       placeholder={wedding.music.modal.artistPlaceholder}
                       value={newSongArtist}
                       onChange={(e) => setNewSongArtist(e.target.value)}
-                      className="w-full bg-sand/30 border border-primary/20 rounded p-2 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors font-display"
+                      className="w-full bg-sand/30 border border-primary/20 rounded p-2 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors font-display font-semibold"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full py-3 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md cursor-pointer hover:scale-[1.02] active:scale-[0.98] font-semibold"
                   >
                     {wedding.music.modal.submitLabel}
                   </button>
                 </form>
 
                 <div className="mt-6 border-t border-primary/10 pt-4 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
-                  <span className="block text-[9px] uppercase font-bold tracking-wider text-muted mb-2 font-display">
+                  <span className="block text-[9px] uppercase tracking-wider text-muted mb-2 font-display font-semibold">
                     Sugiriendo actualmente ({musicList.length}):
                   </span>
                   <div className="space-y-2">
@@ -1703,7 +1703,7 @@ export default function Home() {
                         <div className="truncate pr-4">
                           <span className="font-bold text-ink">{song.title}</span> - <span className="text-muted">{song.artist}</span>
                         </div>
-                        <span className="text-[10px] font-display font-bold bg-primary/5 px-2 py-0.5 rounded text-ink">
+                        <span className="text-[10px] font-display bg-primary/5 px-2 py-0.5 rounded text-ink font-semibold">
                           {song.votes} votos
                         </span>
                       </div>
@@ -1747,7 +1747,7 @@ export default function Home() {
                   {musicList.map((song, index) => (
                     <div key={song.id} className="flex items-center justify-between bg-sand/30 p-2.5 rounded text-[11px] border border-primary/5">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <span className="text-[10px] font-bold text-ink/40 font-display w-4 shrink-0">#{index + 1}</span>
+                        <span className="text-[10px] text-ink/40 font-display w-4 shrink-0 font-semibold">#{index + 1}</span>
                         <div className="min-w-0 truncate">
                           <span className="font-bold text-ink">{song.title}</span>
                           <span className="text-muted"> — {song.artist}</span>
@@ -1755,7 +1755,7 @@ export default function Home() {
                       </div>
                       <button
                         onClick={() => handleVoteSong(song.id)}
-                        className="flex items-center space-x-1 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] text-muted border border-primary/10 transition-colors shrink-0 ml-2"
+                        className="flex items-center space-x-1 px-2 py-1 hover:bg-primary/5 rounded font-display text-[10px] text-muted border border-primary/10 transition-colors shrink-0 ml-2 font-semibold"
                       >
                         <Heart size={9} className="fill-primary/20 text-ink" />
                         <span>{song.votes}</span>

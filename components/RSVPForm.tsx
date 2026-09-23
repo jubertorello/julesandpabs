@@ -39,14 +39,14 @@ function YesNoToggle({ value, onChange }: { value: boolean; onChange: (v: boolea
       <button
         type="button"
         onClick={() => onChange(true)}
-        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' }`}
+        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' } font-semibold`}
       >
         Sí
       </button>
       <button
         type="button"
         onClick={() => onChange(false)}
-        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ !value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' }`}
+        className={`flex-1 py-2.5 rounded text-xs font-display uppercase tracking-[0.15em] transition-all duration-200 border ${ !value ? 'bg-primary text-white border-primary' : 'bg-white text-muted border-primary/20 hover:border-primary/50' } font-semibold`}
       >
         No
       </button>
@@ -56,7 +56,7 @@ function YesNoToggle({ value, onChange }: { value: boolean; onChange: (v: boolea
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="block text-[11px] uppercase tracking-wider font-display text-muted font-semibold mb-2">
+    <label className="block text-[11px] uppercase tracking-wider font-display text-muted mb-2 font-semibold">
       {children}
     </label>
   );
@@ -82,7 +82,7 @@ function GuestFields({
           placeholder="Nombre y apellidos"
           value={name}
           onChange={(e) => onName(e.target.value)}
-          className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display"
+          className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display font-semibold"
         />
       </div>
       <div>
@@ -102,7 +102,7 @@ function GuestFields({
                 placeholder="Ej. celíaco, alergia a frutos secos..."
                 value={intolerance}
                 onChange={(e) => onIntolerance(e.target.value)}
-                className="w-full mt-2 bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display"
+                className="w-full mt-2 bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display font-semibold"
               />
             </motion.div>
           )}
@@ -254,17 +254,17 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
         {rsvpData.attending ? (
           <>
             <h4 className="font-serif text-[34px] text-ink mb-3">¡Confirmado con éxito!</h4>
-            <p className="font-display text-sm text-muted mb-6 leading-relaxed">
+            <p className="font-display text-sm text-muted mb-6 leading-relaxed font-semibold">
               ¡Tenemos muchísima ilusión por vivir este día tan bonito a tu lado!
             </p>
-            <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 space-y-2 border border-primary/5">
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Invitado</span><br />{rsvpData.guestName}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Intolerancia</span><br />{rsvpData.dietaryRestrictions || 'Ninguna'}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Bus Ida</span><br />{rsvpData.busIda ? 'Sí' : 'No'}</div>
-              <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Bus Vuelta</span><br />{rsvpData.busVuelta ? 'Sí' : 'No'}</div>
+            <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 space-y-2 border border-primary/5 font-semibold">
+              <div><span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Invitado</span><br />{rsvpData.guestName}</div>
+              <div><span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Intolerancia</span><br />{rsvpData.dietaryRestrictions || 'Ninguna'}</div>
+              <div><span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Bus Ida</span><br />{rsvpData.busIda ? 'Sí' : 'No'}</div>
+              <div><span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Bus Vuelta</span><br />{rsvpData.busVuelta ? 'Sí' : 'No'}</div>
               {rsvpData.companions.length > 0 && (
                 <div>
-                  <span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Acompañantes</span>
+                  <span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Acompañantes</span>
                   <ul className="mt-1 space-y-1 pl-2">
                     {rsvpData.companions.map((c, i) => (
                       <li key={i} className="text-muted">
@@ -277,19 +277,19 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 </div>
               )}
               {rsvpData.message && (
-                <div><span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Mensaje</span><br />{rsvpData.message}</div>
+                <div><span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Mensaje</span><br />{rsvpData.message}</div>
               )}
             </div>
           </>
         ) : (
           <>
             <h4 className="font-serif text-[34px] text-ink mb-3">Gracias por avisarnos</h4>
-            <p className="font-display text-sm text-muted mb-6 leading-relaxed">
+            <p className="font-display text-sm text-muted mb-6 leading-relaxed font-semibold">
               Lamentamos que no puedas acompañarnos, ¡te echaremos de menos!
             </p>
             {rsvpData.message && (
-              <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 border border-primary/5">
-                <span className="font-semibold uppercase tracking-wider text-[10px] text-muted font-display">Tu mensaje</span><br />{rsvpData.message}
+              <div className="bg-sand/40 p-4 rounded text-left font-display text-xs text-ink mb-8 border border-primary/5 font-semibold">
+                <span className="uppercase tracking-wider text-[10px] text-muted font-display font-semibold">Tu mensaje</span><br />{rsvpData.message}
               </div>
             )}
           </>
@@ -298,7 +298,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
           <button
             type="button"
             onClick={onEdit}
-            className="mt-4 w-full py-3 border border-primary/25 text-ink hover:bg-sand/50 font-display text-[10px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+            className="mt-4 w-full py-3 border border-primary/25 text-ink hover:bg-sand/50 font-display text-[10px] uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] font-semibold"
           >
             Rellenar otro formulario
           </button>
@@ -317,7 +317,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
           <button
             type="button"
             onClick={goBack}
-            className="absolute left-0 flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] font-display text-muted hover:text-ink transition-colors"
+            className="absolute left-0 flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] font-display text-muted hover:text-ink transition-colors font-semibold"
           >
             <ChevronLeft size={13} />
             Volver
@@ -360,14 +360,14 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
               <button
                 type="button"
                 onClick={() => handleAttendance(true)}
-                className="flex-1 py-4 bg-primary hover:bg-primary/90 text-white font-display text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.02] active:scale-[0.99]"
+                className="flex-1 py-4 bg-primary hover:bg-primary/90 text-white font-display text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.02] active:scale-[0.99] font-semibold"
               >
                 Sí, asistiré 🎉
               </button>
               <button
                 type="button"
                 onClick={() => handleAttendance(false)}
-                className="flex-1 py-4 bg-white hover:bg-sand text-ink border border-primary/20 font-display text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.99]"
+                className="flex-1 py-4 bg-white hover:bg-sand text-ink border border-primary/20 font-display text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.99] font-semibold"
               >
                 No podré asistir
               </button>
@@ -399,7 +399,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 placeholder="Nombre y apellidos"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
-                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display"
+                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display font-semibold"
               />
             </div>
             <div>
@@ -409,14 +409,14 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 placeholder="Alguna dedicatoria o comentario..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display"
+                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display font-semibold"
               />
             </div>
             <button
               type="button"
               disabled={submitting || !guestName.trim()}
               onClick={handleSubmit}
-              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
             >
               {submitting ? 'Enviando...' : 'Enviar'}
             </button>
@@ -433,7 +433,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             transition={{ duration: 0.25 }}
             className="space-y-5"
           >
-            <p className="text-[11px] uppercase tracking-wider font-display text-muted font-semibold text-center">
+            <p className="text-[11px] uppercase tracking-wider font-display text-muted text-center font-semibold">
               Tus datos
             </p>
             <GuestFields
@@ -448,7 +448,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
               type="button"
               disabled={!guestName.trim()}
               onClick={() => setStep(3)}
-              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed font-semibold"
             >
               Siguiente <ChevronRight size={13} />
             </button>
@@ -466,10 +466,10 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             className="space-y-6"
           >
             <div>
-              <p className="text-[11px] uppercase tracking-wider font-display text-muted font-semibold text-center mb-1">
+              <p className="text-[11px] uppercase tracking-wider font-display text-muted text-center mb-1 font-semibold">
                 ¿Vendrás con acompañante(s)?
               </p>
-              <p className="text-[10px] font-display text-muted/70 text-center mb-4">(si procede)</p>
+              <p className="text-[10px] font-display text-muted/70 text-center mb-4 font-semibold">(si procede)</p>
               <div className="flex items-start gap-2 bg-sand/60 border border-primary/10 rounded px-3 py-2.5 mb-5">
                 <Info size={13} className="text-muted mt-0.5 shrink-0" />
                 <p className="text-[11px] text-muted" style={{ fontFamily: 'var(--font-display)' }}>
@@ -495,7 +495,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                   <Plus size={14} />
                 </button>
               </div>
-              <p className="text-center text-[10px] text-muted mt-2 font-display">
+              <p className="text-center text-[10px] text-muted mt-2 font-display font-semibold">
                 {companionCount === 0 ? 'Sin acompañantes' : companionCount === 1 ? '1 acompañante' : `${companionCount} acompañantes`}
               </p>
             </div>
@@ -529,7 +529,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
               type="button"
               disabled={companions.some((c) => !c.name.trim())}
               onClick={() => setStep(4)}
-              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed font-semibold"
             >
               Siguiente <ChevronRight size={13} />
             </button>
@@ -547,26 +547,26 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
             className="space-y-5"
           >
             {/* Resumen de datos */}
-            <div className="bg-sand/40 border border-primary/10 rounded p-4 font-display space-y-3">
-              <p className="text-[10px] uppercase tracking-wider font-semibold text-muted font-display">Resumen de tu confirmación</p>
+            <div className="bg-sand/40 border border-primary/10 rounded p-4 font-display space-y-3 font-semibold">
+              <p className="text-[10px] uppercase tracking-wider text-muted font-display font-semibold">Resumen de tu confirmación</p>
               <div className="space-y-2 text-xs text-ink">
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Invitado</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display font-semibold">Invitado</span>
                   <p className="mt-0.5">{guestName}</p>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Intolerancia</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display font-semibold">Intolerancia</span>
                   <p className="mt-0.5">{hasIntolerance ? (intolerance || '—') : 'Ninguna'}</p>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted font-display">Autobús</span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted font-display font-semibold">Autobús</span>
                   <p className="mt-0.5">
                     Ida: {busIda ? 'Sí' : 'No'} · Vuelta: {busVuelta ? 'Sí' : 'No'}
                   </p>
                 </div>
                 {companions.length > 0 && (
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-muted font-display">
+                    <span className="text-[10px] uppercase tracking-wider text-muted font-display font-semibold">
                       Acompañantes ({companions.length})
                     </span>
                     <ul className="mt-1 space-y-1 pl-2">
@@ -591,14 +591,14 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 placeholder="Alguna dedicatoria, comentario adicional..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display"
+                className="w-full bg-sand/30 border border-primary/20 rounded p-3 text-ink focus:outline-none focus:border-primary focus:bg-sand/50 transition-colors text-[16px] font-display font-semibold"
               />
             </div>
             <button
               type="button"
               disabled={submitting}
               onClick={handleSubmit}
-              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+              className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white tracking-[0.2em] font-display text-[10px] uppercase rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 font-semibold"
             >
               {submitting ? 'Enviando...' : 'Enviar Confirmación'}
             </button>
