@@ -164,9 +164,13 @@ export const wedding = {
   countdown: {
     /** Texto pequeño sobre el número. */
     lead: 'Faltan',
-    /** Unidad bajo el número. Se usa el singular cuando queda un solo día. */
-    unit: 'días',
-    unitSingular: 'día',
+    /** Rótulo bajo cada número. */
+    labels: {
+      days: 'Días',
+      hours: 'Horas',
+      minutes: 'Minutos',
+      seconds: 'Segundos',
+    },
     /** Qué poner el mismo día de la boda y a partir de entonces. */
     today: '¡Hoy nos casamos!',
     past: 'Nos casamos',
@@ -235,9 +239,9 @@ export const wedding = {
     enabled: true,
     title: 'Ayúdanos con la música',
     description:
-      '¿Qué canciones te gustaría que sonaran en la fiesta? Compártelas con nosotros y las añadiremos a la playlist para darlo todo en la pista 💃',
+      '¿Qué canciones te gustaría que sonaran en la fiesta? Compártelas con nosotros y las añadiremos a la playlist para darlo todo en la pista.',
     ctaLabel: 'Sugerir Canciones',
-    image: '',
+    image: '/invitacion/icono-musica.webp',
     /**
      * `true` arranca la canción de fondo en cuanto el invitado toca la pantalla.
      * `false` (por defecto) la deja en silencio hasta que pulse el altavoz.
@@ -292,7 +296,7 @@ export const wedding = {
   rsvp: {
     title: 'Confirma tu asistencia',
     /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
-    image: '/invitacion/flor-ceremonia.webp',
+    image: '',
     /** Fecha límite mostrada en el formulario y en la introducción. */
     deadline: '26 de septiembre',
     bus: {
@@ -310,7 +314,7 @@ export const wedding = {
     eyebrow: 'Información',
     title: 'Datos de Interés',
     /** Ilustración sobre el título. Cadena vacía para no mostrar ninguna. */
-    image: '/invitacion/flor-celebracion.webp',
+    image: '',
     /**
      * Tarjetas informativas. Añade o quita las que necesites.
      * `image` es opcional: se dibuja en blanco sobre el verde de la tarjeta.

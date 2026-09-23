@@ -362,7 +362,7 @@ export default function RSVPForm({ onSubmitted, onEdit, rsvpData, formSubmitted 
                 onClick={() => handleAttendance(true)}
                 className="flex-1 py-4 bg-primary hover:bg-primary/90 text-white font-display text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow hover:shadow-md hover:scale-[1.02] active:scale-[0.99] font-semibold"
               >
-                Sí, asistiré 🎉
+                Sí, asistiré
               </button>
               <button
                 type="button"

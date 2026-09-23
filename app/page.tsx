@@ -753,13 +753,36 @@ export default function Home() {
                 </p>
               ) : (
                 <>
-                  <p className="font-serif text-muted text-[26px] leading-none">{wedding.countdown.lead}</p>
-                  <p className="font-serif text-ink text-[clamp(5rem,26vw,8rem)] leading-[1.05] my-2">
-                    {timeLeft.days}
-                  </p>
-                  <p className="font-display uppercase tracking-[0.3em] text-ink text-xs font-semibold">
-                    {timeLeft.days === 1 ? wedding.countdown.unitSingular : wedding.countdown.unit}
-                  </p>
+                  <p className="font-serif text-muted text-[26px] leading-none mb-6">{wedding.countdown.lead}</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 gap-x-2">
+                    {([
+                      ['days', wedding.countdown.labels.days],
+                      ['hours', wedding.countdown.labels.hours],
+                      ['minutes', wedding.countdown.labels.minutes],
+                      ['seconds', wedding.countdown.labels.seconds],
+                    ] as const).map(([unidad, rotulo]) => (
+                      <div key={unidad} className="text-center">
+                        {/* Cada cifra entra por abajo y la anterior sale por arriba */}
+                        <div className="relative h-[52px] md:h-[60px] overflow-hidden">
+                          <AnimatePresence initial={false}>
+                            <motion.span
+                              key={timeLeft[unidad]}
+                              initial={{ y: '65%', opacity: 0 }}
+                              animate={{ y: '0%', opacity: 1 }}
+                              exit={{ y: '-65%', opacity: 0 }}
+                              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                              className="absolute inset-0 flex items-center justify-center font-serif text-ink text-[46px] md:text-[54px] leading-none"
+                            >
+                              {timeLeft[unidad]}
+                            </motion.span>
+                          </AnimatePresence>
+                        </div>
+                        <p className="font-display uppercase tracking-[0.18em] text-muted text-[9px] font-semibold mt-1">
+                          {rotulo}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </>
               )}
             </motion.div>
@@ -857,51 +880,51 @@ export default function Home() {
             {/* TIMELINE TRACK */}
             <div className="relative mt-12 pl-8 md:pl-0">
               {/* Center line */}
-              <div className="absolute left-[60px] md:left-1/2 top-0 bottom-0 w-px bg-primary/20 transform md:-translate-x-1/2" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 transform -translate-x-1/2" />
 
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 {wedding.itinerary.events.map((event, i) => {
-                  const alignLeft = i % 2 === 0;
+                  const izquierda = i % 2 === 0;
                   return (
                     <motion.div
                       key={event.title}
-                      initial={{ opacity: 0, y: 60, scale: 0.92 }}
+                      initial={{ opacity: 0, y: 50, scale: 0.94 }}
                       whileInView={{ opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true, margin: "-60px" }}
                       transition={{ type: "spring", stiffness: 90, damping: 13 }}
-                      className="relative flex flex-col md:flex-row items-start md:items-center min-h-[48px]"
+                      className="relative flex"
                     >
-                      {event.image && (
-                        <div className="absolute left-[60px] md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-10">
-                          <div className="relative w-28 h-28 md:w-36 md:h-36">
+                      {/* Punto sobre la línea, a la altura del hito */}
+                      <span
+                        aria-hidden
+                        className="absolute left-1/2 top-8 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary/40"
+                      />
+
+                      <div
+                        className={`w-1/2 flex flex-col ${
+                          izquierda
+                            ? 'pr-5 md:pr-12 items-end text-right'
+                            : 'ml-auto pl-5 md:pl-12 items-start text-left'
+                        }`}
+                      >
+                        {event.image && (
+                          <div className="relative w-24 h-24 md:w-32 md:h-32 mb-1">
                             <Image
                               src={event.image}
                               alt={event.title}
                               fill
-                              className="object-contain"
+                              className={`object-contain ${izquierda ? 'object-right' : 'object-left'}`}
                               referrerPolicy="no-referrer"
                             />
                           </div>
-                        </div>
-                      )}
-
-                      {/* Columna vacía para alternar el lado en escritorio */}
-                      {!alignLeft && <div className="w-full md:w-1/2 hidden md:block" />}
-
-                      <div
-                        className={`w-full md:w-1/2 mt-1 pl-[104px] sm:pl-[130px] ${
-                          alignLeft ? 'md:pr-28 md:text-right md:pl-0' : 'md:pl-28'
-                        }`}
-                      >
+                        )}
                         <div className="inline-block px-3 py-1 bg-primary/5 border border-primary/15 rounded-full text-ink font-display text-xs mb-2 font-semibold">
                           {event.time}
                         </div>
-                        <h4 className="text-[clamp(1.25rem,6vw,2.1rem)] leading-tight text-ink font-display font-semibold">
+                        <h4 className="text-[clamp(1.15rem,5.4vw,2.1rem)] leading-tight text-ink font-display font-semibold">
                           {event.title}
                         </h4>
                       </div>
-
-                      {alignLeft && <div className="w-full md:w-1/2 hidden md:block" />}
                     </motion.div>
                   );
                 })}
