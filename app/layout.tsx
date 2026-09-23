@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import { Tangerine, Inter, Italiana, Cormorant_Garamond, Playwrite_CU_Guides } from 'next/font/google';
+import { Tangerine, Inter, Italiana, Cormorant_Garamond, Playwrite_CU } from 'next/font/google';
 import './globals.css';
 import { wedding, backgrounds } from '@/config/wedding';
 
@@ -32,8 +32,12 @@ const italiana = Italiana({
   variable: '--font-display',
 });
 
-/** Caligrafía: los nombres de los novios. Esta familia no declara subsets. */
-const playwrite = Playwrite_CU_Guides({
+/**
+ * Caligrafía: los nombres de los novios. Esta familia no declara subsets.
+ * Ojo con la variante `Playwrite_CU_Guides`: dibuja las pautas de caligrafía
+ * dentro de las letras, que se ven como rayas cruzando el texto.
+ */
+const playwrite = Playwrite_CU({
   weight: '400',
   variable: '--font-handwritten',
 });

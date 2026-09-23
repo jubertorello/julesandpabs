@@ -79,7 +79,7 @@ export const wedding = {
   envelope: {
     preTitle: 'Tienes una carta',
     preSubtitle: 'de Julieta y Pablo',
-    preButton: 'Abrir invitación',
+    preButton: 'Abrir',
     cardIntro: 'Estás invitado/a a la boda de',
     cardNames: 'Julieta y Pablo',
     cardButton: 'Ver Invitación',
