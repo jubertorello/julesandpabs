@@ -32,14 +32,25 @@ const settings = wedding.envelope.animation;
 const FLAP_CLOSED_H = (ratios.flapClosed / (1 / ratios.envelope)) * 100;
 const FLAP_OPEN_H = (ratios.flapOpen / (1 / ratios.envelope)) * 100;
 
-/** Cuánto sube la tarjeta al salir, en fracción de su propio alto. */
-const CARD_RISE = 0.61;
+/**
+ * La salida de la tarjeta tiene dos tiempos, en fracción de su propio alto:
+ * primero sube hasta quedar del todo fuera del bolsillo (`CARD_OUT`, algo más
+ * que su altura: así ni las esquinas de abajo quedan tapadas), y solo entonces
+ * pasa por delante del sobre y baja a su sitio (`CARD_RISE`). El cambio de capa
+ * ocurre justo cuando ya no se solapan, así que no se ve.
+ */
+const CARD_OUT = 1.07;
+const CARD_RISE = 0.72;
+/** Escala en reposo: la tarjeta queda un punto más cerca del que mira. */
+const CARD_SCALE = 1.04;
 
 const DESKTOP_QUERY = '(min-width: 769px)';
 
 export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntroProps) {
   const [showPre, setShowPre] = useState(true);
   const [opened, setOpened] = useState(false);
+  /** `true` cuando la tarjeta ya está fuera y pasa por delante del sobre. */
+  const [delante, setDelante] = useState(false);
   const [exiting, setExiting] = useState(false);
 
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -93,7 +104,11 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
     set(flapClosedRef.current, { visibility: 'hidden' });
     set(flapOpenRef.current, { visibility: 'visible', transform: 'rotateX(0deg)', opacity: '1' });
     set(shadowRef.current, { visibility: 'hidden' });
-    set(cardRef.current, { transform: `translateY(-${CARD_RISE * 100}%)`, opacity: '1' });
+    set(cardRef.current, {
+      transform: `translateY(-${CARD_RISE * 100}%) scale(${CARD_SCALE})`,
+      opacity: '1',
+    });
+    setDelante(true);
     setOpened(true);
     announce(settings.announcements.done);
   }, [announce]);
@@ -222,31 +237,48 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
       //    por el camino, la medida de antes ya no valdría.
       announce(settings.announcements.cardOut);
       const alto = cardRef.current?.offsetHeight ?? 0;
-      const subida = Math.round(alto * CARD_RISE);
+      const fuera = Math.round(alto * CARD_OUT);
+      const reposo = Math.round(alto * CARD_RISE);
 
-      //    Cuatro tiempos en vez de uno: la tarjeta se despega despacio, como
-      //    si rozara con el sobre; coge velocidad; se pasa un pelo de largo; y
-      //    se asienta. Un solo `ease-out` salía disparada desde parada, que es
-      //    justo lo que se veía brusco.
+      //    4a. Sube hasta salir del todo. Tres tiempos: se despega despacio,
+      //    como si rozara con el sobre, coge velocidad y frena al final. Un
+      //    solo `ease-out` la lanzaba a tope desde parada, que es lo que se
+      //    veía brusco.
       await run(
         cardRef.current,
         [
           { transform: 'translateY(0px) scale(1)', easing: 'cubic-bezier(0.32, 0, 0.67, 0.28)' },
-          { transform: `translateY(-${Math.round(subida * 0.07)}px) scale(1.004)`, offset: 0.2,
-            easing: 'cubic-bezier(0.25, 0.6, 0.3, 1)' },
-          { transform: `translateY(-${Math.round(subida * 1.022)}px) scale(1.012)`, offset: 0.84,
-            easing: 'cubic-bezier(0.4, 0, 0.3, 1)' },
-          { transform: `translateY(-${subida}px) scale(1)`, offset: 1 },
+          { transform: `translateY(-${Math.round(fuera * 0.06)}px) scale(1)`, offset: 0.18,
+            easing: 'cubic-bezier(0.25, 0.55, 0.25, 1)' },
+          { transform: `translateY(-${fuera}px) scale(1)`, offset: 1 },
         ],
-        { duration: 1700 * t }
+        { duration: 1600 * t }
+      );
+      if (cancelled.current) return;
+
+      await solapaAbriendo;
+      if (shadowRef.current) shadowRef.current.style.visibility = 'hidden';
+
+      //    4b. Ya está entera fuera: nada se solapa con el sobre, así que
+      //    ahora el cambio de capa no se ve. Y desde aquí se acerca al que
+      //    mira y baja a su sitio, por delante del sobre.
+      setDelante(true);
+      await wait(140 * t);
+      if (cancelled.current) return;
+
+      await run(
+        cardRef.current,
+        [
+          { transform: `translateY(-${fuera}px) scale(1)` },
+          { transform: `translateY(-${reposo}px) scale(${CARD_SCALE})`, offset: 1 },
+        ],
+        { duration: 900 * t, easing: 'cubic-bezier(0.34, 0.6, 0.24, 1)' }
       );
       if (cancelled.current) return;
 
       //    Un respiro antes de dar por abierta la invitación: sin él, el
       //    cambio de estado pisaba el final del movimiento.
-      await solapaAbriendo;
-      if (shadowRef.current) shadowRef.current.style.visibility = 'hidden';
-      await wait(280 * t);
+      await wait(240 * t);
       if (cancelled.current) return;
 
       setOpened(true);
@@ -267,8 +299,8 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
           run(
             cardRef.current,
             [
-              { transform: `translateY(-${Math.round(alto * CARD_RISE)}px) translateX(0)` },
-              { transform: `translateY(-${Math.round(alto * CARD_RISE)}px) translateX(10%) scale(1.05)` },
+              { transform: `translateY(-${reposo}px) translateX(0) scale(${CARD_SCALE})` },
+              { transform: `translateY(-${reposo}px) translateX(10%) scale(${CARD_SCALE * 1.05})` },
             ],
             { duration: 1000 * t, easing: 'ease-in-out' }
           ),
@@ -386,11 +418,11 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             style={{
               backgroundImage: `url("${assets.cardBg}")`,
               backgroundSize: '260px 260px',
-              // Siempre por detrás del bolsillo: la tarjeta va saliendo por el
-              // escote en V y las esquinas de abajo se quedan dentro, como en
-              // un sobre de verdad. Antes saltaba por delante al terminar y
-              // media tarjeta aparecía de golpe.
-              zIndex: 20,
+              // Detrás del bolsillo mientras sale por el escote, y por delante
+              // una vez está entera fuera. El salto de capa cae en el instante
+              // en el que ya no se solapan, así que no se ve: antes ocurría a
+              // media salida y descubría de golpe la mitad de abajo.
+              zIndex: delante ? 35 : 20,
             }}
           >
             <p className="font-serif text-muted italic mb-1 text-[clamp(1.75rem,6.4vw,2.1rem)]">
