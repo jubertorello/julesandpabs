@@ -33,7 +33,7 @@ const FLAP_CLOSED_H = (ratios.flapClosed / (1 / ratios.envelope)) * 100;
 const FLAP_OPEN_H = (ratios.flapOpen / (1 / ratios.envelope)) * 100;
 
 /** Cuánto sube la tarjeta al salir, en fracción de su propio alto. */
-const CARD_RISE = 0.42;
+const CARD_RISE = 0.61;
 
 const DESKTOP_QUERY = '(min-width: 769px)';
 
@@ -386,9 +386,11 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
             style={{
               backgroundImage: `url("${assets.cardBg}")`,
               backgroundSize: '260px 260px',
-              // Al terminar de salir pasa por delante del sobre, como en la
-              // invitación impresa.
-              zIndex: opened ? 35 : 20,
+              // Siempre por detrás del bolsillo: la tarjeta va saliendo por el
+              // escote en V y las esquinas de abajo se quedan dentro, como en
+              // un sobre de verdad. Antes saltaba por delante al terminar y
+              // media tarjeta aparecía de golpe.
+              zIndex: 20,
             }}
           >
             <p className="font-serif text-muted italic mb-1 text-[clamp(1.75rem,6.4vw,2.1rem)]">
@@ -402,7 +404,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
               type="button"
               onClick={salir}
               disabled={!opened}
-              className="px-6 py-2 bg-primary text-cream font-display tracking-[0.2em] text-[14px] uppercase rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-0 font-semibold"
+              className="px-6 py-2 bg-primary text-cream font-display tracking-[0.2em] text-[14px] uppercase rounded-full shadow-lg transition-all duration-700 hover:scale-105 active:scale-95 disabled:opacity-0 disabled:translate-y-1 font-semibold"
             >
               {wedding.envelope.cardButton}
             </button>
