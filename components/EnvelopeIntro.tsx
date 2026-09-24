@@ -200,7 +200,7 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
       if (flapClosedRef.current) flapClosedRef.current.style.visibility = 'hidden';
       if (flapOpenRef.current) flapOpenRef.current.style.visibility = 'visible';
 
-      await Promise.all([
+      const solapaAbriendo = Promise.all([
         run(flapOpenRef.current, [{ transform: 'rotateX(89deg)' }, { transform: 'rotateX(0deg)' }], {
           duration: 625 * t,
           easing: 'ease-out',
@@ -212,21 +212,41 @@ export default function EnvelopeIntro({ onComplete, onStartExit }: EnvelopeIntro
           })
         ),
       ]);
-      if (cancelled.current) return;
-      if (shadowRef.current) shadowRef.current.style.visibility = 'hidden';
 
-      // 4. Sale la tarjeta. El alto se mide ahora, no antes: si la ventana
-      //    cambió de tamaño por el camino, la medida de antes ya no valdría.
+      // 4. Sale la tarjeta. Arranca cuando a la solapa le queda el último
+      //    tramo: los dos movimientos se solapan y no se nota el corte.
+      await wait(505 * t);
+      if (cancelled.current) return;
+
+      //    El alto se mide ahora, no antes: si la ventana cambió de tamaño
+      //    por el camino, la medida de antes ya no valdría.
       announce(settings.announcements.cardOut);
       const alto = cardRef.current?.offsetHeight ?? 0;
+      const subida = Math.round(alto * CARD_RISE);
+
+      //    Cuatro tiempos en vez de uno: la tarjeta se despega despacio, como
+      //    si rozara con el sobre; coge velocidad; se pasa un pelo de largo; y
+      //    se asienta. Un solo `ease-out` salía disparada desde parada, que es
+      //    justo lo que se veía brusco.
       await run(
         cardRef.current,
         [
-          { transform: 'translateY(0px)', opacity: 1 },
-          { transform: `translateY(-${Math.round(alto * CARD_RISE)}px)`, opacity: 1 },
+          { transform: 'translateY(0px) scale(1)', easing: 'cubic-bezier(0.32, 0, 0.67, 0.28)' },
+          { transform: `translateY(-${Math.round(subida * 0.07)}px) scale(1.004)`, offset: 0.2,
+            easing: 'cubic-bezier(0.25, 0.6, 0.3, 1)' },
+          { transform: `translateY(-${Math.round(subida * 1.022)}px) scale(1.012)`, offset: 0.84,
+            easing: 'cubic-bezier(0.4, 0, 0.3, 1)' },
+          { transform: `translateY(-${subida}px) scale(1)`, offset: 1 },
         ],
-        { duration: 1500 * t, easing: 'cubic-bezier(0.33, 1, 0.68, 1)' }
+        { duration: 1700 * t }
       );
+      if (cancelled.current) return;
+
+      //    Un respiro antes de dar por abierta la invitación: sin él, el
+      //    cambio de estado pisaba el final del movimiento.
+      await solapaAbriendo;
+      if (shadowRef.current) shadowRef.current.style.visibility = 'hidden';
+      await wait(280 * t);
       if (cancelled.current) return;
 
       setOpened(true);
